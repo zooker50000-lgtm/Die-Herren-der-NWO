@@ -68,10 +68,20 @@ sichtbar veraenderte Welt. 100 % ist ein Story-Meilenstein, kein Game Over.
 
 ## Vertrauen
 
-Jeder wichtige NPC hat `trust` 0-100. Trust oeffnet Dialogzweige, Questgeber und
-Informationen. Niedriger Trust erzeugt Misstrauen, Fehlinformation und Konflikt.
-Trust ist keine reine Zahl: Reiter Wixler kann bei hohem Trust **mehr** luegen,
-weil er dann Zugriff hat.
+Jeder wichtige NPC hat `trust` 0-100. Trust ist keine Anzeige, sondern ein
+Schalter: welches Gespraech eine Figur fuehrt, haengt davon ab.
+
+| Figur | verprellt | vertraut |
+|---|---|---|
+| Mamer | redet nicht mehr ueber seine Sachen — als Entscheidung, nicht als Vorwurf | erzaehlt, was sie nie erzaehlt hat |
+| Reiter Wixler | hat "gerade nichts" und nennt eine Bedingung | sagt einmal ohne Umweg, wofuer er bezahlt wird |
+| Toni | sagt nichts mehr zum letzten Fideo | — |
+| Kommissarin Devrim | verlangt Belege, bevor sie zuhoert | nimmt auf, was sie sonst nicht aufnimmt |
+| Honig | will nicht hineingezogen werden | — |
+| Myrrmoasta | sagt nichts, solange die Kamera laeuft | — |
+
+Quest-Gespraeche haben Vorrang vor beidem: eine laufende Mission wird nicht
+davon aufgehalten, dass jemand beleidigt ist.
 
 ## Dialogentscheidungen
 

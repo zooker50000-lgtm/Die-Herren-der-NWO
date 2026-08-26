@@ -3145,6 +3145,567 @@
           "next": "END"
         }
       }
+    },
+    "mamer_kuehl": {
+      "npc": "mamer",
+      "title": "Mamer, kurz angebunden",
+      "channels": [
+        "vor_ort",
+        "telefon"
+      ],
+      "priority": 40,
+      "requires": {
+        "trust": {
+          "mamer": {
+            "max": 40
+          }
+        }
+      },
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Simon. Ich hab dir was hingestellt, es steht in der Küche. Sonst noch was?",
+          "choices": [
+            {
+              "text": "Fragen, was los ist.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "mamer": 4
+                }
+              },
+              "next": "n_was_los"
+            },
+            {
+              "text": "Sich entschuldigen. Konkret.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "mamer": 12
+                },
+                "authenticity": 8,
+                "crashout": -10
+              },
+              "next": "n_entschuldigung"
+            },
+            {
+              "text": "Nichts. Zurück an den Rechner.",
+              "tone": "thema_wechseln",
+              "effects": {
+                "trust": {
+                  "mamer": -4
+                },
+                "crashout": 4
+              },
+              "next": "END"
+            }
+          ]
+        },
+        "n_was_los": {
+          "speaker": "mamer",
+          "text": "Nichts ist los. Ich rede nur nicht mehr über deine Sachen, weil das jedes Mal gleich ausgeht. Das ist kein Vorwurf, das ist eine Entscheidung.",
+          "effects": {
+            "authenticity": 4
+          },
+          "next": "END"
+        },
+        "n_entschuldigung": {
+          "speaker": "mamer",
+          "text": "Hm. Gut. Dann iss jetzt was, solang es warm ist.",
+          "effects": {
+            "crashout": -8,
+            "flags": [
+              "mamer_versoehnt"
+            ]
+          },
+          "next": "END"
+        }
+      }
+    },
+    "reiter_kuehl": {
+      "npc": "reiter_wixler",
+      "title": "Reiter hält sich bedeckt",
+      "channels": [
+        "vor_ort",
+        "telefon"
+      ],
+      "priority": 40,
+      "requires": {
+        "trust": {
+          "reiter_wixler": {
+            "max": 28
+          }
+        }
+      },
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "reiter_wixler",
+          "text": "Pass auf, ich sag dir ehrlich: im Moment hab ich nichts für dich. Und selbst wenn — du würdest es mir ja doch nicht glauben.",
+          "choices": [
+            {
+              "text": "Stimmt. Würde ich nicht.",
+              "tone": "beschuldigen",
+              "effects": {
+                "trust": {
+                  "reiter_wixler": -4
+                },
+                "authenticity": 6
+              },
+              "next": "n_ehrlich"
+            },
+            {
+              "text": "Einen Versuch ist es wert.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "reiter_wixler": 8
+                }
+              },
+              "next": "n_versuch"
+            },
+            {
+              "text": "Was müsste passieren, damit sich das ändert?",
+              "tone": "nwo_kontaktieren",
+              "effects": {
+                "trust": {
+                  "reiter_wixler": 6
+                },
+                "nwoInfluence": 2
+              },
+              "next": "n_bedingung"
+            }
+          ]
+        },
+        "n_ehrlich": {
+          "speaker": "reiter_wixler",
+          "text": "Siehst du. Dann sind wir uns ja einig, und keiner hat Arbeit damit.",
+          "next": "END"
+        },
+        "n_versuch": {
+          "speaker": "reiter_wixler",
+          "text": "Unter uns: geh diese Woche nicht ins Internetcafé. Mehr krieg ich gerade nicht raus, und frag mich nicht, warum.",
+          "effects": {
+            "nwoInfluence": 3
+          },
+          "next": "END"
+        },
+        "n_bedingung": {
+          "speaker": "reiter_wixler",
+          "text": "Dass du einmal etwas nicht sofort hochlädst. Einmal. Dann reden wir weiter.",
+          "effects": {
+            "flags": [
+              "reiter_bedingung"
+            ]
+          },
+          "next": "END"
+        }
+      }
+    },
+    "toni_enttaeuscht": {
+      "npc": "toni",
+      "title": "Toni, zurückhaltend",
+      "channels": [
+        "vor_ort",
+        "telefon"
+      ],
+      "priority": 40,
+      "requires": {
+        "trust": {
+          "toni": {
+            "max": 38
+          }
+        }
+      },
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "toni",
+          "text": "Alter. Ich sag jetzt mal nichts zum letzten Fideo, ja? Ich hab's geguckt. Reicht auch.",
+          "choices": [
+            {
+              "text": "Doch, sag's.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "toni": 10
+                },
+                "authenticity": 8
+              },
+              "next": "n_sagts"
+            },
+            {
+              "text": "Ist auch besser so.",
+              "tone": "thema_wechseln",
+              "effects": {
+                "trust": {
+                  "toni": -4
+                }
+              },
+              "next": "END"
+            }
+          ]
+        },
+        "n_sagts": {
+          "speaker": "toni",
+          "text": "Krass viele Leute schreiben da Sachen unter, die kenn ich aus der Schule. Also die Leute, nicht die Sachen. Die reden anders über dich als früher. Wollt ich nur gesagt haben.",
+          "effects": {
+            "crashout": 8,
+            "authenticity": 6,
+            "flags": [
+              "toni_warnung"
+            ]
+          },
+          "next": "END"
+        }
+      }
+    },
+    "devrim_streng": {
+      "npc": "kommissarin_devrim",
+      "title": "Kommissarin Devrim, dienstlich",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 40,
+      "requires": {
+        "trust": {
+          "kommissarin_devrim": {
+            "max": 25
+          }
+        }
+      },
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "kommissarin_devrim",
+          "text": "Herr Baraka. Ich sage Ihnen das einmal in aller Deutlichkeit: wenn Sie hier Vorwürfe gegen Kolleginnen und Kollegen erheben, dann bitte mit Beleg. Sonst schadet das nur Ihnen.",
+          "choices": [
+            {
+              "text": "Belege vorlegen.",
+              "tone": "polizei",
+              "requires": {
+                "items": [
+                  "heet_mehl_ausdruck"
+                ]
+              },
+              "effects": {
+                "trust": {
+                  "kommissarin_devrim": 15
+                },
+                "authenticity": 10
+              },
+              "next": "n_belege"
+            },
+            {
+              "text": "Das akzeptieren.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "kommissarin_devrim": 8
+                },
+                "authenticity": 6
+              },
+              "next": "END"
+            },
+            {
+              "text": "Dabei bleiben.",
+              "tone": "beschuldigen",
+              "effects": {
+                "trust": {
+                  "kommissarin_devrim": -8
+                },
+                "crashout": 14
+              },
+              "next": "n_dabei"
+            }
+          ]
+        },
+        "n_belege": {
+          "speaker": "kommissarin_devrim",
+          "text": "Gut. Das ändert die Lage. Ich nehme das auf, und diesmal steht es auch drin.",
+          "effects": {
+            "flags": [
+              "anzeige_aufgenommen"
+            ]
+          },
+          "next": "END"
+        },
+        "n_dabei": {
+          "speaker": "kommissarin_devrim",
+          "text": "Dann notiere ich, dass Sie dabei bleiben. Mehr kann ich nicht tun.",
+          "next": "END"
+        }
+      }
+    },
+    "honig_reserviert": {
+      "npc": "honig",
+      "title": "Honig, reserviert",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 40,
+      "requires": {
+        "trust": {
+          "honig": {
+            "max": 35
+          }
+        }
+      },
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "honig",
+          "text": "Ach komm. Ich will da nicht reingezogen werden, ja? Hier kaufen Leute ein, und die sollen weiter einkaufen.",
+          "choices": [
+            {
+              "text": "Verstehe ich.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "honig": 10
+                },
+                "authenticity": 6
+              },
+              "next": "n_verstanden"
+            },
+            {
+              "text": "Auch du also.",
+              "tone": "beschuldigen",
+              "effects": {
+                "trust": {
+                  "honig": -10
+                },
+                "crashout": 10
+              },
+              "next": "n_vorwurf"
+            }
+          ]
+        },
+        "n_verstanden": {
+          "speaker": "honig",
+          "text": "Ach komm. Nimm die Tüte mit. Zahlst das nächste Mal.",
+          "effects": {
+            "crashout": -8
+          },
+          "next": "END"
+        },
+        "n_vorwurf": {
+          "speaker": "honig",
+          "text": "Nein, ich nicht. Und genau deswegen sag ich ja: lass mich da raus.",
+          "next": "END"
+        }
+      }
+    },
+    "myrrmoasta_zurueckhaltend": {
+      "npc": "myrrmoasta",
+      "title": "Myrrmoasta, wortkarg",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 40,
+      "requires": {
+        "trust": {
+          "myrrmoasta": {
+            "max": 20
+          }
+        }
+      },
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "myrrmoasta",
+          "text": "Man sagt, man solle vorsichtig sein mit Leuten, die alles aufzeichnen. Ich sage dazu nichts weiter.",
+          "choices": [
+            {
+              "text": "Die Kamera weglegen.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "myrrmoasta": 15
+                },
+                "authenticity": 8
+              },
+              "next": "n_kamera"
+            },
+            {
+              "text": "Trotzdem nach Zutaten fragen.",
+              "tone": "thema_wechseln",
+              "effects": {},
+              "next": "n_zutaten"
+            }
+          ]
+        },
+        "n_kamera": {
+          "speaker": "myrrmoasta",
+          "text": "Man sagt auch, Vertrauen sei ein Stoff, den man nicht kaufen kann. Das stimmt nicht ganz, aber es dauert länger.",
+          "effects": {
+            "alchemyXp": 80
+          },
+          "next": "END"
+        },
+        "n_zutaten": {
+          "speaker": "myrrmoasta",
+          "text": "Das Regal steht da. Die Preise auch.",
+          "next": "END"
+        }
+      }
+    },
+    "mamer_vertrauen": {
+      "npc": "mamer",
+      "title": "Was Mamer nie erzählt hat",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 60,
+      "requires": {
+        "trust": {
+          "mamer": {
+            "min": 88
+          }
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Simon. Setz dich mal. Das Foto auf dem Schrank — das Haus da gibt es nicht mehr. Und der, der es fotografiert hat, hat danach auch nie wieder eins gemacht.",
+          "choices": [
+            {
+              "text": "Zuhören.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "mamer": 6
+                },
+                "authenticity": 10,
+                "items": [
+                  "mamer_foto"
+                ],
+                "lore": [
+                  "lore_familienfoto"
+                ]
+              },
+              "next": "n_weiter"
+            },
+            {
+              "text": "Fragen, warum sie das jetzt erzählt.",
+              "tone": "mamer_fragen",
+              "effects": {
+                "authenticity": 8
+              },
+              "next": "n_warum"
+            }
+          ]
+        },
+        "n_weiter": {
+          "speaker": "mamer",
+          "text": "Er hat auch alles aufgehoben. Kartonweise. Irgendwann hat das keiner mehr angesehen, auch er nicht. Ich sag das nicht, damit du aufhörst. Ich sag das, damit du es weißt.",
+          "effects": {
+            "crashout": -15,
+            "flags": [
+              "mamer_geschichte"
+            ]
+          },
+          "next": "END"
+        },
+        "n_warum": {
+          "speaker": "mamer",
+          "text": "Weil du zum ersten Mal seit Langem zuhörst, ohne dabei schon die Antwort zu formulieren.",
+          "effects": {
+            "trust": {
+              "mamer": 5
+            },
+            "items": [
+              "mamer_foto"
+            ],
+            "authenticity": 10,
+            "flags": [
+              "mamer_geschichte"
+            ]
+          },
+          "next": "END"
+        }
+      }
+    },
+    "reiter_offen": {
+      "npc": "reiter_wixler",
+      "title": "Einmal ohne Umweg",
+      "channels": [
+        "vor_ort",
+        "telefon"
+      ],
+      "priority": 60,
+      "requires": {
+        "trust": {
+          "reiter_wixler": {
+            "min": 78
+          }
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "reiter_wixler",
+          "text": "Pass auf. Einmal ohne Umweg, dann nie wieder: ich krieg für dich kein Geld. Ich krieg dafür, dass du weiterredest. Das ist nicht dasselbe, aber es ist auch nicht viel besser.",
+          "choices": [
+            {
+              "text": "Danke für die Ehrlichkeit.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "reiter_wixler": 10
+                },
+                "authenticity": 12,
+                "flags": [
+                  "reiter_ehrlich"
+                ]
+              },
+              "next": "n_danke"
+            },
+            {
+              "text": "Und jetzt?",
+              "tone": "nwo_kontaktieren",
+              "effects": {
+                "nwoInfluence": 6,
+                "flags": [
+                  "reiter_ehrlich"
+                ]
+              },
+              "next": "n_jetzt"
+            }
+          ]
+        },
+        "n_danke": {
+          "speaker": "reiter_wixler",
+          "text": "Bedank dich nicht. Nutz es.",
+          "next": "END"
+        },
+        "n_jetzt": {
+          "speaker": "reiter_wixler",
+          "text": "Jetzt entscheidest du, ob du trotzdem weiterredest. Die meisten tun es. Das ist ja das Praktische.",
+          "effects": {
+            "crashout": 10
+          },
+          "next": "END"
+        }
+      }
     }
   }
 }

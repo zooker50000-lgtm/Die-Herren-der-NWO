@@ -655,3 +655,32 @@ test('jeder Beat-Typ ist erreichbar — sonst ist der Text totes Material', () =
     }
   }
 });
+
+test('Vertrauen entscheidet, welches Gespräch eine Figur führt', () => {
+  const g = newGame();
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_hub');
+
+  g.store.addTrust('mamer', -40);
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_kuehl', 'verprellt muss anders klingen');
+
+  g.store.addTrust('mamer', 60);
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_vertrauen', 'hohes Vertrauen öffnet eine eigene Szene');
+});
+
+test('jede Hauptfigur reagiert auf niedriges Vertrauen', () => {
+  // Vorher aenderte sich Vertrauen zwar, aenderte aber nichts.
+  const hauptfiguren = ['mamer', 'reiter_wixler', 'toni', 'kommissarin_devrim', 'honig', 'myrrmoasta'];
+  for (const id of hauptfiguren) {
+    const hatZweig = Object.values(data.dialogue.dialogues).some(
+      (dlg) => dlg.npc === id && dlg.requires?.trust?.[id]?.max != null
+    );
+    assert.ok(hatZweig, `${id}: kein Zweig für niedriges Vertrauen`);
+  }
+});
+
+test('Vertrauens-Zweige verdrängen keine Quest-Gespräche', () => {
+  const g = newGame();
+  g.store.addTrust('mamer', -40);
+  g.store.s.quests.active.das_magische_tagebuch = { id: 'das_magische_tagebuch', objectives: {} };
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_tagebuch', 'die Quest hat Vorrang');
+});

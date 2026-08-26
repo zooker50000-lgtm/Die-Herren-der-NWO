@@ -39,6 +39,7 @@ Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 | Dialoge | 38 Graphen, alle ueber einen Kanal erreichbar |
 | Episoden | 51 von 51 mit eigener Quest — alle vier Serien vollstaendig |
 | Mimonolog | 12 Beat-Typen, 232 Vorlagen ueber drei Sprachstufen |
+| Vertrauen | sechs Figuren mit eigenem Zweig fuer niedriges Vertrauen, zwei fuer hohes |
 | Orte | 16, alle von Mimons Wohnung aus erreichbar |
 | Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
 
@@ -48,5 +49,5 @@ Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 2. Dialogzweige fuer niedrigen Trust bei allen Hauptfiguren ergaenzen —
    aktuell reagieren die Figuren kaum darauf, wenn man sie verprellt hat.
 3. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
-5. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
+4. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
    bisher nur farblich unterschieden).
