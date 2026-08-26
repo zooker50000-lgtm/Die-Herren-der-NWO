@@ -20,6 +20,52 @@ Sitzung — es sagt, was fertig ist, was offen ist und wo man anfängt.
 Geprüft mit `npm test`, `npm run validate`, `npm run solve` und
 `npm run contrast`. Alles grün.
 
+## Vorgemerkt: zwei Ausgaben
+
+Das Spiel soll in zwei Zuschnitten ausgeliefert werden. **Nicht als zwei
+Codebasen** — eine Quelle, das Layout schaltet über Viewport und Zeigertyp um.
+Ein Fork würde bedeuten, jeden Inhalt zweimal zu pflegen.
+
+### Ausgabe 1 — iOS / iPadOS
+
+Läuft heute schon in Safari, gemessen auf 390 px (iPhone), 834 px und 1194 px
+(iPad): kein waagerechter Überlauf, Einspaltenumbruch greift, WebAudio wird beim
+Start entsperrt, `localStorage` ist gegen den privaten Modus abgesichert.
+Zu tun:
+
+1. **Meter-Balken kollabieren.** Bei zwei Spalten auf 390 px bleibt für den
+   Balken keine Breite übrig — man sieht nur noch die Zahl. Die wichtigste
+   Anzeige des Spiels fehlt auf dem Handy. Ansatz: `.hud__meters` und `.meter`
+   in `web/styles/main.css`, unter ~700 px einspaltig mit voller Balkenbreite.
+2. **Questlog und Protokoll sind abgeschnitten.** `.side` hat feste Zeilenhöhen;
+   auf schmalen Geräten muss die Spalte fließen statt zu scrollen.
+3. **Tippziele zu klein.** 21 von 26 Schaltflächen liegen unter Apples 44 px,
+   vor allem die Navigation. Betrifft `.nav__button`, `.chip`, `.choice`.
+4. **Tastaturhinweise auf Touch ausblenden** (`.choice__key`, der Tastenhinweis
+   im Startbildschirm) und Hover-Effekte über `@media (hover: hover)` kapseln.
+5. **PWA:** `manifest.webmanifest`, Icons, `apple-mobile-web-app-capable` und
+   `apple-touch-icon`. Dann startet es über *Zum Home-Bildschirm* im Vollbild
+   wie eine App.
+
+**Wichtig:** Das Spiel lädt seine Daten per `fetch`. Aus der Dateien-App
+geöffnet (`file://`) blockiert Safari das. Es braucht also einen Host —
+statisch reicht, und die Pfade passen bereits: wird das Repository-Wurzel-
+verzeichnis ausgeliefert, funktioniert `/web/index.html` unverändert, weil
+`../src/` und `../data/` korrekt auflösen.
+
+Eine native App im App Store ist ausdrücklich **nicht** Teil davon: dafür
+braucht es Mac, Xcode, Developer-Programm und einen Wrapper. Die Engine liefe
+unverändert, der Aufwand liegt vollständig bei Apple.
+
+### Ausgabe 2 — Windows / Desktop
+
+Bleibt so, wie sie jetzt ist: dreispaltiges Layout mit HUD, Bühne und
+Seitenspalte, Tastaturbedienung über Ziffern und Kürzel. Das ist die
+Referenzausgabe — beim mobilen Umbau darf sich hier nichts verschieben.
+
+Absicherung: Die Screenshot-Prüfung auf 1500 px muss nach jeder Layout-Änderung
+unverändert aussehen, und `npm run contrast` muss grün bleiben.
+
 ## Was offen ist, in der Reihenfolge, in der ich es angehen würde
 
 ### 1. Open World ausbauen (der größte Hebel)
