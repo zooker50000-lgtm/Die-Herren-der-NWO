@@ -7,6 +7,20 @@ Mett, Fideos, Alchemie, Mimonologe — und die NWO.
 
 ---
 
+## Sofort spielen
+
+Keine Installation, keine Dependencies. Nur Node >= 20:
+
+```bash
+npm start      # -> http://localhost:5173 im Browser oeffnen
+npm run play   # oder direkt im Terminal
+```
+
+Im Browser auf **Neues Spiel** klicken. Ziffern `1`–`9` waehlen Antworten,
+`C` oeffnet den Computer, `Esc` geht zurueck. Der Rest erklaert sich im Spiel.
+
+---
+
 ## Was das hier ist
 
 Ein vollstaendig datengetriebenes Spielprojekt: Engine in modernem JavaScript (ESM),
@@ -65,6 +79,10 @@ tools/         Dev-Server, Datenvalidierung, Lore-Report, Durchlaeufe
 test/          Engine-Tests
 docs/          Architektur, Game-Design, Content-Guide, Roadmap
 ```
+
+Wer weiterentwickelt, faengt bei [`docs/WEITERMACHEN.md`](docs/WEITERMACHEN.md)
+an — dort steht, was fertig ist, was offen ist und wo man ansetzt. Die
+verbindlichen Regeln stehen in [`CLAUDE.md`](CLAUDE.md).
 
 Details: [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
 [`docs/GAME_DESIGN.md`](docs/GAME_DESIGN.md),
