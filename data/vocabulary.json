@@ -1,0 +1,350 @@
+{
+  "$comment": "Einzige Quelle für Mimons Sprache. Der Mimonolog-Generator zieht ausschließlich hieraus. Slots: {topic} {topicShort} {topicQ} {enemy} {npc} {place} {lore} {cp} {v:tag} {n}",
+
+  "lexicon": [
+    { "id": "mamer", "term": "Mamer", "gloss": "Mimons Mutter Irene", "contexts": ["familie", "wohnung", "sorge", "alltag"], "weight": 6, "cooldown": 4, "layer": "SOURCE_BASED_LORE" },
+    { "id": "oppar", "term": "Oppar", "gloss": "Großvater", "contexts": ["familie", "vergangenheit", "geschichte"], "weight": 4, "cooldown": 6, "layer": "SOURCE_BASED_LORE" },
+    { "id": "plepp", "term": "Plepp", "gloss": "leeres Gerede, Unsinn", "contexts": ["heeter", "kritik", "medien", "kommentar", "ablehnung"], "weight": 8, "cooldown": 3, "layer": "SOURCE_BASED_LORE" },
+    { "id": "heeter", "term": "Heeter", "gloss": "Internetgegner", "contexts": ["heeter", "internet", "kommentar", "konflikt", "juhtub"], "weight": 10, "cooldown": 2, "layer": "SOURCE_BASED_LORE" },
+    { "id": "heet_mehl", "term": "Heet-Mehl", "gloss": "Hassnachricht", "contexts": ["heeter", "post", "internet", "bedrohung"], "weight": 8, "cooldown": 3, "layer": "SOURCE_BASED_LORE" },
+    { "id": "fideo", "term": "Fideo", "plural": "Fideos", "gloss": "Video", "contexts": ["juhtub", "produktion", "internet", "beleg", "archiv"], "weight": 9, "cooldown": 2, "layer": "SOURCE_BASED_LORE" },
+    { "id": "juhtub", "term": "Juhtub", "gloss": "die Videoplattform", "contexts": ["juhtub", "internet", "produktion", "reichweite"], "weight": 7, "cooldown": 3, "layer": "SOURCE_BASED_LORE" },
+    { "id": "real_authentisch", "term": "real-authentisch", "gloss": "echt, unverfälscht, nicht gespielt", "contexts": ["identitaet", "beleg", "kritik", "vertrauen", "medien"], "weight": 9, "cooldown": 3, "layer": "SOURCE_BASED_LORE" },
+    { "id": "trittbrettfahrer", "term": "Trittbrettfahrer", "gloss": "jemand, der Mimons Erfolg abgreift", "contexts": ["heeter", "kopie", "konflikt", "juhtub", "identitaet"], "weight": 7, "cooldown": 4, "layer": "SOURCE_BASED_LORE" },
+    { "id": "subversive_elemente", "term": "subversive Elemente", "gloss": "unterwandernde Kräfte", "contexts": ["nwo", "verschwoerung", "konflikt", "politik", "ueberwachung"], "weight": 6, "cooldown": 5, "layer": "SOURCE_BASED_LORE" },
+    { "id": "mett", "term": "Mett", "gloss": "Aufmerksamkeit, Stoff, Substanz", "contexts": ["internet", "reichweite", "alltag", "produktion"], "weight": 6, "cooldown": 4, "layer": "MEME_LORE" },
+    { "id": "ehdzhusten", "term": "Ehdzhusten", "gloss": "das charakteristische Husten", "contexts": ["koerper", "meta", "pause"], "weight": 2, "cooldown": 9, "layer": "MEME_LORE" },
+    { "id": "mimonolog", "term": "Mimonolog", "gloss": "Mimons ausgedehnte Rede", "contexts": ["meta", "dialog", "produktion"], "weight": 4, "cooldown": 7, "layer": "MEME_LORE" },
+    { "id": "pauer", "term": "Pauer", "gloss": "Kraft, Durchsetzung", "contexts": ["konflikt", "koerper", "ansage", "motivation"], "weight": 5, "cooldown": 5, "layer": "SOURCE_BASED_LORE" },
+    { "id": "dromedar", "term": "Dromedar", "gloss": "Einhöckriges Kamel. Es gibt einen Grund, warum das wichtig ist.", "contexts": ["quiz", "geheimnis", "easter_egg"], "weight": 2, "cooldown": 12, "layer": "MEME_LORE" },
+    { "id": "kelchninja", "term": "Kelchninja", "gloss": "Selbstbildnis aus der Frühphase", "contexts": ["alchemie", "kunst", "identitaet", "easter_egg"], "weight": 3, "cooldown": 8, "layer": "MEME_LORE" },
+    { "id": "alchemie", "term": "Alchemie", "gloss": "Mimons langjähriges Studienfeld", "contexts": ["alchemie", "wissen", "geschichte", "labor", "mystik"], "weight": 8, "cooldown": 3, "layer": "SOURCE_BASED_LORE" },
+    { "id": "nwo", "term": "NWO", "gloss": "Die Organisation", "contexts": ["nwo", "verschwoerung", "ueberwachung", "konflikt", "medien", "labor"], "weight": 10, "cooldown": 2, "layer": "SOURCE_BASED_LORE" },
+    { "id": "nwo_productions", "term": "NWO Productions", "gloss": "Der Medienarm der Organisation", "contexts": ["nwo", "medien", "produktion", "hoerspiel"], "weight": 6, "cooldown": 5, "layer": "SOURCE_BASED_LORE" },
+    { "id": "feker", "term": "Feker", "gloss": "jemand, der etwas vortäuscht", "contexts": ["identitaet", "heeter", "kritik", "vertrauen"], "weight": 6, "cooldown": 4, "layer": "MEME_LORE" },
+    { "id": "kelch", "term": "Kelch", "gloss": "alchemistisches Gefäß und Symbol", "contexts": ["alchemie", "mystik", "labor", "kunst"], "weight": 5, "cooldown": 5, "layer": "IN_UNIVERSE_AUDIO_LORE" },
+    { "id": "essenz", "term": "Essenz", "gloss": "das Wesentliche eines Stoffes", "contexts": ["alchemie", "labor", "mystik", "wissen"], "weight": 5, "cooldown": 5, "layer": "FICTIONAL_GAME_CONTENT" }
+  ],
+
+  "catchphrases": [
+    { "id": "cp_nwo_sieht_alles", "text": "DIE NWO SIEHT ALLES!", "contexts": ["nwo", "ueberwachung", "verschwoerung", "abschluss"], "minCrashout": 0, "weight": 10, "layer": "SOURCE_BASED_LORE", "note": "Chronik ordnet die Aussage Januar 2017 zu; später Intro-Element von NWO Productions." },
+    { "id": "cp_genau", "text": "GENAU. GENAU. GENAU.", "contexts": ["*bestaetigung"], "minCrashout": 0, "weight": 10, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_eben", "text": "EBEN. EBEN. EBEN.", "contexts": ["*bestaetigung"], "minCrashout": 0, "weight": 9, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_ja", "text": "JA?", "contexts": ["*bestaetigung", "dialog"], "minCrashout": 0, "weight": 7, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_hmnja", "text": "HMNJA.", "contexts": ["*bestaetigung", "nachdenken"], "minCrashout": 0, "weight": 6, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_aachja", "text": "AAACH JA.", "contexts": ["*bestaetigung", "erinnerung", "spott"], "minCrashout": 0, "weight": 6, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_real_authentisch", "text": "REAL-AUTHENTISCH.", "contexts": ["identitaet", "beleg", "abschluss"], "minCrashout": 0, "weight": 8, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_heeter", "text": "HEETER!", "contexts": ["heeter", "konflikt"], "minCrashout": 35, "weight": 8, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_plepp", "text": "PLEPP!", "contexts": ["kritik", "heeter", "medien"], "minCrashout": 30, "weight": 7, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_trittbrettfahrer", "text": "TRITTBRETTFAHRER!", "contexts": ["kopie", "heeter", "identitaet"], "minCrashout": 40, "weight": 7, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_fideos", "text": "FIDEOS!", "contexts": ["juhtub", "produktion", "archiv"], "minCrashout": 25, "weight": 6, "layer": "SOURCE_BASED_LORE" },
+    { "id": "cp_juhtub", "text": "JUHTUB!", "contexts": ["juhtub", "reichweite"], "minCrashout": 25, "weight": 5, "layer": "SOURCE_BASED_LORE" }
+  ],
+
+  "topics": {
+    "fahrzeug": { "subject": "dieses Fahrzeug da draußen", "short": "das Fahrzeug", "question": "WARUM steht dieses Fahrzeug genau DA?", "tags": ["nwo", "ueberwachung", "wohnung", "verschwoerung"] },
+    "heet_mehl": { "subject": "dieses sogenannte Heet-Mehl", "short": "die Nachricht", "question": "WER schreibt so etwas, und vor allem: WANN?", "tags": ["heeter", "post", "internet", "bedrohung"] },
+    "heeter": { "subject": "diese Heeter", "short": "die Heeter", "question": "WARUM investiert ein erwachsener Mensch seine Zeit in so etwas?", "tags": ["heeter", "internet", "konflikt", "kommentar"] },
+    "nwo": { "subject": "die NWO", "short": "die Organisation", "question": "WER steht eigentlich HINTER dieser Struktur?", "tags": ["nwo", "verschwoerung", "ueberwachung", "medien"] },
+    "alchemie": { "subject": "die Alchemie", "short": "die Alchemie", "question": "WARUM wurde dieses Wissen über Jahrhunderte weggeschlossen?", "tags": ["alchemie", "wissen", "geschichte", "mystik"] },
+    "mamer": { "subject": "das mit Mamer", "short": "Mamer", "question": "Wieso soll ausgerechnet ICH da jetzt ruhig bleiben?", "tags": ["familie", "sorge", "wohnung", "alltag"] },
+    "fideo": { "subject": "mein Fideo", "short": "das Fideo", "question": "WER hat ein Interesse daran, dass dieses Fideo verschwindet?", "tags": ["juhtub", "produktion", "beleg", "archiv"] },
+    "tagebuch": { "subject": "das magische Tagebuch", "short": "das Tagebuch", "question": "WARUM fehlen ausgerechnet DIESE Seiten?", "tags": ["alchemie", "archiv", "geheimnis", "wissen"] },
+    "polizei": { "subject": "die Sache mit der Anzeige", "short": "die Anzeige", "question": "WIESO wird das nicht weiterverfolgt?", "tags": ["polizei", "konflikt", "bedrohung", "ueberwachung"] },
+    "labor": { "subject": "dieses Labor da unten", "short": "das Labor", "question": "WAS wird da unten eigentlich hergestellt?", "tags": ["labor", "nwo", "alchemie", "geheimnis"] },
+    "reiter": { "subject": "die Sache mit Reiter", "short": "Reiter", "question": "Ist der Mann auf meiner Seite oder ist er es NICHT?", "tags": ["nwo", "vertrauen", "konflikt", "verschwoerung"] },
+    "fenster": { "subject": "das, was ich am Fenster gesehen habe", "short": "das Fenster", "question": "WARUM immer nachts, und warum immer dieselbe Stelle?", "tags": ["ueberwachung", "wohnung", "nwo", "geheimnis"] },
+    "identitaet": { "subject": "die Frage, wer hier real-authentisch ist", "short": "die Sache mit der Echtheit", "question": "WER von denen ist eigentlich ECHT?", "tags": ["identitaet", "vertrauen", "kritik", "medien"] },
+    "geschichte": { "subject": "die Geschichte dahinter", "short": "die Geschichte", "question": "WARUM steht das in keinem Buch?", "tags": ["geschichte", "wissen", "vergangenheit", "mystik"] },
+    "allgemein": { "subject": "diese ganze Geschichte", "short": "die Sache", "question": "WORUM geht es hier eigentlich WIRKLICH?", "tags": ["allgemein"] }
+  },
+
+  "beats": {
+    "OPENER": {
+      "calm": [
+        "Hmnja. Also.",
+        "Ja. Ja, gut. Das ist eine berechtigte Frage.",
+        "Aaach ja. {topicShort}.",
+        "Moment. Moment, Moment, Moment. Ich sag dir was."
+      ],
+      "annoyed": [
+        "JA. JA, natürlich habe ich das gesehen.",
+        "Also gut. Wenn du das WIRKLICH wissen willst.",
+        "Hmnja. Das musste ja kommen.",
+        "Aaach JA. Jetzt kommt das wieder."
+      ],
+      "loud": [
+        "JA! JA, NATÜRLICH! GENAU. EBEN.",
+        "SO. Jetzt hörst du mir mal ZWEI Minuten zu.",
+        "NEIN. Nein nein nein nein nein. STOPP.",
+        "PASS AUF. Ich erklär das jetzt EINMAL."
+      ]
+    },
+
+    "RESTATEMENT": {
+      "calm": [
+        "Das ist ja das Interessante an der ganzen Geschichte.",
+        "Und genau DA fängt es an, spannend zu werden.",
+        "Und da sind wir schon mitten drin, ja?",
+        "Das ist der Punkt, den keiner sehen WILL."
+      ],
+      "annoyed": [
+        "Und genau DAS ist ja das Problem an der ganzen Geschichte.",
+        "Aber das ist ja nur die halbe Sache.",
+        "Und keiner, KEINER stellt sich da mal hin und sagt was.",
+        "Das ist ja kein Zufall. Das ist NIE ein Zufall."
+      ],
+      "loud": [
+        "DAS ist der PUNKT! GENAU DAS!",
+        "UND DAS SAGE ICH SEIT JAHREN!",
+        "ABER DAS WILL JA NIEMAND HÖREN!",
+        "UND DAS IST EXAKT DAS, WAS ICH MEINE!"
+      ]
+    },
+
+    "QUESTION": {
+      "calm": [
+        "Weil man muss sich doch fragen: {topicQ}",
+        "Und da stellt sich mir eine ganz einfache Frage: {topicQ}",
+        "Jetzt überleg doch mal in Ruhe: {topicQ}"
+      ],
+      "annoyed": [
+        "Weil wenn das so ist, dann muss man sich doch FRAGEN: {topicQ}",
+        "Dann sag DU mir doch mal: {topicQ}",
+        "Und die Frage, die keiner stellt, ist: {topicQ}"
+      ],
+      "loud": [
+        "DANN FRAG ICH DICH: {topicQ}",
+        "ABER DIE FRAGE STELLT SICH KEINER! NÄMLICH: {topicQ}",
+        "UND JETZT KOMMT'S: {topicQ}"
+      ]
+    },
+
+    "THEORY": {
+      "calm": [
+        "Und wenn du das jetzt zusammennimmst mit {v:nwo}, dann ergibt das plötzlich ein Bild.",
+        "Ich sag nicht, dass das zusammenhängt. Ich sage nur: es passt zu genau.",
+        "Das läuft doch immer nach demselben Muster. Erst still, dann {v:heeter}, dann ist auf einmal was weg.",
+        "Ich hab das über Jahre beobachtet. Über JAHRE. Und es ist jedes Mal dasselbe."
+      ],
+      "annoyed": [
+        "Das sind {v:subversive_elemente}, ganz einfach. Anders kann man das nicht nennen.",
+        "Da läuft eine Struktur im Hintergrund, und {topicShort} ist nur die Spitze davon.",
+        "Und dann wundern sich Leute, dass ich mir {v:fideo} aufhebe. ALLE. Seit Jahren.",
+        "Das ist geplant. Das ist nicht spontan, das ist GEPLANT."
+      ],
+      "loud": [
+        "DAS IST DIE {v:nwo}! DAS IST GENAU DEREN HANDSCHRIFT!",
+        "DAS IST DOCH ALLES DASSELBE NETZWERK! ALLES!",
+        "ERST DAS FAHRZEUG, DANN DIE NACHRICHT, DANN DER KOMMENTAR — DAS IST EIN ABLAUF!",
+        "DAS IST ORGANISIERT! ORGANISIERT!"
+      ]
+    },
+
+    "DIGRESSION": {
+      "calm": [
+        "Und weißt du, was da noch reinspielt? {v:alchemie}. Ja. Klingt komisch, ist aber so.",
+        "Übrigens — und das gehört jetzt eigentlich nicht hierher — aber {v:oppar} hat mir mal was Ähnliches erzählt.",
+        "Kurz was anderes: hast du eigentlich gesehen, was unten im Hof steht? Egal. Später.",
+        "Das erinnert mich an was aus dem {v:kelch}-Zusammenhang. Aber gut. Ein andermal."
+      ],
+      "annoyed": [
+        "Und dann kommt so einer und redet von {v:mett}. Von METT! In DEM Zusammenhang!",
+        "Und das Gleiche war damals bei den {v:fideo} — die waren weg. Einfach WEG.",
+        "Und {v:mamer} sagt mir dann noch, ich soll mich beruhigen. Ich SOLL mich beruhigen."
+      ],
+      "loud": [
+        "UND DAS GLEICHE — DAS GLEICHE! — HABEN DIE MIT MEINEN {v:fideo} GEMACHT!",
+        "UND DANN SCHREIBEN DIE MIR NOCH EIN {v:heet_mehl}! MIR!",
+        "UND ÜBERHAUPT — WEISST DU, WAS DAS FÜR EIN {v:plepp} IST?!"
+      ]
+    },
+
+    "SELF_CORRECTION": {
+      "calm": [
+        "Nein. Nein, Moment. Falsch. Ich fang nochmal an.",
+        "Halt, halt. So stimmt das nicht ganz.",
+        "Ne. Ne, das war jetzt ungenau von mir.",
+        "Moment — ich muss das anders aufziehen."
+      ],
+      "annoyed": [
+        "Nein. NEIN. So hab ich das nicht gemeint. Nochmal von vorne.",
+        "Falsch. Vergiss das. Vergiss, was ich gerade gesagt habe.",
+        "Ne, ne, ne. Das führt jetzt in die falsche Richtung."
+      ],
+      "loud": [
+        "NEIN! FALSCH! ICH FANG NOCHMAL AN!",
+        "STOPP. STOPP STOPP STOPP. NOCHMAL.",
+        "VERGISS DAS. VERGISS DAS KOMPLETT."
+      ]
+    },
+
+    "RETURN": {
+      "calm": [
+        "Wo war ich? Genau. Bei {topicShort}.",
+        "Also. Zurück zu {topicShort}.",
+        "Aber gut, wir waren ja bei {topicShort}.",
+        "Wie gesagt: {topicShort}."
+      ],
+      "annoyed": [
+        "Wo WAR ich? GENAU. {topicShort}.",
+        "Also nochmal, damit das klar ist: {topicShort}.",
+        "Zurück zum Thema. {topicShort}."
+      ],
+      "loud": [
+        "WO WAR ICH?! GENAU! {topicShort}!",
+        "ZURÜCK ZUM THEMA! {topicShort}!"
+      ]
+    },
+
+    "EVIDENCE": {
+      "calm": [
+        "Ich hab das dokumentiert. Ich hab das ALLES dokumentiert.",
+        "Das steht bei mir im Tagebuch. Mit Datum.",
+        "Ich hab da ein {v:fideo} zu. Kannst du dir ansehen. Ist online.",
+        "Ich rede hier nicht aus dem Bauch heraus. Ich hab das schriftlich."
+      ],
+      "annoyed": [
+        "Ich hab das AUFGEHOBEN. Jede einzelne Nachricht. JEDE.",
+        "Das ist alles im Archiv. Alles. Mit Uhrzeit.",
+        "Und ich kann das BELEGEN. Das ist der Unterschied zwischen mir und denen."
+      ],
+      "loud": [
+        "ICH HAB DAS ALLES! ALLES DOKUMENTIERT! MIT DATUM!",
+        "ICH HAB DIE SCREENSHOTS! ICH HAB DIE {v:fideo}!",
+        "DAS IST BELEGT! DAS IST ALLES BELEGT!"
+      ]
+    },
+
+    "ACCUSATION": {
+      "calm": [
+        "Und einer davon ist {enemy}. Das sag ich hier ganz ruhig.",
+        "{enemy} weiß ganz genau, wovon ich rede.",
+        "Da ist {enemy} nicht ganz unbeteiligt. Sagen wir es mal so."
+      ],
+      "annoyed": [
+        "{enemy}. Da haben wir's. {enemy}.",
+        "Und wer steckt dahinter? {enemy}. Wie immer.",
+        "{enemy} ist ein {v:feker}. Punkt."
+      ],
+      "loud": [
+        "{enemy}! DAS IST {enemy}!",
+        "{enemy}, DU {v:trittbrettfahrer}! ICH WEISS, DASS DU DAS SIEHST!",
+        "UND DU, {enemy} — DU BIST DER NÄCHSTE!"
+      ]
+    },
+
+    "ESCALATION": {
+      "calm": [
+        "Und irgendwann ist auch mal gut, ja?",
+        "Aber gut. Ich bleib ruhig. Ich bleibe ganz ruhig.",
+        "Ich sag dazu jetzt nichts weiter."
+      ],
+      "annoyed": [
+        "Und ehrlich gesagt geht mir das langsam auf den Sack.",
+        "Ich mach das seit Jahren. SEIT JAHREN. Und jetzt reicht's mir langsam.",
+        "Irgendwann ist auch mal Schluss mit lustig, ja?"
+      ],
+      "loud": [
+        "JETZT IST SCHLUSS! JETZT IST HIER SCHLUSS!",
+        "ICH LASS MIR DAS NICHT MEHR GEFALLEN! NICHT MEHR!",
+        "IHR HABT KEINE AHNUNG, MIT WEM IHR ES ZU TUN HABT!",
+        "DAS WAR'S JETZT! DAS WAR DIE LETZTE WARNUNG!"
+      ]
+    },
+
+    "CLOSER": {
+      "calm": [
+        "So. Und jetzt weißt du's. {cp}",
+        "Mehr sag ich dazu nicht. {cp}",
+        "{cp} Und damit gut."
+      ],
+      "annoyed": [
+        "Und deswegen sag ich das ja immer: {cp}",
+        "Merk dir das. {cp}",
+        "{cp} Punkt. Ende."
+      ],
+      "loud": [
+        "{cp}",
+        "UND DESWEGEN: {cp}",
+        "MERKT EUCH DAS! {cp}"
+      ]
+    }
+  },
+
+  "flow": {
+    "$comment": "Beat-Übergangsgewichte pro Crashout-Stufe. Der Generator läuft als gewichtete Zustandsmaschine, bis CLOSER erreicht ist oder maxBeats greift.",
+    "calm": {
+      "maxBeats": 6,
+      "digressionChance": 0.18,
+      "correctionChance": 0.12,
+      "accusationChance": 0.05,
+      "transitions": {
+        "OPENER": { "RESTATEMENT": 6, "QUESTION": 3 },
+        "RESTATEMENT": { "QUESTION": 7, "THEORY": 3 },
+        "QUESTION": { "THEORY": 8, "EVIDENCE": 2 },
+        "THEORY": { "EVIDENCE": 5, "DIGRESSION": 3, "CLOSER": 3 },
+        "DIGRESSION": { "RETURN": 8, "THEORY": 2 },
+        "SELF_CORRECTION": { "RETURN": 10 },
+        "RETURN": { "THEORY": 5, "EVIDENCE": 4, "CLOSER": 3 },
+        "EVIDENCE": { "CLOSER": 6, "THEORY": 3 },
+        "ACCUSATION": { "EVIDENCE": 5, "CLOSER": 4 },
+        "ESCALATION": { "CLOSER": 10 }
+      }
+    },
+    "annoyed": {
+      "maxBeats": 9,
+      "digressionChance": 0.3,
+      "correctionChance": 0.2,
+      "accusationChance": 0.35,
+      "transitions": {
+        "OPENER": { "RESTATEMENT": 6, "QUESTION": 4 },
+        "RESTATEMENT": { "QUESTION": 6, "THEORY": 5 },
+        "QUESTION": { "THEORY": 8, "ACCUSATION": 3 },
+        "THEORY": { "EVIDENCE": 4, "DIGRESSION": 4, "ACCUSATION": 4, "CLOSER": 2 },
+        "DIGRESSION": { "RETURN": 7, "THEORY": 3, "ACCUSATION": 2 },
+        "SELF_CORRECTION": { "RETURN": 10 },
+        "RETURN": { "THEORY": 5, "EVIDENCE": 4, "ESCALATION": 2, "CLOSER": 2 },
+        "EVIDENCE": { "ACCUSATION": 4, "CLOSER": 4, "THEORY": 3 },
+        "ACCUSATION": { "EVIDENCE": 4, "ESCALATION": 4, "CLOSER": 3 },
+        "ESCALATION": { "CLOSER": 8, "ACCUSATION": 3 }
+      }
+    },
+    "loud": {
+      "maxBeats": 14,
+      "digressionChance": 0.42,
+      "correctionChance": 0.3,
+      "accusationChance": 0.6,
+      "transitions": {
+        "OPENER": { "RESTATEMENT": 5, "QUESTION": 3, "ACCUSATION": 3 },
+        "RESTATEMENT": { "QUESTION": 5, "THEORY": 6 },
+        "QUESTION": { "THEORY": 7, "ACCUSATION": 5 },
+        "THEORY": { "ACCUSATION": 6, "DIGRESSION": 5, "ESCALATION": 4, "EVIDENCE": 3 },
+        "DIGRESSION": { "RETURN": 6, "ACCUSATION": 4, "THEORY": 3 },
+        "SELF_CORRECTION": { "RETURN": 10 },
+        "RETURN": { "THEORY": 5, "ESCALATION": 5, "EVIDENCE": 3 },
+        "EVIDENCE": { "ACCUSATION": 5, "ESCALATION": 5, "CLOSER": 2 },
+        "ACCUSATION": { "ESCALATION": 7, "EVIDENCE": 3, "DIGRESSION": 2 },
+        "ESCALATION": { "CLOSER": 6, "ACCUSATION": 4, "THEORY": 2 }
+      }
+    }
+  },
+
+  "ehdzhusten": {
+    "$comment": "Dynamisches Sound-Easter-Egg. Tritt bewusst NICHT jedes Mal auf.",
+    "baseChance": 0.14,
+    "maxPerMonolog": 2,
+    "minBeatsBetween": 3,
+    "afterBeats": ["THEORY", "DIGRESSION", "EVIDENCE", "RESTATEMENT"],
+    "variants": ["— EHDZHUST —", "— ehdzhust —", "— EHDZH-HUST —", "— hm-EHDZHUST —"],
+    "sfx": "ehdzhusten",
+    "layer": "MEME_LORE"
+  },
+
+  "connectors": {
+    "$comment": "Werden zwischen Beats eingestreut, nicht als eigener Beat gezählt.",
+    "calm": ["Ja?", "Genau.", "Eben.", "Hmnja.", "Also."],
+    "annoyed": ["JA?", "GENAU.", "EBEN.", "Ja, ne?", "Verstehst du?"],
+    "loud": ["JA?!", "GENAU!", "EBEN!", "HÖRST DU MIR ZU?!"]
+  }
+}

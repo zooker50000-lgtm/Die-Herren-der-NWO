@@ -1,0 +1,112 @@
+{
+  "$comment": "NWO Productions. Serientitel und Episodenzahlen sind SOURCE_BASED_LORE. Die einzelnen Episodentitel und -inhalte sind für dieses Spiel geschrieben und deshalb FICTIONAL_GAME_CONTENT mit derivedFrom auf die Serie — außer bei BAPHOMIMON, dessen drei Episodentitel dokumentiert sind.",
+
+  "series": [
+    {
+      "id": "alchemimon",
+      "title": "ALCHEMIMON",
+      "episodeCount": 21,
+      "recorded": "2018-2019",
+      "layer": "SOURCE_BASED_LORE",
+      "act": 6,
+      "color": "#c9a23f",
+      "logline": "Alchemie, die NWO-Elite und die Frage, ab wann Zusammenarbeit Zugehörigkeit wird.",
+      "themes": ["nwo", "alchemie", "mamer", "heeter", "nwo_elite", "reiter_wixler", "olligo", "labor", "vertrauen", "manipulation"],
+      "episodes": [
+        { "n": 1, "title": "Der Anruf", "quest": "alchemimon_01", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Eine Nummer ohne Vorwahl. Die Stimme kennt Mimons Fideos besser als Mimon selbst." },
+        { "n": 2, "title": "Erste Essenz", "quest": "alchemimon_02", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Ein Rezept aus dem Tagebuch funktioniert. Zum ersten Mal seit Jahren." },
+        { "n": 3, "title": "Die Liste der sieben Namen", "quest": "alchemimon_03", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Drei Fragezeichen, ein Hinweis auf nächtliche Anrufe." },
+        { "n": 4, "title": "Reiter erklärt die Struktur", "quest": "alchemimon_04", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Er erklärt sie so genau, dass danach weniger klar ist als vorher." },
+        { "n": 5, "title": "Mamer stellt eine Frage", "quest": "alchemimon_05", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Eine einzige Frage. Sie bleibt sechs Episoden lang unbeantwortet." },
+        { "n": 6, "title": "Schwarz", "quest": "alchemimon_06", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Die erste Stufe. Alles zerfällt, bevor irgendetwas entsteht." },
+        { "n": 7, "title": "Ein Heeter meldet sich freiwillig", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Er will helfen. Er will unbedingt helfen. Genau das ist das Problem." },
+        { "n": 8, "title": "Weiß", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Waschung. Was übrig bleibt, ist sauber und sehr wenig." },
+        { "n": 9, "title": "Der Kelch, zum ersten Mal", "quest": "alchemimon_09", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Er ist schwerer als er aussieht. Mimon sagt das viermal." },
+        { "n": 10, "title": "Die Einladung", "quest": "alchemimon_10", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Kein Ort, keine Uhrzeit, nur eine Zusage, die schon abgegeben wurde." },
+        { "n": 11, "title": "Zwölf Meter", "quest": "alchemimon_11", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Der erste Abstieg. Die Lüftung ist älter als die Server." },
+        { "n": 12, "title": "Bestand", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Goldnatz zählt. Er zählt auch Menschen, und niemand unterbricht ihn." },
+        { "n": 13, "title": "Gelb", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Die Stufe, in der etwas anfängt zu leuchten, das vorher nicht da war." },
+        { "n": 14, "title": "Der Trittbrettfahrer", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Jemand lädt Mimons Sätze hoch, bevor Mimon sie gesagt hat." },
+        { "n": 15, "title": "Zwei Freigaben", "quest": "alchemimon_15", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Eine hat er. Die zweite gehört jemandem, den er kennt." },
+        { "n": 16, "title": "Was im Archiv steht", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Der Vorgang pflegt sich fort. Wörtlich so formuliert." },
+        { "n": 17, "title": "Mamer ruft an", "quest": "alchemimon_17", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Elf Anrufe. Beim zwölften geht er ran." },
+        { "n": 18, "title": "Rot", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Die letzte Stufe. Danach ist der Stoff fertig und der Mensch nicht." },
+        { "n": 19, "title": "Der Raum ohne Schild", "quest": "alchemimon_19", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Kein Schild, kein Eintrag im Grundriss, aber eine Klimaanlage, die läuft." },
+        { "n": 20, "title": "Wer hier arbeitet", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Mimon zählt auf, was er für die Organisation getan hat. Es ist eine lange Liste." },
+        { "n": 21, "title": "Das eigene Archiv", "quest": "alchemimon_21", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "summary": "Hinter der letzten Tür liegen Mimons eigene Aufnahmen. Vollständiger als seine eigenen." }
+      ]
+    },
+    {
+      "id": "islamimon",
+      "title": "ISLAMIMON",
+      "episodeCount": 15,
+      "recorded": "2018-2019",
+      "layer": "SOURCE_BASED_LORE",
+      "act": 10,
+      "color": "#4f8f6f",
+      "logline": "Ein Arc über Zugehörigkeit — und darüber, wie Fremde einem Menschen eine Überzeugung einreden, um ihn vorführen zu können.",
+      "contentNote": "Der Arc zeigt ausschließlich die Mechanik der Manipulation. Keine Episode gibt religiöse oder ideologische Inhalte als Position wieder; die Satire richtet sich gegen die Manipulatoren, nicht gegen Gläubige.",
+      "themes": ["zugehoerigkeit", "manipulation", "heeter", "einsamkeit", "nwo_productions"],
+      "episodes": [
+        { "n": 1, "title": "Der freundliche Anrufer", "quest": "islamimon_01", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Zum ersten Mal seit Wochen hört jemand einen ganzen Mimonolog zu Ende an." },
+        { "n": 2, "title": "Die Einladung zum Gespräch", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Man will nur reden. Man betont das sehr oft." },
+        { "n": 3, "title": "Die zweite Stimme", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Ein zweiter Anrufer bestätigt alles, was der erste gesagt hat. Wortgleich." },
+        { "n": 4, "title": "Mamer merkt es zuerst", "quest": "islamimon_04", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Sie fragt, seit wann er so redet. Er weiß es nicht." },
+        { "n": 5, "title": "Was aufgenommen wird", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Jedes Gespräch läuft mit. Das war nie ein Geheimnis, nur nie ein Thema." },
+        { "n": 6, "title": "Der Schnitt", "quest": "islamimon_06", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Aus vier Stunden werden neunzig Sekunden. Alles Gesagte, nichts Gemeinte." },
+        { "n": 7, "title": "Kommentare", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Menschen, die Mimon nie gehört haben, wissen jetzt genau, wer er ist." },
+        { "n": 8, "title": "Die Erklärung, die keiner hören will", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Ein Fideo, achtundvierzig Minuten. Aufrufe: dreistellig." },
+        { "n": 9, "title": "Toni ruft an", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Er hat sich alles angehört. Alles. Er fragt trotzdem nach." },
+        { "n": 10, "title": "Wer profitiert", "quest": "islamimon_10", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Mimon rechnet zum ersten Mal nach, wem seine Eskalation nützt." },
+        { "n": 11, "title": "Die freundliche Stimme, ohne Filter", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Eine unbearbeitete Aufnahme. Man hört, wie im Hintergrund gelacht wird." },
+        { "n": 12, "title": "Rückruf", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Diesmal ruft Mimon an. Es geht niemand ran." },
+        { "n": 13, "title": "Was bleibt", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Der Ausschnitt existiert weiter. Die vier Stunden nicht." },
+        { "n": 14, "title": "Die Entschuldigung", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Sie kommt. Sie ist zwei Sätze lang und steht in einem Kommentar." },
+        { "n": 15, "title": "Zurück ans Fenster", "quest": "islamimon_15", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "summary": "Er zieht keine Konsequenz. Er zieht einen Vorhang." }
+      ]
+    },
+    {
+      "id": "rechtsextremimon",
+      "title": "RECHTSEXTREMIMON",
+      "episodeCount": 12,
+      "recorded": "2018-2019",
+      "layer": "SOURCE_BASED_LORE",
+      "act": 11,
+      "color": "#8f5f4f",
+      "logline": "Derselbe Mechanismus, andere Zutat: Trolle legen Mimon Sätze in den Mund und filmen die Reaktion.",
+      "contentNote": "Kein Eintrag dieses Arcs reproduziert extremistische Parolen, Symbole oder Positionen. Was die Figuren Mimon einflüstern, bleibt bewusst ungesagt — gezeigt wird nur die Methode und ihr Ergebnis. Der Arc endet damit, dass die Methode offengelegt wird.",
+      "themes": ["manipulation", "provokation", "medienlogik", "reue", "entlarvung"],
+      "episodes": [
+        { "n": 1, "title": "Der neue Name in den Kommentaren", "quest": "rechtsextremimon_01", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Ein Handle, das nur aus Provokation besteht. Kein Inhalt, nur Köder." },
+        { "n": 2, "title": "Was man Mimon in den Mund legt", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Ein Satz taucht in einem Fideo auf, den Mimon nachweislich nicht gesagt hat." },
+        { "n": 3, "title": "Die Aufnahme läuft schon", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Das Gespräch beginnt nicht am Anfang. Es beginnt bei Minute zwölf." },
+        { "n": 4, "title": "Mamer geht dazwischen", "quest": "rechtsextremimon_04", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Sie sagt einen Satz, der den ganzen Arc trägt: Das bist du nicht." },
+        { "n": 5, "title": "Die Reaktion ist das Produkt", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Hatebox erklärt es beiläufig und ohne jede Scham." },
+        { "n": 6, "title": "Anzeige", "quest": "rechtsextremimon_06", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Kommissarin Devrim nimmt auf. Sie fragt nach Datum, Uhrzeit, Absender. Mimon hat alles." },
+        { "n": 7, "title": "Der Ausschnitt geht weiter", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Die Anzeige ändert nichts an der Verbreitung. Das ist die eigentliche Nachricht." },
+        { "n": 8, "title": "Wer das hochlädt", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Vier Accounts, ein Uploadzeitpunkt, dieselbe Minute." },
+        { "n": 9, "title": "Das Rohmaterial", "quest": "rechtsextremimon_09", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Mimon findet die ungeschnittene Fassung. Sie belegt genau das Gegenteil." },
+        { "n": 10, "title": "Gegenschnitt", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Zum ersten Mal schneidet Mimon selbst. Ruhig, chronologisch, mit Zeitstempeln." },
+        { "n": 11, "title": "Die Methode", "quest": "rechtsextremimon_11", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Nicht die Leute werden vorgeführt, sondern der Ablauf. Der funktioniert nur unsichtbar." },
+        { "n": 12, "title": "Stille in den Kommentaren", "quest": "rechtsextremimon_12", "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "summary": "Zum ersten Mal seit Jahren schreibt unter einem Fideo niemand etwas." }
+      ]
+    },
+    {
+      "id": "baphomimon",
+      "title": "BAPHOMIMON",
+      "episodeCount": 3,
+      "recorded": "2018-2019",
+      "layer": "SOURCE_BASED_LORE",
+      "act": 12,
+      "color": "#6f3f8f",
+      "logline": "Der paranoideste und dunkelste Arc. Drei Episoden, drei Räume, ein Ausgang.",
+      "tone": "paranoid, düster, langsam",
+      "themes": ["verhandlung", "vereinnahmung", "beobachtung", "abschluss"],
+      "episodes": [
+        { "n": 1, "title": "FRIEDENSVERHANDLUNG", "quest": "baphomimon_friedensverhandlung", "layer": "SOURCE_BASED_LORE", "summary": "Mimon versucht, mit verschiedenen Akteuren der Organisation zu sprechen. Alle sagen zu. Keiner sagt was." },
+        { "n": 2, "title": "PRESSESPRECHER", "quest": "baphomimon_pressesprecher", "layer": "SOURCE_BASED_LORE", "summary": "Ein Posten wird angeboten. Der Posten ist echt. Die Frage ist, was er kostet." },
+        { "n": 3, "title": "FENSTER", "quest": "baphomimon_fenster", "layer": "SOURCE_BASED_LORE", "summary": "Zurück am Fenster. Von hier aus hat alles angefangen, und von hier aus sieht man, wie weit es gekommen ist." }
+      ]
+    }
+  ]
+}

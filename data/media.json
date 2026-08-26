@@ -1,0 +1,69 @@
+{
+  "$comment": "Juhtub: vorhandene Fideos, Kommentar-Pools und die Parameter der Fideo-Produktion.",
+
+  "fideoTopics": [
+    { "id": "nwo", "label": "Die Organisation", "mett": 1.5, "risk": 1.6, "authenticity": -0.1, "tags": ["nwo", "verschwoerung"] },
+    { "id": "heeter", "label": "Heeter und Trittbrettfahrer", "mett": 1.7, "risk": 1.4, "authenticity": 0.0, "tags": ["heeter", "konflikt"] },
+    { "id": "alchemie", "label": "Alchemie", "mett": 0.7, "risk": 0.5, "authenticity": 0.3, "tags": ["alchemie", "wissen"] },
+    { "id": "geschichte", "label": "Geschichte", "mett": 0.6, "risk": 0.4, "authenticity": 0.3, "tags": ["geschichte", "wissen"] },
+    { "id": "alltag", "label": "Alltag", "mett": 0.5, "risk": 0.2, "authenticity": 0.2, "tags": ["alltag", "familie"] },
+    { "id": "richtigstellung", "label": "Richtigstellung", "mett": 0.8, "risk": 0.8, "authenticity": 0.5, "tags": ["identitaet", "beleg"] }
+  ],
+
+  "lengths": [
+    { "id": "kurz", "label": "Kurz (4 Min.)", "minutes": 4, "mett": 0.8, "authenticity": -0.1 },
+    { "id": "mittel", "label": "Mittel (18 Min.)", "minutes": 18, "mett": 1.0, "authenticity": 0.1 },
+    { "id": "lang", "label": "Lang (48 Min.)", "minutes": 48, "mett": 1.2, "authenticity": 0.3 },
+    { "id": "sehr_lang", "label": "Sehr lang (2 Std. 11 Min.)", "minutes": 131, "mett": 1.4, "authenticity": 0.4, "note": "Nur wer bis zum Ende bleibt, versteht es." }
+  ],
+
+  "existing": [
+    { "id": "fideo_veraendert", "title": "MIMON BARAKA — DIE WAHRHEIT (CUT)", "uploader": "hatebox", "views": 41200, "layer": "SOURCE_BASED_LORE", "description": "Dein Material. Deine Stimme. Nicht deine Reihenfolge." },
+    { "id": "fideo_ausschnitt", "title": "mimon sagt es selbst (90 sek)", "uploader": "unbekannt_1", "views": 128900, "layer": "FICTIONAL_GAME_CONTENT", "description": "Aus vier Stunden. Alles Gesagte, nichts Gemeinte." },
+    { "id": "fideo_rohmaterial", "title": "UNGESCHNITTEN 4:11:02", "uploader": "mimon_baraka", "views": 812, "layer": "FICTIONAL_GAME_CONTENT", "description": "Die vollständige Aufnahme. Aufrufe: dreistellig." },
+    { "id": "fideo_erklaerung", "title": "ICH ERKLÄRE DAS JETZT EINMAL", "uploader": "mimon_baraka", "views": 6400, "layer": "MEME_LORE", "description": "Achtundvierzig Minuten. Es wird nichts ausgelassen." },
+    { "id": "fideo_kelchninja", "title": "der nackte kelchninja (reupload)", "uploader": "franz_fack", "views": 22100, "layer": "MEME_LORE", "description": "Ein Bild, zweiundzwanzigtausend Mal angesehen, null Mal verstanden." }
+  ],
+
+  "comments": {
+    "positiv": [
+      "48 Minuten und ich hab keine Sekunde weggeklickt",
+      "Der Mann hebt wirklich ALLES auf. Respekt",
+      "bei minute 31 hat er recht, das kann man nachprüfen",
+      "endlich mal jemand der zu ende erklärt",
+      "real-authentisch. sonst nichts."
+    ],
+    "negativ": [
+      "plepp",
+      "wieder 48 minuten für nix",
+      "beweis EINEN punkt. einen.",
+      "das ist doch geschnitten",
+      "wer hat das hochgeladen und warum"
+    ],
+    "heeter": [
+      "vier minuten nach upload. wie immer.",
+      "war doch nur spaß lol",
+      "?",
+      "hab das mal gekürzt, läuft besser",
+      "erklär mal minute 31"
+    ],
+    "nwo": [
+      "DIE NWO SIEHT ALLES",
+      "notiert.",
+      "Der Vorgang pflegt sich fort.",
+      "Ort und Zeit stehen bereits fest."
+    ],
+    "absurd": [
+      "ein höcker",
+      "wo ist der basketball",
+      "EHDZHUST",
+      "dönerteller bestätigt",
+      "NANO"
+    ]
+  },
+
+  "reachFormula": {
+    "$comment": "reach = base * topic.mett * length.mett * (1 + anger/120) * (0.7 + authenticity/150) * (1 + subscribers/50000)",
+    "base": 400
+  }
+}

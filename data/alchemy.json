@@ -1,0 +1,93 @@
+{
+  "$comment": "Alchemie als Skillsystem. Alle Rezepte sind symbolisch-mystisch. Es gibt bewusst keine realen chemischen Angaben, keine Mengen, keine Temperaturen, keine Verfahren.",
+
+  "levels": { "min": 1, "max": 100, "xpCurve": "level * 40 + 60" },
+
+  "labLevels": [
+    { "level": 1, "name": "Alchemie-Ecke", "location": "mimons_wohnung", "maxRecipeTier": 1 },
+    { "level": 2, "name": "Myrrmoastas Labor", "location": "alchemielabor", "maxRecipeTier": 2 },
+    { "level": 3, "name": "Alchemielabor U-7", "location": "nwo_labor", "maxRecipeTier": 3 }
+  ],
+
+  "stages": [
+    { "id": "schwarz", "name": "Schwarz", "order": 1, "minLevel": 1, "layer": "FICTIONAL_GAME_CONTENT", "description": "Zerfall. Alles wird auseinandergenommen, bevor irgendetwas entsteht." },
+    { "id": "weiss", "name": "Weiß", "order": 2, "minLevel": 25, "layer": "FICTIONAL_GAME_CONTENT", "description": "Waschung. Was übrig bleibt, ist sauber und sehr wenig." },
+    { "id": "gelb", "name": "Gelb", "order": 3, "minLevel": 50, "layer": "FICTIONAL_GAME_CONTENT", "description": "Etwas fängt an zu leuchten, das vorher nicht da war." },
+    { "id": "rot", "name": "Rot", "order": 4, "minLevel": 75, "layer": "FICTIONAL_GAME_CONTENT", "description": "Vollendung. Der Stoff ist fertig. Der Mensch nicht." }
+  ],
+
+  "recipes": [
+    {
+      "id": "essenz_der_stille",
+      "name": "Essenz der Stille",
+      "tier": 1,
+      "stage": "schwarz",
+      "minLevel": 1,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "ingredients": ["harz_der_stille", "salz_der_erde"],
+      "xp": 60,
+      "result": { "id": "essenz_stille", "name": "Essenz der Stille" },
+      "effects": { "crashout": -20, "log": "Für eine halbe Stunde ist es tatsächlich still." },
+      "flavor": "Man riecht nichts. Genau das ist das Ergebnis."
+    },
+    {
+      "id": "tinktur_der_geduld",
+      "name": "Tinktur der Geduld",
+      "tier": 1,
+      "stage": "schwarz",
+      "minLevel": 10,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "ingredients": ["salz_der_erde", "asche_des_archivs"],
+      "xp": 80,
+      "result": { "id": "tinktur_geduld", "name": "Tinktur der Geduld" },
+      "effects": { "crashoutResist": 10, "log": "Der nächste Heeter wirkt kleiner als er ist." },
+      "flavor": "Wirkt langsam. Das ist der ganze Witz."
+    },
+    {
+      "id": "wasser_des_archivs",
+      "name": "Wasser des Archivs",
+      "tier": 2,
+      "stage": "weiss",
+      "minLevel": 25,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "ingredients": ["asche_des_archivs", "harz_der_stille", "quecksilbriges_zeichen"],
+      "xp": 140,
+      "result": { "id": "wasser_archiv", "name": "Wasser des Archivs" },
+      "effects": { "authenticity": 8, "log": "Alte Aufnahmen wirken plötzlich klarer. Vermutlich Einbildung." },
+      "flavor": "Klar wie Wasser, schwer wie ein Ordner."
+    },
+    {
+      "id": "gold_der_aufmerksamkeit",
+      "name": "Gold der Aufmerksamkeit",
+      "tier": 2,
+      "stage": "gelb",
+      "minLevel": 50,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "ingredients": ["essenz_des_kelchs", "quecksilbriges_zeichen", "salz_der_erde"],
+      "xp": 220,
+      "result": { "id": "gold_aufmerksamkeit", "name": "Gold der Aufmerksamkeit" },
+      "effects": { "mett": 400, "crashout": 10, "log": "Das nächste Fideo geht. Es geht wirklich." },
+      "flavor": "Aus wenig wird viel gesehen. Nicht viel Wert. Viel gesehen."
+    },
+    {
+      "id": "essenz_des_kelchs_rot",
+      "name": "Rote Essenz des Kelchs",
+      "tier": 3,
+      "stage": "rot",
+      "minLevel": 75,
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "ingredients": ["essenz_des_kelchs", "asche_des_archivs", "harz_der_stille", "quecksilbriges_zeichen"],
+      "requires": { "items": ["kelch"], "flags": ["u7_betreten"] },
+      "xp": 400,
+      "result": { "id": "rote_essenz", "name": "Rote Essenz" },
+      "effects": { "authenticity": 15, "alchemyXp": 100, "lore": ["lore_alchemie_stufen"], "log": "Die letzte Stufe. Danach sitzt Mimon lange still." },
+      "flavor": "Am Ende steht kein Stoff, sondern eine Reihenfolge, die man selbst durchlaufen hat."
+    }
+  ],
+
+  "books": [
+    { "id": "alchemiebuch_i", "unlocksRecipes": ["essenz_der_stille", "tinktur_der_geduld"], "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "alchemiebuch_ii", "unlocksRecipes": ["wasser_des_archivs", "gold_der_aufmerksamkeit"], "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "nwo_pergament", "unlocksRecipes": ["essenz_des_kelchs_rot"], "layer": "FICTIONAL_GAME_CONTENT" }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "$comment": "Heet-Mehls, NWO-Mail und die fünf Reaktionsmöglichkeiten. Die Heeter-Templates erzeugen prozedural neue Nachrichten, sobald der Pool leer läuft.",
+
+  "actions": [
+    { "id": "ignorieren", "label": "Ignorieren", "effects": { "crashout": 4, "authenticity": 2, "heeterAggro": -2 }, "note": "Kostet Nerven, entzieht aber Sauerstoff." },
+    { "id": "antworten", "label": "Beantworten", "effects": { "crashout": 8, "mett": 25, "heeterAggro": 6 }, "note": "Jede Antwort ist Material." },
+    { "id": "vorlesen", "label": "Öffentlich vorlesen", "effects": { "crashout": 14, "mett": 120, "subscribers": 150, "heeterAggro": 12, "authenticity": -3 }, "note": "Reichweite gegen Ruhe." },
+    { "id": "polizei", "label": "Zur Polizei bringen", "effects": { "crashout": 2, "authenticity": 6, "trust": { "kommissarin_devrim": 5 }, "items": ["heet_mehl_ausdruck"] }, "note": "Langsam, aber es entsteht eine Akte." },
+    { "id": "nwo", "label": "Zur NWO bringen", "effects": { "nwoInfluence": 6, "crashout": 6, "trust": { "reiter_wixler": 5 }, "authenticity": -5 }, "note": "Sie kümmern sich. Irgendwie." }
+  ],
+
+  "heeters": [
+    { "id": "hatebox", "character": "hatebox", "aggro": 40, "tactic": "reupload", "layer": "SOURCE_BASED_LORE" },
+    { "id": "apocaliptica", "character": "apocaliptica", "aggro": 30, "tactic": "kommentar", "layer": "SOURCE_BASED_LORE" },
+    { "id": "franz_fack", "character": "franz_fack", "aggro": 25, "tactic": "spass", "layer": "SOURCE_BASED_LORE" },
+    { "id": "master_versus", "character": "master_versus", "aggro": 35, "tactic": "debatte", "layer": "SOURCE_BASED_LORE" },
+    { "id": "nwo_reichsschaender", "character": "nwo_reichsschaender", "aggro": 45, "tactic": "koeder", "layer": "SOURCE_BASED_LORE" },
+    { "id": "unbekannt_1", "name": "kein_absender", "aggro": 20, "tactic": "fake_account", "layer": "FICTIONAL_GAME_CONTENT" }
+  ],
+
+  "pool": [
+    { "id": "hm_001", "from": "hatebox", "subject": "dein fideo", "layer": "SOURCE_BASED_LORE", "act": 1, "body": "hab dein fideo etwas gekürzt und neu hochgeladen. läuft besser als deins. nicht böse gemeint. mfg", "triggers": { "crashout": 12 } },
+    { "id": "hm_002", "from": "apocaliptica", "subject": "SIEH HER", "layer": "SOURCE_BASED_LORE", "act": 2, "body": "Vier Minuten nach dem Upload war ich da. Vier. Minuten. Frag dich mal, warum immer ich als Erster da bin ...", "triggers": { "crashout": 10 } },
+    { "id": "hm_003", "from": "franz_fack", "subject": "war doch nur spaß", "layer": "SOURCE_BASED_LORE", "act": 2, "body": "war doch nur spaß mimon lol. also das mit dem bild. und das andere auch. und das von letzter woche.", "triggers": { "crashout": 9 } },
+    { "id": "hm_004", "from": "master_versus", "subject": "Beweis es", "layer": "SOURCE_BASED_LORE", "act": 2, "body": "Du behauptest, es gibt eine Organisation. Beweis es. Ein Beleg. Einer reicht. Ich warte seit drei Jahren.", "triggers": { "crashout": 14 } },
+    { "id": "hm_005", "from": "unbekannt_1", "subject": "(kein Betreff)", "layer": "FICTIONAL_GAME_CONTENT", "act": 3, "body": "wir wissen wo du einkaufst. dienstags.", "triggers": { "crashout": 25, "nwoInfluence": 4 }, "policeWorthy": true },
+    { "id": "hm_006", "from": "nwo_reichsschaender", "subject": "?", "layer": "SOURCE_BASED_LORE", "act": 11, "body": "?", "note": "Der Absender schreibt bewusst nichts. Der Name allein soll die Reaktion erzeugen.", "triggers": { "crashout": 18 }, "bait": true },
+    { "id": "hm_007", "from": "hatebox", "subject": "titelvorschlag", "layer": "SOURCE_BASED_LORE", "act": 4, "body": "hab mir den ausdruck angesehen den du der polizei gegeben hast. schöne schriftart. mfg", "triggers": { "crashout": 22, "nwoInfluence": 3 } },
+    { "id": "hm_008", "from": "unbekannt_1", "subject": "Rückfrage", "layer": "FICTIONAL_GAME_CONTENT", "act": 5, "body": "Wieso hebst du eigentlich alles auf? Für wen?", "triggers": { "crashout": 16 } },
+    { "id": "hm_009", "from": "franz_fack", "subject": "sry", "layer": "SOURCE_BASED_LORE", "act": 11, "body": "hab das rohmaterial gesehen. war schlecht von mir. lösch ich. sry", "triggers": { "crashout": -6, "authenticity": 4 }, "apology": true },
+    { "id": "hm_010", "from": "master_versus", "subject": "Zum Rohmaterial", "layer": "FICTIONAL_GAME_CONTENT", "act": 11, "body": "Ich hab die ungeschnittene Fassung angesehen. Ich lag falsch. Das schreib ich nicht gern, aber ich schreib es.", "triggers": { "authenticity": 6 }, "apology": true }
+  ],
+
+  "templates": {
+    "$comment": "Prozedurale Nachrichten. {mimon} {fideo} {zahl} {thema} werden gefüllt.",
+    "reupload": [
+      "hab {fideo} neu hochgeladen. minute {zahl} ist stark. mfg",
+      "kleiner schnitt an {fideo}. der teil mit {thema} ist jetzt kürzer. lg"
+    ],
+    "kommentar": [
+      "Schon wieder {thema}. Immer {thema}. Wann hört das auf ...",
+      "Ich hab alle {zahl} Fideos gesehen. Alle. Sieh her: es wird nicht besser."
+    ],
+    "spass": [
+      "war nur spaß mit {thema} lol",
+      "nimm das mit {fideo} nicht so ernst, war spaß"
+    ],
+    "debatte": [
+      "Deine Aussage zu {thema} ist falsch. Beweis das Gegenteil.",
+      "Minute {zahl}: du widersprichst dir. Erklär das."
+    ],
+    "koeder": ["?", "und?", "warum antwortest du nicht"],
+    "fake_account": [
+      "hier ist nicht {mimon}. hier ist auch {mimon}.",
+      "wir haben {zahl} accounts. du hast einen."
+    ]
+  },
+
+  "nwoMail": [
+    { "id": "nm_001", "from": "NWO", "subject": "ZUR KENNTNIS", "channel": "nwo", "layer": "FICTIONAL_GAME_CONTENT", "requiresInfluence": 25, "body": "Ihre Anfrage wurde erfasst. Eine Rückmeldung ist nicht vorgesehen. DIE NWO SIEHT ALLES." },
+    { "id": "nm_002", "from": "NWO Productions", "subject": "Terminvorschlag", "channel": "nwo", "layer": "SOURCE_BASED_LORE", "requiresInfluence": 40, "body": "Wir würden gern etwas mit Ihnen aufnehmen. Ort und Zeit stehen bereits fest, wir teilen sie Ihnen rechtzeitig mit." },
+    { "id": "nm_003", "from": "R. W.", "subject": "unter uns", "channel": "nwo", "layer": "FICTIONAL_GAME_CONTENT", "requiresInfluence": 45, "body": "Pass auf: geh diese Woche nicht an das Fenster im Treppenhaus. Frag nicht warum. Frag einfach nicht." },
+    { "id": "nm_004", "from": "NWO", "subject": "EINLADUNG", "channel": "nwo", "layer": "FICTIONAL_GAME_CONTENT", "requiresInfluence": 55, "body": "Sie sind eingeladen. Der Ort wird Ihnen bekannt sein, sobald Sie dort sind.", "effects": { "flags": ["eingeladen_u7"] } },
+    { "id": "nm_005", "from": "NWO ELITE", "subject": "VORGANG BARAKA", "channel": "nwo", "layer": "FICTIONAL_GAME_CONTENT", "requiresInfluence": 80, "body": "Der Vorgang pflegt sich fort. Es ist nichts zu veranlassen. Es war nie etwas zu veranlassen." }
+  ]
+}

@@ -1,0 +1,569 @@
+{
+  "$comment": "Dialoggraphen. speaker: mimon | <npcId> | narrator. Ein Knoten mit 'monolog' ruft den Mimonolog-Generator auf. choice.tone: ruhig | mimonolog | beschuldigen | nwo_kontaktieren | mamer_fragen | polizei | thema_wechseln | eskalieren",
+
+  "dialogues": {
+
+    "mamer_hub": {
+      "npc": "mamer",
+      "title": "Mamer",
+      "layer": "SOURCE_BASED_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Simon. Du warst die ganze Nacht am Rechner. Ich hab das Licht gesehen.",
+          "choices": [
+            { "text": "Ruhig erklären, woran du gearbeitet hast.", "tone": "ruhig", "effects": { "trust": { "mamer": 3 }, "authenticity": 2 }, "next": "n_ruhig" },
+            { "text": "Das ist wichtiger, als sie versteht.", "tone": "mimonolog", "effects": { "crashout": 6 }, "next": "n_monolog" },
+            { "text": "Sie nach dem Fahrzeug draußen fragen.", "tone": "mamer_fragen", "next": "n_fahrzeug" },
+            { "text": "Thema wechseln.", "tone": "thema_wechseln", "effects": { "trust": { "mamer": -2 } }, "next": "n_wechsel" }
+          ]
+        },
+        "n_ruhig": {
+          "speaker": "mamer",
+          "text": "Hm. Und? Bist du weitergekommen?",
+          "choices": [
+            { "text": "Ehrlich sein: nein.", "tone": "ruhig", "effects": { "trust": { "mamer": 6 }, "authenticity": 5, "crashout": -6 }, "next": "n_ehrlich" },
+            { "text": "Behaupten, du bist kurz davor.", "tone": "eskalieren", "effects": { "authenticity": -6, "mett": 20 }, "next": "n_behauptung" }
+          ]
+        },
+        "n_ehrlich": {
+          "speaker": "mamer",
+          "text": "Das ist die erste vernünftige Antwort seit drei Wochen. Iss was.",
+          "effects": { "crashout": -8, "trust": { "mamer": 4 } },
+          "next": "END"
+        },
+        "n_behauptung": {
+          "speaker": "mamer",
+          "text": "Das sagst du seit Februar. Ich frag ja nur.",
+          "effects": { "crashout": 8 },
+          "next": "END"
+        },
+        "n_monolog": {
+          "speaker": "mimon",
+          "monolog": { "topic": "nwo" },
+          "next": "n_monolog_reaktion"
+        },
+        "n_monolog_reaktion": {
+          "speaker": "mamer",
+          "text": "Ich hab dir zugehört. Bis zum Ende. Und jetzt sag mir in einem Satz, was du morgen anders machst.",
+          "choices": [
+            { "text": "Schweigen. Sie hat recht.", "tone": "ruhig", "effects": { "trust": { "mamer": 10 }, "authenticity": 8, "crashout": -12 }, "next": "END" },
+            { "text": "Noch einen Mimonolog anhängen.", "tone": "mimonolog", "effects": { "trust": { "mamer": -6 }, "crashout": 10, "mett": 30 }, "next": "n_monolog2" }
+          ]
+        },
+        "n_monolog2": {
+          "speaker": "mimon",
+          "monolog": { "topic": "identitaet", "intensity": "hoch" },
+          "next": "n_monolog2_ende"
+        },
+        "n_monolog2_ende": {
+          "speaker": "mamer",
+          "text": "Ja. Genau das mein ich.",
+          "next": "END"
+        },
+        "n_fahrzeug": {
+          "speaker": "mamer",
+          "text": "Der graue? Der steht da, seit die vom Hausmeisterdienst da waren. Hab ich mir notiert, weil du immer fragst.",
+          "effects": { "flags": ["mamer_notiert_fahrzeug"], "nwoInfluence": 2, "trust": { "mamer": 4 } },
+          "choices": [
+            { "text": "Sie hat es notiert. Für dich.", "tone": "ruhig", "effects": { "trust": { "mamer": 6 }, "authenticity": 4 }, "next": "END" },
+            { "text": "Das ist der Beweis.", "tone": "mimonolog", "effects": { "crashout": 12, "nwoInfluence": 3 }, "next": "n_monolog" }
+          ]
+        },
+        "n_wechsel": {
+          "speaker": "mamer",
+          "text": "Du wechselst das Thema. Das machst du immer an derselben Stelle.",
+          "next": "END"
+        }
+      }
+    },
+
+    "mamer_tagebuch": {
+      "npc": "mamer",
+      "title": "Das Tagebuch",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Das dicke Buch mit dem Ledereinband. Da lagen mal lose Blätter drin. Die hab ich in den Karton auf dem Schrank getan, damit sie nicht wegkommen.",
+          "choices": [
+            { "text": "Danke sagen.", "tone": "ruhig", "effects": { "trust": { "mamer": 8 }, "items": ["magisches_tagebuch"], "flags": ["tagebuch_hinweis"] }, "next": "n_ende" },
+            { "text": "Fragen, ob sie hineingesehen hat.", "tone": "beschuldigen", "effects": { "trust": { "mamer": -8 }, "crashout": 8 }, "next": "n_vorwurf" }
+          ]
+        },
+        "n_vorwurf": {
+          "speaker": "mamer",
+          "text": "Simon. Ich hab sie aufgehoben, damit sie nicht wegkommen. Das ist der ganze Vorgang.",
+          "effects": { "items": ["magisches_tagebuch"], "flags": ["tagebuch_hinweis"] },
+          "next": "END"
+        },
+        "n_ende": {
+          "speaker": "mamer",
+          "text": "Auf einem Blatt steht ein Gedicht. Das ist gut. Das solltest du behalten.",
+          "effects": { "authenticity": 4 },
+          "next": "END"
+        }
+      }
+    },
+
+    "mamer_die_frage": {
+      "npc": "mamer",
+      "title": "Mamers Frage",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Ich frag dich eine Sache, und ich will keine Erklärung, ich will die Antwort. Wenn die Organisation dich seit Jahren beobachtet — warum passiert dir nichts?",
+          "choices": [
+            { "text": "Zugeben, dass du es nicht weißt.", "tone": "ruhig", "effects": { "authenticity": 12, "trust": { "mamer": 14 }, "flags": ["mamer_frage_beantwortet"], "crashout": -10 }, "next": "n_zugeben" },
+            { "text": "Weil ich zu bekannt bin. Das ist mein Schutz.", "tone": "mimonolog", "effects": { "nwoInfluence": 4, "flags": ["mamer_frage_beantwortet"], "mett": 40 }, "next": "n_theorie" },
+            { "text": "Sie fragt, weil sie es weiß.", "tone": "beschuldigen", "effects": { "trust": { "mamer": -15 }, "crashout": 20 }, "next": "n_verdacht" }
+          ]
+        },
+        "n_zugeben": {
+          "speaker": "mamer",
+          "text": "Gut. Dann hör auf, so zu tun, als wüsstest du's. Das steht dir besser.",
+          "next": "END"
+        },
+        "n_theorie": {
+          "speaker": "mamer",
+          "text": "Kann sein. Kann auch sein, dass da niemand ist. Beides passt zu allem, was du mir zeigst.",
+          "next": "END"
+        },
+        "n_verdacht": {
+          "speaker": "mamer",
+          "text": "…",
+          "effects": { "log": "Sie steht auf und geht in ihr Zimmer. Die Tür fällt nicht laut zu. Das ist schlimmer." },
+          "next": "END"
+        }
+      }
+    },
+
+    "mamer_das_bist_du_nicht": {
+      "npc": "mamer",
+      "title": "Das bist du nicht",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Ich hab mir das angehört, was die von dir hochgeladen haben. Zweimal. Simon: das bist du nicht. Die Sätze sind deine. Der Mensch drumherum ist es nicht.",
+          "choices": [
+            { "text": "Zuhören. Nichts sagen.", "tone": "ruhig", "effects": { "trust": { "mamer": 15 }, "authenticity": 10, "crashout": -20 }, "next": "n_still" },
+            { "text": "Erklären, wie der Schnitt funktioniert.", "tone": "ruhig", "effects": { "trust": { "mamer": 8 }, "authenticity": 6, "flags": ["schnitt_verstanden"] }, "next": "n_erklaeren" },
+            { "text": "Eskalieren. Alle sind gegen dich.", "tone": "eskalieren", "effects": { "crashout": 25, "authenticity": -10, "trust": { "mamer": -10 } }, "next": "n_eskalation" }
+          ]
+        },
+        "n_still": { "speaker": "mamer", "text": "Gut. Dann bleiben wir dabei.", "next": "END" },
+        "n_erklaeren": { "speaker": "mamer", "text": "Dann zeig das den Leuten. Genau so, wie du's mir gerade gezeigt hast. Ruhig.", "effects": { "flags": ["gegenschnitt_idee"] }, "next": "END" },
+        "n_eskalation": { "speaker": "mamer", "text": "Ich bin nicht gegen dich. Ich bin der einzige Mensch in diesem Haushalt, der nicht gegen dich ist.", "next": "END" }
+      }
+    },
+
+    "mamer_einwand": {
+      "npc": "mamer",
+      "title": "Seit wann redest du so?",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Die Sätze, die du seit zwei Wochen sagst — die klingen nicht nach dir. Die klingen nach jemandem, der dich anruft.",
+          "choices": [
+            { "text": "Nachdenken. Sie könnte recht haben.", "tone": "ruhig", "effects": { "authenticity": 10, "trust": { "mamer": 10 }, "flags": ["zweifel_am_anrufer"] }, "next": "END" },
+            { "text": "Der ist der Einzige, der zuhört.", "tone": "mimonolog", "effects": { "crashout": 10, "trust": { "mamer": -4 } }, "next": "n_monolog" }
+          ]
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "identitaet" }, "next": "n_ende" },
+        "n_ende": { "speaker": "mamer", "text": "Ich hör dir zu. Seit fünfundvierzig Jahren. Der ruft seit zwei Wochen an.", "effects": { "authenticity": 4 }, "next": "END" }
+      }
+    },
+
+    "mamer_ueber_cap5": {
+      "npc": "mamer",
+      "title": "Über Cap5",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mamer",
+          "text": "Der Mann hat hier angerufen. Nicht bei dir — hier. Er wollte wissen, ob ich weiß, was du machst.",
+          "choices": [
+            { "text": "Was hast du gesagt?", "tone": "ruhig", "effects": { "trust": { "mamer": 6 } }, "next": "n_antwort" },
+            { "text": "Sofort eskalieren.", "tone": "eskalieren", "effects": { "crashout": 30, "trust": { "cap5": -20 } }, "next": "n_monolog" }
+          ]
+        },
+        "n_antwort": {
+          "speaker": "mamer",
+          "text": "Dass ich das weiß und dass ihn das nichts angeht. Dann hat er aufgelegt. Sehr höflich.",
+          "effects": { "flags": ["cap5_hat_angerufen"], "nwoInfluence": 3 },
+          "next": "END"
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "mamer", "intensity": "hoch" }, "next": "n_nach" },
+        "n_nach": { "speaker": "mamer", "text": "Schrei nicht in der Küche. Schrei draußen, da bringt's wenigstens Aufrufe.", "effects": { "mett": 50 }, "next": "END" }
+      }
+    },
+
+    "hatebox_konfrontation": {
+      "npc": "hatebox",
+      "title": "Hatebox",
+      "layer": "SOURCE_BASED_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "hatebox",
+          "text": "hallo mimon. schön dass du schreibst. ich hab mit deinem material eigentlich nichts gemacht, ich hab es nur zugänglicher gemacht. mfg",
+          "choices": [
+            { "text": "Ruhig nach der Absicht fragen.", "tone": "ruhig", "effects": { "authenticity": 6, "crashout": 4 }, "next": "n_absicht" },
+            { "text": "Ihn als Trittbrettfahrer benennen.", "tone": "beschuldigen", "effects": { "crashout": 15, "mett": 80, "trust": { "hatebox": -10 } }, "next": "n_vorwurf" },
+            { "text": "Voller Mimonolog.", "tone": "mimonolog", "effects": { "crashout": 20, "mett": 150 }, "next": "n_monolog" },
+            { "text": "Anzeige androhen.", "tone": "polizei", "effects": { "trust": { "kommissarin_devrim": 4 }, "crashout": 8 }, "next": "n_polizei" }
+          ]
+        },
+        "n_absicht": {
+          "speaker": "hatebox",
+          "text": "absicht ist so ein großes wort. es gibt nachfrage. ich bediene sie. lg",
+          "effects": { "flags": ["hatebox_motiv_bekannt"], "authenticity": 4 },
+          "next": "END"
+        },
+        "n_vorwurf": {
+          "speaker": "hatebox",
+          "text": "trittbrettfahrer ist gut. das nehm ich als titel für das nächste. danke dir.",
+          "effects": { "mett": 60, "crashout": 10 },
+          "next": "END"
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "heeter", "intensity": "hoch" }, "next": "n_nach_monolog" },
+        "n_nach_monolog": {
+          "speaker": "hatebox",
+          "text": "zwölf minuten. läuft schon hoch. mfg",
+          "effects": { "mett": 200, "authenticity": -5, "spawnHeeter": 1 },
+          "next": "END"
+        },
+        "n_polizei": {
+          "speaker": "hatebox",
+          "text": "mach das. adresse hab ich nicht, aber die haben ja meine.",
+          "effects": { "flags": ["hatebox_anzeige_moeglich"] },
+          "next": "END"
+        }
+      }
+    },
+
+    "reiter_hub": {
+      "npc": "reiter_wixler",
+      "title": "Reiter Wixler",
+      "layer": "SOURCE_BASED_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "reiter_wixler",
+          "text": "Pass auf, ich sag dir was, aber das bleibt unter uns: die interessieren sich für dich. Nicht schlimm. Aber sie tun's.",
+          "choices": [
+            { "text": "Wer genau ist \"sie\"?", "tone": "ruhig", "effects": { "authenticity": 4 }, "next": "n_wer" },
+            { "text": "Und du gehörst dazu.", "tone": "beschuldigen", "effects": { "trust": { "reiter_wixler": -8 }, "crashout": 10 }, "next": "n_vorwurf" },
+            { "text": "Was soll ich tun?", "tone": "nwo_kontaktieren", "effects": { "nwoInfluence": 5, "trust": { "reiter_wixler": 6 } }, "next": "n_auftrag" }
+          ]
+        },
+        "n_wer": {
+          "speaker": "reiter_wixler",
+          "text": "Namen bringen dir nichts, Mimon. Namen sind austauschbar. Die Struktur bleibt.",
+          "effects": { "nwoInfluence": 3, "flags": ["reiter_weicht_aus"] },
+          "next": "END"
+        },
+        "n_vorwurf": {
+          "speaker": "reiter_wixler",
+          "text": "Ich gehör dazu wie der Briefträger zur Post. Ich bring's dir. Was drinsteht, hab ich nicht geschrieben.",
+          "effects": { "flags": ["reiter_ausweichend"] },
+          "next": "END"
+        },
+        "n_auftrag": {
+          "speaker": "reiter_wixler",
+          "text": "Geh ins Internetcafé, Rechner vier. Da hat jemand was gesucht und den Verlauf nicht gelöscht. Rein zufällig.",
+          "effects": { "flags": ["hinweis_rechner_vier"], "nwoInfluence": 4 },
+          "next": "END"
+        }
+      }
+    },
+
+    "reiter_struktur": {
+      "npc": "reiter_wixler",
+      "title": "Die Struktur",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "reiter_wixler",
+          "text": "Oben Elite, darunter Productions, daneben Watch, unten Feldebene. Und quer durch alles die Kontakte. So. Jetzt weißt du's.",
+          "choices": [
+            { "text": "Und wo bist du?", "tone": "ruhig", "effects": { "authenticity": 6 }, "next": "n_wo" },
+            { "text": "Das erklärt gar nichts.", "tone": "beschuldigen", "effects": { "crashout": 8, "authenticity": 5 }, "next": "n_nichts" },
+            { "text": "Alles mitschreiben.", "tone": "thema_wechseln", "effects": { "nwoInfluence": 6, "flags": ["struktur_notiert"] }, "next": "n_notiert" }
+          ]
+        },
+        "n_wo": { "speaker": "reiter_wixler", "text": "Quer. Ich sagte doch: quer durch alles.", "effects": { "nwoInfluence": 4 }, "next": "END" },
+        "n_nichts": { "speaker": "reiter_wixler", "text": "Es erklärt die Form. Den Inhalt musst du selber finden, dafür bist du ja Journalist. Oder was du bist.", "effects": { "crashout": 6 }, "next": "END" },
+        "n_notiert": { "speaker": "reiter_wixler", "text": "Schreib ruhig mit. Ist ja nichts Geheimes dran. Das ist das Beste daran.", "next": "END" }
+      }
+    },
+
+    "reiter_konfrontation": {
+      "npc": "reiter_wixler",
+      "title": "Die zweite Freigabe",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "mimon",
+          "text": "Die zweite Freigabe für U-7. Die läuft auf dich. Seit vier Jahren.",
+          "choices": [
+            { "text": "Ihn ausreden lassen.", "tone": "ruhig", "effects": { "authenticity": 8 }, "next": "n_erklaerung" },
+            { "text": "Sofort eskalieren.", "tone": "eskalieren", "effects": { "crashout": 30, "trust": { "reiter_wixler": -25 } }, "next": "n_monolog" }
+          ]
+        },
+        "n_erklaerung": {
+          "speaker": "reiter_wixler",
+          "text": "Ja. Und ich hab dich reingebracht, obwohl ich's nicht musste. Beides stimmt. Such dir aus, was du davon behältst.",
+          "effects": { "flags": ["reiter_entschieden"], "nwoInfluence": 6 },
+          "choices": [
+            { "text": "Ihm weiter vertrauen.", "tone": "ruhig", "effects": { "trust": { "reiter_wixler": 12 }, "flags": ["vertraut_reiter"] }, "next": "END" },
+            { "text": "Ab jetzt allein weitermachen.", "tone": "thema_wechseln", "effects": { "trust": { "reiter_wixler": -12 }, "authenticity": 8, "flags": ["reiter_entlarvt"] }, "next": "END" }
+          ]
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "reiter", "intensity": "hoch" }, "next": "n_nach" },
+        "n_nach": {
+          "speaker": "reiter_wixler",
+          "text": "Bist du fertig? Gut. Die Tür unten ist trotzdem noch offen. Bis morgen früh.",
+          "effects": { "flags": ["reiter_entschieden"], "crashout": 10 },
+          "next": "END"
+        }
+      }
+    },
+
+    "toni_hub": {
+      "npc": "toni",
+      "title": "Toni",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "toni",
+          "text": "Alter. Das letzte Fideo. Achtundvierzig Minuten. Ich hab's komplett geguckt.",
+          "choices": [
+            { "text": "Und?", "tone": "ruhig", "effects": { "trust": { "toni": 5 } }, "next": "n_und" },
+            { "text": "Ihm die Fortsetzung erzählen.", "tone": "mimonolog", "effects": { "trust": { "toni": 8 }, "mett": 40, "crashout": 4 }, "next": "n_monolog" }
+          ]
+        },
+        "n_und": {
+          "speaker": "toni",
+          "text": "Krass. Aber die Stelle bei Minute einunddreißig — da widersprichst du dir. Wollte ich nur sagen. Nicht böse gemeint.",
+          "effects": { "authenticity": 6, "flags": ["toni_widerspruch"] },
+          "next": "END"
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "allgemein" }, "next": "n_nach" },
+        "n_nach": { "speaker": "toni", "text": "Alter. Mach daraus ein Fideo. Genau so.", "effects": { "mett": 60 }, "next": "END" }
+      }
+    },
+
+    "devrim_hub": {
+      "npc": "kommissarin_devrim",
+      "title": "Kommissarin Devrim",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "kommissarin_devrim",
+          "text": "Herr Baraka. Sie waren letzte Woche schon hier. Was liegt heute vor?",
+          "choices": [
+            { "text": "Ausdrucke mit Datum und Uhrzeit vorlegen.", "tone": "polizei", "requires": { "items": ["heet_mehl_ausdruck"] }, "effects": { "trust": { "kommissarin_devrim": 10 }, "authenticity": 8 }, "next": "n_belege" },
+            { "text": "Von der Organisation erzählen.", "tone": "nwo_kontaktieren", "effects": { "trust": { "kommissarin_devrim": -5 }, "nwoInfluence": 2 }, "next": "n_organisation" },
+            { "text": "Nichts. Nur mal sehen, wer hier so sitzt.", "tone": "thema_wechseln", "effects": { "nwoInfluence": 1 }, "next": "END" }
+          ]
+        },
+        "n_belege": {
+          "speaker": "kommissarin_devrim",
+          "text": "Das ist brauchbar. Ehrlich gesagt brauchbarer als das meiste, was hier reinkommt. Ich nehm das auf.",
+          "effects": { "flags": ["anzeige_aufgenommen"], "authenticity": 6 },
+          "next": "END"
+        },
+        "n_organisation": {
+          "speaker": "kommissarin_devrim",
+          "text": "Herr Baraka. Ich kann Nachrichten aufnehmen, Absender, Uhrzeiten. Eine Organisation, deren Namen nur Sie nennen können, kann ich nicht aufnehmen.",
+          "choices": [
+            { "text": "Das akzeptieren.", "tone": "ruhig", "effects": { "authenticity": 6, "trust": { "kommissarin_devrim": 6 } }, "next": "END" },
+            { "text": "Dann gehören Sie auch dazu.", "tone": "beschuldigen", "effects": { "trust": { "kommissarin_devrim": -15 }, "crashout": 18, "nwoInfluence": 3 }, "next": "n_vorwurf" }
+          ]
+        },
+        "n_vorwurf": {
+          "speaker": "kommissarin_devrim",
+          "text": "Ich notiere das nicht. Sonst steht es später gegen Sie. Gehen Sie nach Hause, Herr Baraka.",
+          "next": "END"
+        }
+      }
+    },
+
+    "cap5_angebot": {
+      "npc": "cap5",
+      "title": "Cap5",
+      "layer": "SOURCE_BASED_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "cap5",
+          "text": "Hör zu. Wir zwei können uns das Leben leichter machen. Du gibst mir die Aufnahmen, ich sorge dafür, dass bei dir zuhause Ruhe bleibt.",
+          "choices": [
+            { "text": "Was heißt \"bei mir zuhause\"?", "tone": "ruhig", "effects": { "crashout": 12, "flags": ["cap5_droht"] }, "next": "n_praezisierung" },
+            { "text": "Sofort ablehnen.", "tone": "eskalieren", "effects": { "crashout": 25, "trust": { "cap5": -20 }, "authenticity": 8, "flags": ["cap5_entschieden", "cap5_abgelehnt"] }, "next": "n_ablehnung" },
+            { "text": "Zeit gewinnen.", "tone": "thema_wechseln", "effects": { "trust": { "cap5": 5 }, "flags": ["cap5_hingehalten"] }, "next": "n_zeit" }
+          ]
+        },
+        "n_praezisierung": {
+          "speaker": "cap5",
+          "text": "Das heißt gar nichts. Das heißt Ruhe. Deine Mutter geht dienstags einkaufen, das weiß halb Berlin. Ich sag ja nur: Ruhe ist schön.",
+          "choices": [
+            { "text": "Zur Polizei gehen.", "tone": "polizei", "effects": { "trust": { "kommissarin_devrim": 10 }, "flags": ["cap5_entschieden", "cap5_angezeigt"], "authenticity": 10 }, "next": "END" },
+            { "text": "Voller Crashout.", "tone": "eskalieren", "effects": { "crashout": 40, "mett": 300, "flags": ["cap5_entschieden"] }, "next": "n_monolog" }
+          ]
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "mamer", "intensity": "maximum" }, "next": "n_nach" },
+        "n_nach": { "speaker": "cap5", "text": "Siehst du. Genau das mein ich. Denk drüber nach.", "next": "END" },
+        "n_ablehnung": { "speaker": "cap5", "text": "Schade. Wirklich schade.", "effects": { "nwoInfluence": 5 }, "next": "END" },
+        "n_zeit": { "speaker": "cap5", "text": "Nimm dir Zeit. Zeit ist genau das, was du hast.", "next": "END" }
+      }
+    },
+
+    "productions_hub": {
+      "npc": "henry_heaven",
+      "title": "NWO Productions",
+      "layer": "SOURCE_BASED_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "henry_heaven",
+          "text": "Alles gut, Mimon, komm rein. Wir nehmen gerade nichts auf. Also — technisch gesehen nehmen wir immer auf, aber nichts Wichtiges.",
+          "choices": [
+            { "text": "Die Serienwand ansehen.", "tone": "ruhig", "effects": { "lore": ["lore_serien_uebersicht"], "nwoInfluence": 3 }, "next": "n_wand" },
+            { "text": "Fragen, wer die Serien bezahlt.", "tone": "nwo_kontaktieren", "effects": { "nwoInfluence": 5, "authenticity": 4 }, "next": "n_bezahlt" },
+            { "text": "Das ist Propaganda.", "tone": "beschuldigen", "effects": { "crashout": 15, "trust": { "henry_heaven": -8 } }, "next": "n_propaganda" }
+          ]
+        },
+        "n_wand": {
+          "speaker": "henry_heaven",
+          "text": "Einundzwanzig, fünfzehn, zwölf, drei. Vier Serien, alles zwischen achtzehn und neunzehn aufgenommen. Ordentlich beschriftet, wir sind da penibel.",
+          "effects": { "lore": ["lore_nwo_productions"] },
+          "next": "END"
+        },
+        "n_bezahlt": {
+          "speaker": "henry_heaven",
+          "text": "Bezahlt? Alles gut, das läuft über die Struktur. Ich krieg meine Sachen, du kriegst deine Reichweite, alle sind zufrieden.",
+          "effects": { "nwoInfluence": 4, "flags": ["productions_finanzierung"] },
+          "next": "END"
+        },
+        "n_propaganda": {
+          "speaker": "henry_heaven",
+          "text": "Propaganda ist so ein hartes Wort. Ich sag lieber: Format. Möchtest du einen Kaffee?",
+          "next": "END"
+        }
+      }
+    },
+
+    "pressesprecher_angebot": {
+      "npc": "henry_heaven",
+      "title": "Das Angebot",
+      "layer": "SOURCE_BASED_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "henry_heaven",
+          "text": "Wir hätten eine Stelle für dich. Pressesprecher. Eigene Visitenkarte, eigenes Mikrofon, und du redest so lange, wie du willst. Das ist kein Scherz, das steht so im Vertrag.",
+          "choices": [
+            { "text": "Annehmen.", "tone": "nwo_kontaktieren", "effects": { "nwoInfluence": 25, "authenticity": -15, "flags": ["pressesprecher_entschieden", "pressesprecher_angenommen"], "trust": { "henry_heaven": 15, "mamer": -10 } }, "next": "n_annahme" },
+            { "text": "Ablehnen.", "tone": "ruhig", "effects": { "authenticity": 20, "nwoInfluence": -5, "flags": ["pressesprecher_entschieden", "pressesprecher_abgelehnt"], "trust": { "mamer": 12 } }, "next": "n_ablehnung" },
+            { "text": "Annehmen, um von innen zu arbeiten.", "tone": "mimonolog", "requires": { "stats": { "authenticity": { "min": 60 } } }, "effects": { "nwoInfluence": 15, "flags": ["pressesprecher_entschieden", "pressesprecher_infiltration"], "mett": 200 }, "next": "n_infiltration" },
+            { "text": "Erst mit Mamer sprechen.", "tone": "mamer_fragen", "effects": { "trust": { "mamer": 8 } }, "next": "END" }
+          ]
+        },
+        "n_annahme": {
+          "speaker": "henry_heaven",
+          "text": "Wunderbar. Wir brauchen nur noch dein Archiv. Alles, was du hast. Formsache.",
+          "effects": { "log": "Die Visitenkarte ist schon gedruckt. Mit richtiger Schreibweise." },
+          "next": "END"
+        },
+        "n_ablehnung": {
+          "speaker": "henry_heaven",
+          "text": "Alles gut. Wirklich. Das Angebot steht, es steht nur woanders.",
+          "next": "END"
+        },
+        "n_infiltration": {
+          "speaker": "henry_heaven",
+          "text": "Von innen. Ja. Das haben schon zwei gesagt. Beide arbeiten noch hier.",
+          "effects": { "nwoInfluence": 5 },
+          "next": "END"
+        }
+      }
+    },
+
+    "hades_konfrontation": {
+      "npc": "olligo",
+      "title": "Lagerhalle 9",
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "olligo",
+          "text": "Sehen Sie, Herr Baraka: Sie sind gekommen. Das war die eigentliche Frage, und sie ist jetzt beantwortet. Setzen Sie sich.",
+          "choices": [
+            { "text": "Stehen bleiben.", "tone": "ruhig", "effects": { "authenticity": 10, "crashout": 15 }, "next": "n_stehen" },
+            { "text": "Fragen, wer die Freigabe erteilt hat.", "tone": "nwo_kontaktieren", "effects": { "nwoInfluence": 8 }, "next": "n_freigabe" },
+            { "text": "Maximaler Crashout.", "tone": "eskalieren", "effects": { "crashout": 45, "mett": 500 }, "next": "n_monolog" }
+          ]
+        },
+        "n_stehen": {
+          "speaker": "olligo",
+          "text": "Auch gut. Es ändert an der Sache nichts, aber es sagt etwas über Sie. Ich schätze das.",
+          "effects": { "flags": ["hades_standhaft"] },
+          "next": "n_ende"
+        },
+        "n_freigabe": {
+          "speaker": "olligo",
+          "text": "Freigaben werden nicht erteilt, Herr Baraka. Sie entstehen. Irgendwann liegt ein Papier auf einem Tisch, und niemand erinnert sich, wer es hingelegt hat.",
+          "effects": { "nwoInfluence": 10, "lore": ["lore_operation_hades"] },
+          "next": "n_ende"
+        },
+        "n_monolog": { "speaker": "mimon", "monolog": { "topic": "nwo", "intensity": "maximum" }, "next": "n_nach_monolog" },
+        "n_nach_monolog": {
+          "speaker": "olligo",
+          "text": "Vierzehn Minuten. Ich habe mitgeschrieben. Sehen Sie, das ist der Unterschied zwischen uns: ich höre zu.",
+          "effects": { "crashout": 10, "nwoInfluence": 12 },
+          "next": "n_ende"
+        },
+        "n_ende": {
+          "speaker": "olligo",
+          "text": "Gehen Sie nach Hause. Die Halle wird morgen anders aussehen, und Sie werden sich fragen, ob Sie hier waren. Sie waren hier. Notieren Sie das.",
+          "effects": { "flags": ["hades_ueberstanden"], "crashout": 20 },
+          "next": "END"
+        }
+      }
+    },
+
+    "kelchninja_begegnung": {
+      "npc": "der_kelchninja",
+      "title": "Der nackte Kelchninja",
+      "layer": "MEME_LORE",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "der_kelchninja",
+          "text": "Und der Kelch?",
+          "choices": [
+            { "text": "\"Welcher Kelch?\"", "tone": "ruhig", "effects": { "authenticity": 3 }, "next": "n2" },
+            { "text": "Den Kelch zeigen.", "tone": "thema_wechseln", "requires": { "items": ["kelch"] }, "effects": { "items": ["schwert_des_kelchninjas"], "achievements": ["ach_kelchninja"] }, "next": "n_schwert" }
+          ]
+        },
+        "n2": { "speaker": "der_kelchninja", "text": "Eben.", "next": "END" },
+        "n_schwert": { "speaker": "der_kelchninja", "text": "Genau.", "effects": { "log": "An der Wand, an der nichts hing, hängt jetzt nichts mehr." }, "next": "END" }
+      }
+    }
+  }
+}

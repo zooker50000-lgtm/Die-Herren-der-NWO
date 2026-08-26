@@ -1,0 +1,59 @@
+{
+  "$comment": "Die Lore-Datenbank. Jeder Eintrag hat layer und unlock. Kein System enthält hartcodierte Lore — alles kommt von hier.",
+
+  "acts": [
+    { "n": 1, "id": "akt_1", "title": "Die ersten Heeter", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Jemand lädt Mimons Fideos verändert erneut hoch." },
+    { "n": 2, "id": "akt_2", "title": "Die NWO wird zum Feindbild", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Aus einzelnen Vorfällen wird ein Muster. Aus dem Muster wird ein Name." },
+    { "n": 3, "id": "akt_3", "title": "Mamer rückt in den Mittelpunkt", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Der Konflikt kommt in der Wohnung an." },
+    { "n": 4, "id": "akt_4", "title": "Verbindungen", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Jeder kennt jemanden, der jemanden kennt. Das ist entweder eine Stadt oder eine Organisation." },
+    { "n": 5, "id": "akt_5", "title": "NWO Productions", "layer": "SOURCE_BASED_LORE", "summary": "Der Medienarm der Organisation wird sichtbar." },
+    { "n": 6, "id": "akt_6", "title": "ALCHEMIMON beginnt", "layer": "SOURCE_BASED_LORE", "summary": "Alchemie hört auf, ein Hobby zu sein." },
+    { "n": 7, "id": "akt_7", "title": "Zusammenarbeit", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Mimon glaubt, mit der NWO zu arbeiten. Beide Seiten glauben das." },
+    { "n": 8, "id": "akt_8", "title": "Alchemie und das NWO-Labor", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Zwölf Meter unter der Stadt." },
+    { "n": 9, "id": "akt_9", "title": "Olligo / Operation Hades", "layer": "SOURCE_BASED_LORE", "summary": "Eine Freigabe ist erteilt worden. Rückfragen sind nicht vorgesehen." },
+    { "n": 10, "id": "akt_10", "title": "ISLAMIMON", "layer": "SOURCE_BASED_LORE", "summary": "Jemand hört zu Ende zu. Das ist die Falle." },
+    { "n": 11, "id": "akt_11", "title": "RECHTSEXTREMIMON", "layer": "SOURCE_BASED_LORE", "summary": "Derselbe Mechanismus, härtere Zutat, dieselbe Kamera." },
+    { "n": 12, "id": "akt_12", "title": "BAPHOMIMON", "layer": "SOURCE_BASED_LORE", "summary": "Drei Räume. Verhandlung, Angebot, Fenster." },
+    { "n": 13, "id": "akt_13", "title": "Pressesprecher", "layer": "SOURCE_BASED_LORE", "summary": "Ein Posten mit Visitenkarte." },
+    { "n": 14, "id": "akt_14", "title": "Fenster", "layer": "SOURCE_BASED_LORE", "summary": "Von hier aus hat alles angefangen." },
+    { "n": 15, "id": "akt_15", "title": "Der letzte Mimonolog", "layer": "FICTIONAL_GAME_CONTENT", "summary": "Einmal noch, ohne Unterbrechung, bis zum Ende." }
+  ],
+
+  "entries": [
+    {
+      "id": "nwo_die_nwo_sieht_alles",
+      "type": "catchphrase",
+      "category": "nwo",
+      "title": "DIE NWO SIEHT ALLES",
+      "layer": "SOURCE_BASED_LORE",
+      "unlock": "chapter_2",
+      "description": "Die zentrale NWO-Catchphrase. Die dokumentierte Chronik ordnet die Aussage Januar 2017 zu; später wurde sie als Intro-Element von NWO Productions verwendet.",
+      "tags": ["nwo", "catchphrase", "intro"]
+    },
+    { "id": "lore_hatebox_konflikt", "type": "event", "category": "heeter", "title": "Der Konflikt mit Hatebox", "layer": "SOURCE_BASED_LORE", "unlock": "akt_1", "description": "Der Konflikt mit Hatebox steht am Anfang: veränderte Fideos werden erneut hochgeladen, die Reaktion wird zum eigentlichen Inhalt.", "tags": ["hatebox", "akt_1", "heeter"] },
+    { "id": "lore_kelchninja_selbstbildnis", "type": "artefakt", "category": "meme", "title": "Der nackte Kelchninja", "layer": "MEME_LORE", "unlock": "akt_1", "description": "Ein Selbstbildnis aus der Frühphase, in der dokumentierten Chronik ausdrücklich als frühes Lore-Ereignis geführt. Im Spiel taucht es als Poster, Sammelkarte und Ladebildschirm auf — nie als historische Behauptung.", "tags": ["meme", "kunst", "easter_egg", "alchemie"] },
+    { "id": "lore_nwo_productions", "type": "organisation", "category": "nwo", "title": "NWO Productions", "layer": "SOURCE_BASED_LORE", "unlock": "akt_5", "description": "Medien- und Story-Fraktion der Organisation: Hörspiele, Aufnahmen, Fideos, Nachrichten. Vier dokumentierte Serien, aufgezeichnet und veröffentlicht zwischen 2018 und 2019.", "tags": ["nwo", "medien", "hoerspiel"] },
+    { "id": "lore_serien_uebersicht", "type": "medien", "category": "nwo", "title": "Die vier Serien", "layer": "SOURCE_BASED_LORE", "unlock": "akt_5", "description": "ALCHEMIMON (21 Episoden), ISLAMIMON (15), RECHTSEXTREMIMON (12), BAPHOMIMON (3).", "tags": ["nwo_productions", "serien"] },
+    { "id": "lore_ehdzhusten", "type": "meme", "category": "meme", "title": "Ehdzhusten", "layer": "MEME_LORE", "unlock": "start", "description": "Das charakteristische Husten. Im Spiel ein dynamisches Sound-Easter-Egg: es unterbricht Monologe, aber nicht jedes Mal.", "tags": ["meme", "sound", "easter_egg"] },
+    { "id": "lore_dromedar", "type": "meme", "category": "meme", "title": "Dromedar", "layer": "MEME_LORE", "unlock": "easter_egg_dromedar", "description": "Ein Höcker. Nicht zwei. Wer bis hierher gekommen ist, weiß jetzt zu viel.", "tags": ["meme", "easter_egg", "quiz"] },
+    { "id": "lore_mett", "type": "konzept", "category": "gameplay", "title": "Mett", "layer": "MEME_LORE", "unlock": "start", "description": "Aufmerksamkeit in materieller Form. Entsteht aus Reichweite und Eskalation, wird ausgegeben für Zutaten, Boosts und Informationen. Mehr Mett heißt: mehr gesehen werden.", "tags": ["gameplay", "ressource", "meme"] },
+    { "id": "lore_real_authentisch", "type": "konzept", "category": "gameplay", "title": "Real-authentisch", "layer": "SOURCE_BASED_LORE", "unlock": "start", "description": "Der wichtigste Maßstab. Nicht ob etwas stimmt, sondern ob es echt ist — und beides ist nicht dasselbe.", "tags": ["identitaet", "gameplay"] },
+    { "id": "lore_heet_mehl", "type": "konzept", "category": "heeter", "title": "Heet-Mehl", "layer": "SOURCE_BASED_LORE", "unlock": "start", "description": "Eine Hassnachricht. Jede einzelne wird aufgehoben, ausgedruckt und mit Datum abgelegt.", "tags": ["heeter", "post"] },
+    { "id": "lore_trittbrettfahrer", "type": "konzept", "category": "heeter", "title": "Trittbrettfahrer", "layer": "SOURCE_BASED_LORE", "unlock": "akt_2", "description": "Wer Mimons Material benutzt, um selbst gesehen zu werden. Schlimmer als ein Heeter, weil er so tut, als wäre er keiner.", "tags": ["heeter", "kopie", "identitaet"] },
+    { "id": "lore_subversive_elemente", "type": "konzept", "category": "nwo", "title": "Subversive Elemente", "layer": "SOURCE_BASED_LORE", "unlock": "akt_2", "description": "Der Sammelbegriff für alles, was von innen wirkt. Er ist absichtlich unscharf; das macht ihn brauchbar.", "tags": ["nwo", "verschwoerung"] },
+    { "id": "lore_alchemie_stufen", "type": "konzept", "category": "alchemie", "title": "Die vier Stufen", "layer": "FICTIONAL_GAME_CONTENT", "unlock": "akt_6", "description": "Schwarz, Weiß, Gelb, Rot. Keine Anleitung, eine Reihenfolge — und zwar die, in der man selbst hindurchgeht.", "tags": ["alchemie", "mystik"] },
+    { "id": "lore_magisches_tagebuch", "type": "artefakt", "category": "alchemie", "title": "Das magische Tagebuch", "layer": "SOURCE_BASED_LORE", "unlock": "akt_1", "description": "Erinnerungen, Notizen, Alchemie, Gedichte, Theorien, Namen, Hinweise. Zwölf Seiten sind bekannt, drei liegen vor.", "tags": ["alchemie", "sammeln", "archiv"] },
+    { "id": "lore_u7", "type": "ort", "category": "nwo", "title": "Standort U-7", "layer": "IN_UNIVERSE_AUDIO_LORE", "unlock": "akt_8", "description": "Zwölf Meter unter der Stadt. Tonstudio, Archiv, Alchemieabteilung, Serverraum — und ein Raum, der im Grundriss keine Bezeichnung hat.", "tags": ["labor", "nwo", "endgame"] },
+    { "id": "lore_operation_hades", "type": "operation", "category": "nwo", "title": "Operation Hades", "layer": "IN_UNIVERSE_AUDIO_LORE", "unlock": "akt_9", "description": "Freigabe erteilt, Durchführung extern, Beteiligung formal nicht gegeben. In-Universe-Hörspiel-Lore, kein Ereignis außerhalb der Spielwelt.", "tags": ["olligo", "nwo", "hades"] },
+    { "id": "lore_fenster", "type": "ort", "category": "atmosphaere", "title": "Das Fenster", "layer": "SOURCE_BASED_LORE", "unlock": "start", "description": "Der wichtigste Ort des Spiels. Von hier aus sieht man Fahrzeuge, Bewegungen und gelegentlich gar nichts, was schlimmer ist.", "tags": ["wohnung", "ueberwachung", "atmosphaere"] },
+    { "id": "lore_pressesprecher", "type": "posten", "category": "nwo", "title": "Der Posten des Pressesprechers", "layer": "SOURCE_BASED_LORE", "unlock": "akt_13", "description": "NWO Productions bietet eine Position an. Sie ist echt, sie ist bezahlt, und sie beendet einiges.", "tags": ["nwo_productions", "entscheidung"] },
+    { "id": "lore_familienfoto", "type": "artefakt", "category": "familie", "title": "Das alte Foto", "layer": "FICTIONAL_GAME_CONTENT", "unlock": "akt_3", "description": "Irene, jünger, vor einem Haus, das es nicht mehr gibt. Auf der Rückseite ein Datum in Mimons Handschrift.", "tags": ["mamer", "familie"] },
+    { "id": "lore_nano", "type": "meme", "category": "meme", "title": "NANO", "layer": "MEME_LORE", "unlock": "easter_egg_nano", "description": "Eine handbeschriftete Kassette. Ein Wort. Niemand hat sie je abgespielt, und alle haben eine Theorie dazu.", "tags": ["meme", "easter_egg", "archiv"] },
+    { "id": "lore_doenerteller", "type": "meme", "category": "meme", "title": "Der Dönerteller", "layer": "MEME_LORE", "unlock": "start", "description": "Der einzige dokumentierte Anlass für eine Pause.", "tags": ["meme", "alltag"] },
+    { "id": "lore_basketball", "type": "meme", "category": "meme", "title": "Der Basketball", "layer": "MEME_LORE", "unlock": "start", "description": "Steht im Flur. Wird selten benutzt. Steht aber da.", "tags": ["meme", "alltag", "wohnung"] },
+    { "id": "lore_lederjacke", "type": "artefakt", "category": "meme", "title": "Die Lederjacke", "layer": "MEME_LORE", "unlock": "start", "description": "Erkennungszeichen. Getragen, nicht gekauft.", "tags": ["meme", "kleidung", "identitaet"] },
+    { "id": "lore_mimonolog", "type": "konzept", "category": "gameplay", "title": "Der Mimonolog", "layer": "MEME_LORE", "unlock": "start", "description": "Keine Rede, sondern eine Struktur: Bestätigung, Bedeutungsebene, Gegenfrage, Theorie, Abschweifung, Selbstkorrektur, Rückkehr, Beleg, Schluss.", "tags": ["dialog", "gameplay", "meme"] },
+    { "id": "lore_nwo_watch_zweideutig", "type": "organisation", "category": "nwo", "title": "NWO Watch", "layer": "SOURCE_BASED_LORE", "unlock": "akt_2", "description": "Beobachtet die Organisation. Oder für sie. Jede Handlung von NWO Watch lässt sich in beide Richtungen lesen, und das ist kein Zufall.", "tags": ["nwo", "zweideutig"] },
+    { "id": "lore_reiter_80_20", "type": "person", "category": "nwo", "title": "Die 80-Prozent-Regel", "layer": "FICTIONAL_GAME_CONTENT", "unlock": "akt_4", "description": "Was Reiter Wixler sagt, stimmt zu vier Fünfteln. Das letzte Fünftel ist der Grund für den Anruf.", "derivedFrom": "reiter_wixler", "tags": ["reiter", "manipulation", "vertrauen"] }
+  ]
+}

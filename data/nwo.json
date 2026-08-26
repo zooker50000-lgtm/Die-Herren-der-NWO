@@ -1,0 +1,73 @@
+{
+  "$comment": "Fraktionen, NWO-Struktur, Influence-Stufen und die Akten des NWO-Terminals.",
+
+  "factions": [
+    { "id": "nwo", "name": "NWO", "layer": "SOURCE_BASED_LORE", "color": "#4f5f9f", "opposes": ["anti_nwo"], "description": "Keine Gang, keine Firma. Eine Struktur, die überall schon vorher da war." },
+    { "id": "nwo_productions", "name": "NWO Productions", "layer": "SOURCE_BASED_LORE", "color": "#5f7f9f", "parent": "nwo", "description": "Der Medienarm: Hörspiele, Aufnahmen, Fideos, Nachrichten." },
+    { "id": "nwo_elite", "name": "NWO Elite", "layer": "SOURCE_BASED_LORE", "color": "#8f7f3f", "parent": "nwo", "description": "Die Ebene, die Akten anlegt statt Kommentare schreibt." },
+    { "id": "nwo_watch", "name": "NWO Watch", "layer": "SOURCE_BASED_LORE", "color": "#7f7f7f", "parent": null, "description": "Beobachtet die Organisation. Oder für sie. Nie eindeutig." },
+    { "id": "heeter", "name": "Die Heeter", "layer": "SOURCE_BASED_LORE", "color": "#9d3b3b", "opposes": ["keine"], "description": "Lose verbundene Internetgegner. Keine Führung, aber ein gemeinsamer Rhythmus." },
+    { "id": "anti_nwo", "name": "Anti-NWO", "layer": "SOURCE_BASED_LORE", "color": "#9f8f2f", "opposes": ["nwo"], "description": "Sammelt Belege gegen die Organisation. Streitet ständig über Methoden." },
+    { "id": "polizei", "name": "Polizei", "layer": "FICTIONAL_GAME_CONTENT", "color": "#6f8fbf", "description": "Nimmt Anzeigen auf. Ob das hilft, ist eine andere Frage." },
+    { "id": "unabhängig", "name": "Unabhängige", "layer": "FICTIONAL_GAME_CONTENT", "color": "#5f9f7f", "description": "Händler, Nachbarn, Zeugen. Gehören zu niemandem und wissen deshalb am meisten." },
+    { "id": "keine", "name": "Keine Fraktion", "layer": "FICTIONAL_GAME_CONTENT", "color": "#8f8f8f", "description": "Familie und Freunde." }
+  ],
+
+  "structure": {
+    "id": "nwo",
+    "children": [
+      { "id": "nwo_productions", "children": [{ "id": "nwo_kai" }, { "id": "henry_heaven" }] },
+      { "id": "nwo_elite", "children": [{ "id": "johann_von_grafenfried" }, { "id": "martin_goldnatz" }] },
+      { "id": "nwo_watch", "children": [] },
+      { "id": "nwo_feldebene", "name": "Feldebene", "children": [{ "id": "nwo_flunder" }, { "id": "judas_timme" }] },
+      { "id": "nwo_kontakte", "name": "Kontaktpersonen", "children": [{ "id": "reiter_wixler" }] },
+      { "id": "nwo_unbekannt", "name": "Unbekannte Unterorganisationen", "hidden": true, "children": [{ "id": "olligo" }] }
+    ]
+  },
+
+  "influenceTiers": [
+    { "id": "geruecht", "label": "GERÜCHT", "min": 0, "max": 19, "agents": 0, "eventBoost": 0.0, "description": "Nichts Belegbares. Nur ein Gefühl." },
+    { "id": "praesenz", "label": "PRÄSENZ", "min": 20, "max": 39, "agents": 1, "eventBoost": 0.15, "description": "Fahrzeuge stehen länger als nötig." },
+    { "id": "struktur", "label": "STRUKTUR", "min": 40, "max": 59, "agents": 2, "eventBoost": 0.3, "unlocks": ["nwo_terminal"], "description": "Es gibt Zuständigkeiten. Man merkt es an den Antworten." },
+    { "id": "zugriff", "label": "ZUGRIFF", "min": 60, "max": 79, "agents": 4, "eventBoost": 0.5, "unlocks": ["nwo_versteck", "nwo_mail_prioritaet"], "description": "Die Organisation greift zu, bevor du fragst." },
+    { "id": "durchdringung", "label": "DURCHDRINGUNG", "min": 80, "max": 99, "agents": 6, "eventBoost": 0.75, "unlocks": ["nwo_labor"], "description": "Es gibt keinen Ort mehr, an dem niemand zuhört." },
+    { "id": "sieht_alles", "label": "DIE NWO SIEHT ALLES", "min": 100, "max": 100, "agents": 8, "eventBoost": 1.0, "milestone": true, "unlocks": ["nwo_terminal_root", "ending_b_path"], "description": "Der Meilenstein. Kein Game Over — ein Zustand." }
+  ],
+
+  "surveillance": {
+    "$comment": "Überwachungsdruck ergibt sich aus Influence + Mett + Abonnenten und steuert Ereignisdichte und Fensterszenen.",
+    "formula": "influence * 0.6 + mettPressure * 0.25 + subscriberPressure * 0.15",
+    "levels": [
+      { "id": "keine", "min": 0, "label": "unauffällig" },
+      { "id": "leicht", "min": 25, "label": "beobachtet" },
+      { "id": "deutlich", "min": 50, "label": "erfasst" },
+      { "id": "total", "min": 80, "label": "durchleuchtet" }
+    ]
+  },
+
+  "terminal": {
+    "$comment": "Das geheime NWO-Menü. Beim Öffnen erscheint immer: DIE NWO SIEHT ALLES.",
+    "greeting": "DIE NWO SIEHT ALLES.",
+    "sections": [
+      { "id": "akten", "label": "AKTEN", "requiresInfluence": 40 },
+      { "id": "personen", "label": "PERSONEN", "requiresInfluence": 40 },
+      { "id": "missionen", "label": "MISSIONEN", "requiresInfluence": 55 },
+      { "id": "ueberwachung", "label": "ÜBERWACHUNG", "requiresInfluence": 60 },
+      { "id": "kommunikation", "label": "KOMMUNIKATION", "requiresInfluence": 55 },
+      { "id": "archive", "label": "ARCHIVE", "requiresInfluence": 70 },
+      { "id": "level", "label": "NWO-LEVEL", "requiresInfluence": 40 },
+      { "id": "geheim", "label": "GESPERRTE DATEIEN", "requiresInfluence": 100 }
+    ],
+    "files": [
+      { "id": "akte_baraka", "section": "akten", "title": "VORGANG BARAKA, M.", "requiresInfluence": 40, "layer": "FICTIONAL_GAME_CONTENT", "body": "Beobachtungsobjekt seit Erstkontakt. Bewertung: dokumentiert alles selbst. Empfehlung: nicht eingreifen, archivieren. Der Vorgang pflegt sich fort." },
+      { "id": "akte_hatebox", "section": "personen", "title": "HATEBOX — EXTERNE RESSOURCE", "requiresInfluence": 45, "layer": "FICTIONAL_GAME_CONTENT", "body": "Nicht angeworben. Nicht bezahlt. Erzeugt trotzdem zuverlässig das gewünschte Ergebnis. Kategorie: kostenlos." },
+      { "id": "akte_reiter", "section": "personen", "title": "KONTAKT R. W.", "requiresInfluence": 60, "layer": "FICTIONAL_GAME_CONTENT", "body": "Weitergabequote 80 Prozent korrekt. Die verbleibenden 20 Prozent sind der Zweck der Verbindung. Vertrauenswert des Objekts steigt trotzdem." },
+      { "id": "akte_mamer", "section": "personen", "title": "I. B. — KEIN VORGANG", "requiresInfluence": 70, "layer": "FICTIONAL_GAME_CONTENT", "body": "Antrag auf Anlage eines Vorgangs zweimal abgelehnt. Begründung beide Male identisch: sie stellt Fragen, die in Akten schlecht aussehen." },
+      { "id": "akte_labor", "section": "archive", "title": "STANDORT U-7", "requiresInfluence": 75, "layer": "FICTIONAL_GAME_CONTENT", "body": "Bestandsliste unvollständig. Tonstudio, Archiv, Alchemieabteilung, Serverraum. Ein Raum ohne Bezeichnung. Zugang über zwei getrennte Freigaben." },
+      { "id": "akte_hades", "section": "missionen", "title": "OPERATION HADES", "requiresInfluence": 80, "layer": "IN_UNIVERSE_AUDIO_LORE", "body": "Freigabe erteilt. Durchführung extern. Beteiligung der Organisation formal nicht gegeben. Rückfragen sind nicht vorgesehen." },
+      { "id": "akte_kelchninja", "section": "archive", "title": "BILDNIS, UNKATALOGISIERT", "requiresInfluence": 70, "layer": "MEME_LORE", "body": "Ein Selbstbildnis, Frühphase. Titel laut Beschriftung: nackter Kelchninja. Es hängt in Räumen, in denen es nicht aufgehängt wurde. Bewertung offen." },
+      { "id": "akte_dromedar", "section": "geheim", "title": "DROMEDAR", "requiresInfluence": 100, "layer": "MEME_LORE", "body": "Ein Höcker. Nicht zwei. Wer das bis hierher gelesen hat, weiß jetzt zu viel." },
+      { "id": "akte_null", "section": "geheim", "title": "VORGANG 000 — DIE NWO SIEHT ALLES", "requiresInfluence": 100, "layer": "FICTIONAL_GAME_CONTENT", "body": "Ursprung des Satzes nicht rekonstruierbar. Er stand am Anfang und er steht am Ende. Alles dazwischen ist Verwaltung." }
+    ]
+  }
+}

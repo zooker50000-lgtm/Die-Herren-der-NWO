@@ -1,0 +1,686 @@
+{
+  "$comment": "Quest-Datenbank. Objectives werden vom Quest-Engine gegen den Event-Bus geprüft: {event, where, count} oder {flag}. types: main | nwo | heeter | mamer | alchemie | mett | crashout | easter_egg",
+
+  "quests": [
+    {
+      "id": "der_erste_heeter",
+      "title": "DER ERSTE HEETER",
+      "type": "main",
+      "act": 1,
+      "faction": "heeter",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "summary": "Jemand lädt Mimons Fideos verändert erneut hoch. Herausfinden, wer.",
+      "requires": {},
+      "onStart": { "log": "Ein Fideo ist online, das Mimon so nie hochgeladen hat.", "lore": ["lore_hatebox_konflikt"] },
+      "objectives": [
+        { "id": "o1", "text": "Das veränderte Fideo auf Juhtub ansehen", "event": "fideo.watched", "where": { "id": "fideo_veraendert" }, "count": 1 },
+        { "id": "o2", "text": "Das erste Heet-Mehl lesen", "event": "email.read", "count": 1 },
+        { "id": "o3", "text": "Kommentare durchgehen und den Absender zuordnen", "event": "comments.analyzed", "count": 1 },
+        { "id": "o4", "text": "Hatebox zur Rede stellen", "event": "dialogue.closed", "where": { "dialogue": "hatebox_konfrontation" }, "count": 1 }
+      ],
+      "rewards": { "mett": 120, "authenticity": 5, "nwoInfluence": 4, "flags": ["kennt_hatebox"], "lore": ["lore_trittbrettfahrer"], "quests": { "start": ["die_nwo_sieht_alles"] } }
+    },
+    {
+      "id": "die_nwo_sieht_alles",
+      "title": "DIE NWO SIEHT ALLES",
+      "type": "main",
+      "act": 2,
+      "faction": "nwo",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "summary": "Aus einzelnen Vorfällen wird ein Muster. Das Muster bekommt einen Namen.",
+      "requires": { "quests": { "completed": ["der_erste_heeter"] } },
+      "objectives": [
+        { "id": "o1", "text": "Dreimal etwas am Fenster beobachten", "event": "window.observed", "count": 3 },
+        { "id": "o2", "text": "Ein Fideo über die Organisation veröffentlichen", "event": "fideo.published", "where": { "topic": "nwo" }, "count": 1 },
+        { "id": "o3", "text": "NWO INFLUENCE auf mindestens 25 bringen", "stat": "nwoInfluence", "min": 25 }
+      ],
+      "rewards": { "nwoInfluence": 8, "mett": 90, "lore": ["nwo_die_nwo_sieht_alles", "lore_subversive_elemente"], "quests": { "start": ["heet_mehl_quest", "real_authentisch_werden"] } }
+    },
+    {
+      "id": "heet_mehl_quest",
+      "title": "HEET-MEHL",
+      "type": "heeter",
+      "act": 2,
+      "faction": "heeter",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "summary": "Die Nachrichten häufen sich. Jede einzelne will beantwortet werden — oder eben nicht.",
+      "requires": { "quests": { "completed": ["der_erste_heeter"] } },
+      "objectives": [
+        { "id": "o1", "text": "Fünf Heet-Mehls bearbeiten", "event": "email.handled", "count": 5 },
+        { "id": "o2", "text": "Mindestens ein Heet-Mehl öffentlich vorlesen", "event": "email.handled", "where": { "action": "vorlesen" }, "count": 1 },
+        { "id": "o3", "text": "Mindestens ein Heet-Mehl zur Polizei bringen", "event": "email.handled", "where": { "action": "polizei" }, "count": 1 }
+      ],
+      "rewards": { "mett": 150, "trust": { "kommissarin_devrim": 8 }, "items": ["heet_mehl_ausdruck"], "flags": ["archiv_angelegt"] }
+    },
+    {
+      "id": "real_authentisch_werden",
+      "title": "REAL-AUTHENTISCH WERDEN",
+      "type": "main",
+      "act": 2,
+      "faction": "keine",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "summary": "Nicht recht haben. Echt sein. Das ist schwerer und lohnt sich langsamer.",
+      "requires": { "quests": { "completed": ["der_erste_heeter"] } },
+      "objectives": [
+        { "id": "o1", "text": "REAL-AUTHENTISCH auf mindestens 60 bringen", "stat": "authenticity", "min": 60 },
+        { "id": "o2", "text": "Ein Fideo mit Belegen statt Wut veröffentlichen", "event": "fideo.published", "where": { "evidence": true, "angerMax": 40 }, "count": 1 },
+        { "id": "o3", "text": "Einen Mimonolog vollständig ruhig zu Ende bringen", "event": "monolog.finished", "where": { "tier": "calm" }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 10, "trust": { "mamer": 10, "toni": 5 }, "lore": ["lore_real_authentisch"] }
+    },
+    {
+      "id": "das_magische_tagebuch",
+      "title": "DAS MAGISCHE TAGEBUCH",
+      "type": "alchemie",
+      "act": 3,
+      "faction": "keine",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "mamer",
+      "summary": "Es fehlen Seiten. Mamer weiß, wo mindestens eine davon war.",
+      "requires": { "act": { "min": 3 } },
+      "objectives": [
+        { "id": "o1", "text": "Mit Mamer über das Tagebuch reden", "event": "dialogue.closed", "where": { "dialogue": "mamer_tagebuch" }, "count": 1 },
+        { "id": "o2", "text": "Sechs Seiten finden", "event": "tagebuch.page", "count": 6 },
+        { "id": "o3", "text": "Das Tagebuch im Archiv ablegen", "event": "world.interact", "where": { "interactable": "archiv" }, "count": 1 }
+      ],
+      "rewards": { "alchemyXp": 200, "authenticity": 6, "trust": { "mamer": 12 }, "lore": ["lore_magisches_tagebuch"], "quests": { "start": ["alchemie_quest"] } }
+    },
+    {
+      "id": "alchemie_quest",
+      "title": "ALCHEMIE",
+      "type": "alchemie",
+      "act": 6,
+      "faction": "unabhängig",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "myrrmoasta",
+      "summary": "Aus Interesse wird Praxis. Vier Stufen, symbolisch, ohne realen Bezug.",
+      "requires": { "act": { "min": 6 } },
+      "objectives": [
+        { "id": "o1", "text": "Alchemie-Level 25 erreichen", "stat": "alchemy", "min": 25 },
+        { "id": "o2", "text": "Drei Rezepte brauen", "event": "alchemy.brewed", "count": 3 },
+        { "id": "o3", "text": "Alchemiebuch II erwerben", "event": "item.gained", "where": { "item": "alchemiebuch_ii" }, "count": 1 }
+      ],
+      "rewards": { "alchemyXp": 300, "mett": -100, "trust": { "myrrmoasta": 15 }, "lore": ["lore_alchemie_stufen"], "quests": { "start": ["das_nwo_labor"] } }
+    },
+    {
+      "id": "das_nwo_labor",
+      "title": "DAS NWO-LABOR",
+      "type": "nwo",
+      "act": 8,
+      "faction": "nwo",
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "giver": "reiter_wixler",
+      "summary": "Zwölf Meter unter der Stadt liegt ein Standort, der offiziell Lagerfläche ist.",
+      "requires": { "act": { "min": 8 }, "stats": { "nwoInfluence": { "min": 55 } } },
+      "objectives": [
+        { "id": "o1", "text": "Einen NWO-Ausweis beschaffen", "event": "item.gained", "where": { "item": "nwo_ausweis" }, "count": 1 },
+        { "id": "o2", "text": "Vier Bereiche von U-7 betreten", "event": "labor.area", "count": 4 },
+        { "id": "o3", "text": "Das versteckte Mimon-Archiv finden", "event": "labor.area", "where": { "area": "mimon_archiv" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 15, "items": ["nwo_usb_stick"], "lore": ["lore_u7"], "flags": ["u7_betreten"], "quests": { "start": ["operation_hades"] } }
+    },
+    {
+      "id": "reiter_wixler_quest",
+      "title": "REITER WIXLER",
+      "type": "nwo",
+      "act": 4,
+      "faction": "nwo",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "reiter_wixler",
+      "summary": "Er hilft. Er hilft sehr. Die Frage ist, wobei genau.",
+      "requires": { "act": { "min": 4 } },
+      "objectives": [
+        { "id": "o1", "text": "Reiter dreimal treffen", "event": "dialogue.closed", "where": { "npc": "reiter_wixler" }, "count": 3 },
+        { "id": "o2", "text": "Eine seiner Informationen unabhängig überprüfen", "event": "world.interact", "where": { "interactable": "fremder_rechner" }, "count": 1 },
+        { "id": "o3", "text": "Entscheiden, ob Reiter vertraut wird", "flag": "reiter_entschieden" }
+      ],
+      "rewards": { "nwoInfluence": 10, "lore": ["lore_reiter_80_20"], "mett": 60 }
+    },
+    {
+      "id": "operation_hades",
+      "title": "OPERATION HADES",
+      "type": "main",
+      "act": 9,
+      "faction": "nwo",
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "giver": "reiter_wixler",
+      "summary": "Eine Freigabe ist erteilt worden. Durchführung extern. Der Name dazu ist Olligo.",
+      "requires": { "quests": { "completed": ["das_nwo_labor"] } },
+      "objectives": [
+        { "id": "o1", "text": "Die Akte HADES im NWO-Terminal öffnen", "event": "nwo.terminal", "where": { "file": "akte_hades" }, "count": 1 },
+        { "id": "o2", "text": "Nach Hamburg fahren", "event": "world.travel", "where": { "to": "hamburg_hafen" }, "count": 1 },
+        { "id": "o3", "text": "Lagerhalle 9 betreten", "event": "world.travel", "where": { "to": "hamburg_lagerhalle" }, "count": 1 },
+        { "id": "o4", "text": "Die Konfrontation überstehen", "event": "dialogue.closed", "where": { "dialogue": "hades_konfrontation" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 20, "crashout": 25, "mett": 400, "lore": ["lore_operation_hades"], "flags": ["hades_ueberstanden"] }
+    },
+    {
+      "id": "der_kelchninja",
+      "title": "DER KELCHNINJA",
+      "type": "easter_egg",
+      "act": 1,
+      "faction": "keine",
+      "layer": "MEME_LORE",
+      "giver": "self",
+      "summary": "Ein Selbstbildnis aus der Frühzeit taucht an Orten auf, an denen es nicht hängt.",
+      "requires": {},
+      "hidden": true,
+      "objectives": [
+        { "id": "o1", "text": "Das Bildnis an vier Orten entdecken", "event": "easteregg.kelchninja", "count": 4 },
+        { "id": "o2", "text": "Das Schwert finden", "event": "item.gained", "where": { "item": "schwert_des_kelchninjas" }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 8, "lore": ["lore_kelchninja_selbstbildnis"], "achievements": ["ach_kelchninja"], "flags": ["easter_egg_kelchninja"] }
+    },
+    {
+      "id": "pressesprecher",
+      "title": "WERDE PRESSESPRECHER",
+      "type": "main",
+      "act": 13,
+      "faction": "nwo_productions",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "henry_heaven",
+      "summary": "NWO Productions bietet eine Position an. Bezahlt, echt, mit Visitenkarte.",
+      "requires": { "act": { "min": 13 } },
+      "objectives": [
+        { "id": "o1", "text": "Das Angebot anhören", "event": "dialogue.closed", "where": { "dialogue": "pressesprecher_angebot" }, "count": 1 },
+        { "id": "o2", "text": "Eine Entscheidung treffen", "flag": "pressesprecher_entschieden" }
+      ],
+      "rewards": { "lore": ["lore_pressesprecher"], "nwoInfluence": 12 }
+    },
+    {
+      "id": "fenster_quest",
+      "title": "FENSTER",
+      "type": "main",
+      "act": 14,
+      "faction": "keine",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "summary": "Zurück an den Anfang. Von hier aus sieht man, wie weit es gekommen ist.",
+      "requires": { "act": { "min": 14 } },
+      "objectives": [
+        { "id": "o1", "text": "Zehnmal aus dem Fenster sehen", "event": "window.observed", "count": 10 },
+        { "id": "o2", "text": "Die Szene sehen, die nur nachts erscheint", "event": "window.observed", "where": { "scene": "fenster_finale" }, "count": 1 }
+      ],
+      "rewards": { "lore": ["lore_fenster"], "authenticity": 5, "quests": { "start": ["der_letzte_mimonolog"] } }
+    },
+    {
+      "id": "baphomimon_arc",
+      "title": "BAPHOMIMON",
+      "type": "main",
+      "act": 12,
+      "faction": "nwo",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "summary": "Drei Räume: Verhandlung, Angebot, Fenster.",
+      "requires": { "act": { "min": 12 } },
+      "objectives": [
+        { "id": "o1", "text": "FRIEDENSVERHANDLUNG abschließen", "event": "quest.completed", "where": { "quest": "baphomimon_friedensverhandlung" }, "count": 1 },
+        { "id": "o2", "text": "PRESSESPRECHER abschließen", "event": "quest.completed", "where": { "quest": "baphomimon_pressesprecher" }, "count": 1 },
+        { "id": "o3", "text": "FENSTER abschließen", "event": "quest.completed", "where": { "quest": "baphomimon_fenster" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 15, "crashout": 10, "lore": ["lore_serien_uebersicht"] }
+    },
+    {
+      "id": "der_letzte_mimonolog",
+      "title": "DER LETZTE MIMONOLOG",
+      "type": "main",
+      "act": 15,
+      "faction": "keine",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "self",
+      "summary": "Einmal noch. Ohne Unterbrechung, bis zum Ende.",
+      "requires": { "act": { "min": 15 } },
+      "final": true,
+      "objectives": [
+        { "id": "o1", "text": "Die Kamera einschalten", "event": "world.interact", "where": { "interactable": "computer" }, "count": 1 },
+        { "id": "o2", "text": "Den Mimonolog halten", "event": "monolog.finished", "where": { "final": true }, "count": 1 }
+      ],
+      "rewards": { "flags": ["finale_gehalten"] }
+    },
+
+    {
+      "id": "baphomimon_friedensverhandlung",
+      "title": "FRIEDENSVERHANDLUNG",
+      "type": "nwo",
+      "act": 12,
+      "faction": "nwo",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "series": "baphomimon",
+      "episode": 1,
+      "summary": "Alle sagen zu. Keiner sagt etwas.",
+      "requires": { "act": { "min": 12 } },
+      "objectives": [
+        { "id": "o1", "text": "Mit drei NWO-Akteuren verhandeln", "event": "dialogue.closed", "where": { "faction": "nwo" }, "count": 3 },
+        { "id": "o2", "text": "NWO-Reputation halten oder verbessern", "stat": "nwoReputation", "min": 45 }
+      ],
+      "rewards": { "nwoInfluence": 6, "mett": 80 }
+    },
+    {
+      "id": "baphomimon_pressesprecher",
+      "title": "PRESSESPRECHER (Episode)",
+      "type": "nwo",
+      "act": 12,
+      "faction": "nwo_productions",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "henry_heaven",
+      "series": "baphomimon",
+      "episode": 2,
+      "summary": "Der Posten wird zum zweiten Mal angeboten, diesmal schriftlich.",
+      "requires": { "quests": { "completed": ["baphomimon_friedensverhandlung"] } },
+      "objectives": [
+        { "id": "o1", "text": "Den Vertrag lesen", "event": "world.interact", "where": { "interactable": "pressestelle" }, "count": 1 },
+        { "id": "o2", "text": "Mit Mamer darüber sprechen", "event": "dialogue.closed", "where": { "npc": "mamer" }, "count": 1 }
+      ],
+      "rewards": { "trust": { "mamer": 8 }, "flags": ["vertrag_gelesen"] }
+    },
+    {
+      "id": "baphomimon_fenster",
+      "title": "FENSTER (Episode)",
+      "type": "nwo",
+      "act": 12,
+      "faction": "keine",
+      "layer": "SOURCE_BASED_LORE",
+      "giver": "self",
+      "series": "baphomimon",
+      "episode": 3,
+      "summary": "Nachts, dieselbe Stelle, dieselbe Uhrzeit.",
+      "requires": { "quests": { "completed": ["baphomimon_pressesprecher"] } },
+      "objectives": [
+        { "id": "o1", "text": "Nachts fünfmal aus dem Fenster sehen", "event": "window.observed", "where": { "phase": "nacht" }, "count": 5 }
+      ],
+      "rewards": { "crashout": 12, "nwoInfluence": 8, "lore": ["lore_fenster"] }
+    },
+
+    {
+      "id": "alchemimon_01",
+      "title": "ALCHEMIMON 1: Der Anruf",
+      "type": "main", "act": 6, "faction": "nwo", "series": "alchemimon", "episode": 1,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "reiter_wixler",
+      "summary": "Eine Nummer ohne Vorwahl. Die Stimme kennt Mimons Fideos besser als Mimon selbst.",
+      "requires": { "act": { "min": 6 } },
+      "objectives": [
+        { "id": "o1", "text": "Den Anruf annehmen", "event": "phone.answered", "where": { "caller": "reiter_wixler" }, "count": 1 },
+        { "id": "o2", "text": "Einen Mimonolog über die Organisation halten", "event": "monolog.finished", "where": { "topic": "nwo" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 6, "mett": 70, "quests": { "start": ["alchemimon_02"] } }
+    },
+    {
+      "id": "alchemimon_02",
+      "title": "ALCHEMIMON 2: Erste Essenz",
+      "type": "alchemie", "act": 6, "faction": "unabhängig", "series": "alchemimon", "episode": 2,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "myrrmoasta",
+      "summary": "Ein Rezept aus dem Tagebuch funktioniert. Zum ersten Mal seit Jahren.",
+      "requires": { "quests": { "completed": ["alchemimon_01"] } },
+      "objectives": [
+        { "id": "o1", "text": "Zutaten für die Essenz der Stille beschaffen", "event": "item.gained", "where": { "item": "harz_der_stille" }, "count": 1 },
+        { "id": "o2", "text": "Die erste Essenz brauen", "event": "alchemy.brewed", "count": 1 }
+      ],
+      "rewards": { "alchemyXp": 120, "quests": { "start": ["alchemimon_03"] } }
+    },
+    {
+      "id": "alchemimon_03",
+      "title": "ALCHEMIMON 3: Die Liste der sieben Namen",
+      "type": "main", "act": 6, "faction": "nwo", "series": "alchemimon", "episode": 3,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "self",
+      "summary": "Sieben Namen, drei Fragezeichen, ein Hinweis auf nächtliche Anrufe.",
+      "requires": { "quests": { "completed": ["alchemimon_02"] } },
+      "objectives": [
+        { "id": "o1", "text": "Tagebuchseite 7 finden", "event": "tagebuch.page", "where": { "page": "seite_07" }, "count": 1 },
+        { "id": "o2", "text": "Zwei Namen im NWO-Terminal nachschlagen", "event": "nwo.terminal", "where": { "section": "personen" }, "count": 2 }
+      ],
+      "rewards": { "nwoInfluence": 8, "quests": { "start": ["alchemimon_04"] } }
+    },
+    {
+      "id": "alchemimon_04",
+      "title": "ALCHEMIMON 4: Reiter erklärt die Struktur",
+      "type": "nwo", "act": 7, "faction": "nwo", "series": "alchemimon", "episode": 4,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "reiter_wixler",
+      "summary": "Er erklärt sie so genau, dass danach weniger klar ist als vorher.",
+      "requires": { "quests": { "completed": ["alchemimon_03"] } },
+      "objectives": [
+        { "id": "o1", "text": "Reiters Erklärung anhören", "event": "dialogue.closed", "where": { "dialogue": "reiter_struktur" }, "count": 1 },
+        { "id": "o2", "text": "Die Struktur im Terminal gegenprüfen", "event": "nwo.terminal", "where": { "section": "akten" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 10, "trust": { "reiter_wixler": 6 }, "quests": { "start": ["alchemimon_05"] } }
+    },
+    {
+      "id": "alchemimon_05",
+      "title": "ALCHEMIMON 5: Mamer stellt eine Frage",
+      "type": "mamer", "act": 7, "faction": "keine", "series": "alchemimon", "episode": 5,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "mamer",
+      "summary": "Eine einzige Frage. Sie bleibt lange unbeantwortet.",
+      "requires": { "quests": { "completed": ["alchemimon_04"] } },
+      "objectives": [
+        { "id": "o1", "text": "Mamers Frage anhören", "event": "dialogue.closed", "where": { "dialogue": "mamer_die_frage" }, "count": 1 },
+        { "id": "o2", "text": "Eine Antwort finden (oder zugeben, dass es keine gibt)", "flag": "mamer_frage_beantwortet" }
+      ],
+      "rewards": { "trust": { "mamer": 14 }, "authenticity": 8, "quests": { "start": ["alchemimon_06"] } }
+    },
+    {
+      "id": "alchemimon_06",
+      "title": "ALCHEMIMON 6: Schwarz",
+      "type": "alchemie", "act": 7, "faction": "unabhängig", "series": "alchemimon", "episode": 6,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "myrrmoasta",
+      "summary": "Die erste Stufe. Alles zerfällt, bevor irgendetwas entsteht.",
+      "requires": { "quests": { "completed": ["alchemimon_05"] } },
+      "objectives": [
+        { "id": "o1", "text": "Die Stufe Schwarz abschließen", "event": "alchemy.stage", "where": { "stage": "schwarz" }, "count": 1 }
+      ],
+      "rewards": { "alchemyXp": 180, "lore": ["lore_alchemie_stufen"], "quests": { "start": ["alchemimon_09"] } }
+    },
+    {
+      "id": "alchemimon_09",
+      "title": "ALCHEMIMON 9: Der Kelch, zum ersten Mal",
+      "type": "alchemie", "act": 7, "faction": "unabhängig", "series": "alchemimon", "episode": 9,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "myrrmoasta",
+      "summary": "Er ist schwerer als er aussieht. Mimon sagt das viermal.",
+      "requires": { "quests": { "completed": ["alchemimon_06"] } },
+      "objectives": [
+        { "id": "o1", "text": "Den Kelch erhalten", "event": "item.gained", "where": { "item": "kelch" }, "count": 1 },
+        { "id": "o2", "text": "Die Gravur bei Licht von unten lesen", "event": "world.interact", "where": { "interactable": "buecher_studieren" }, "count": 1 }
+      ],
+      "rewards": { "alchemyXp": 200, "quests": { "start": ["alchemimon_10"] } }
+    },
+    {
+      "id": "alchemimon_10",
+      "title": "ALCHEMIMON 10: Die Einladung",
+      "type": "nwo", "act": 8, "faction": "nwo", "series": "alchemimon", "episode": 10,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "reiter_wixler",
+      "summary": "Kein Ort, keine Uhrzeit, nur eine Zusage, die schon abgegeben wurde.",
+      "requires": { "quests": { "completed": ["alchemimon_09"] } },
+      "objectives": [
+        { "id": "o1", "text": "Die NWO-Mail mit der Einladung lesen", "event": "email.read", "where": { "channel": "nwo" }, "count": 1 },
+        { "id": "o2", "text": "Zum geheimen Treffpunkt gehen", "event": "world.travel", "where": { "to": "geheimer_treffpunkt" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 12, "flags": ["eingeladen_u7"], "quests": { "start": ["alchemimon_11"] } }
+    },
+    {
+      "id": "alchemimon_11",
+      "title": "ALCHEMIMON 11: Zwölf Meter",
+      "type": "nwo", "act": 8, "faction": "nwo", "series": "alchemimon", "episode": 11,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "reiter_wixler",
+      "summary": "Der erste Abstieg. Die Lüftung ist älter als die Server.",
+      "requires": { "quests": { "completed": ["alchemimon_10"] } },
+      "objectives": [
+        { "id": "o1", "text": "U-7 betreten", "event": "world.travel", "where": { "to": "nwo_labor" }, "count": 1 },
+        { "id": "o2", "text": "Die Sicherheitskontrolle passieren", "event": "labor.area", "where": { "area": "sicherheitskontrolle" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 10, "lore": ["lore_u7"], "quests": { "start": ["alchemimon_15"] } }
+    },
+    {
+      "id": "alchemimon_15",
+      "title": "ALCHEMIMON 15: Zwei Freigaben",
+      "type": "nwo", "act": 8, "faction": "nwo", "series": "alchemimon", "episode": 15,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "self",
+      "summary": "Eine hat er. Die zweite gehört jemandem, den er kennt.",
+      "requires": { "quests": { "completed": ["alchemimon_11"] } },
+      "objectives": [
+        { "id": "o1", "text": "Herausfinden, wem die zweite Freigabe gehört", "event": "nwo.terminal", "where": { "file": "akte_reiter" }, "count": 1 },
+        { "id": "o2", "text": "Reiter damit konfrontieren", "event": "dialogue.closed", "where": { "dialogue": "reiter_konfrontation" }, "count": 1 }
+      ],
+      "rewards": { "nwoInfluence": 8, "crashout": 15, "quests": { "start": ["alchemimon_17"] } }
+    },
+    {
+      "id": "alchemimon_17",
+      "title": "ALCHEMIMON 17: Mamer ruft an",
+      "type": "mamer", "act": 8, "faction": "keine", "series": "alchemimon", "episode": 17,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "mamer",
+      "summary": "Elf Anrufe. Beim zwölften geht er ran.",
+      "requires": { "quests": { "completed": ["alchemimon_15"] } },
+      "objectives": [
+        { "id": "o1", "text": "Ans Telefon gehen", "event": "phone.answered", "where": { "caller": "mamer" }, "count": 1 }
+      ],
+      "rewards": { "trust": { "mamer": 15 }, "crashout": -20, "authenticity": 6, "quests": { "start": ["alchemimon_19"] } }
+    },
+    {
+      "id": "alchemimon_19",
+      "title": "ALCHEMIMON 19: Der Raum ohne Schild",
+      "type": "nwo", "act": 8, "faction": "nwo", "series": "alchemimon", "episode": 19,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "self",
+      "summary": "Kein Schild, kein Eintrag im Grundriss, aber eine Klimaanlage, die läuft.",
+      "requires": { "quests": { "completed": ["alchemimon_17"] } },
+      "objectives": [
+        { "id": "o1", "text": "Den Hinweis auf den unbezeichneten Raum finden", "flag": "u7_hinweis_gefunden" },
+        { "id": "o2", "text": "Die geheime Bibliothek betreten", "event": "labor.area", "where": { "area": "geheime_bibliothek" }, "count": 1 }
+      ],
+      "rewards": { "items": ["nwo_pergament"], "nwoInfluence": 10, "quests": { "start": ["alchemimon_21"] } }
+    },
+    {
+      "id": "alchemimon_21",
+      "title": "ALCHEMIMON 21: Das eigene Archiv",
+      "type": "main", "act": 8, "faction": "nwo", "series": "alchemimon", "episode": 21,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "alchemimon", "giver": "self",
+      "summary": "Hinter der letzten Tür liegen Mimons eigene Aufnahmen — vollständiger als seine eigenen.",
+      "requires": { "quests": { "completed": ["alchemimon_19"] } },
+      "objectives": [
+        { "id": "o1", "text": "Das versteckte Mimon-Archiv betreten", "event": "labor.area", "where": { "area": "mimon_archiv" }, "count": 1 },
+        { "id": "o2", "text": "Einen Mimonolog darüber halten", "event": "monolog.finished", "where": { "topic": "labor" }, "count": 1 }
+      ],
+      "rewards": { "flags": ["alchemimon_complete"], "nwoInfluence": 15, "mett": 500, "authenticity": 10, "achievements": ["ach_alchemimon"] }
+    },
+
+    {
+      "id": "islamimon_01",
+      "title": "ISLAMIMON 1: Der freundliche Anrufer",
+      "type": "main", "act": 10, "faction": "heeter", "series": "islamimon", "episode": 1,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "giver": "self",
+      "summary": "Zum ersten Mal seit Wochen hört jemand einen ganzen Mimonolog zu Ende an.",
+      "requires": { "act": { "min": 10 } },
+      "objectives": [
+        { "id": "o1", "text": "Den Anruf annehmen", "event": "phone.answered", "count": 1 },
+        { "id": "o2", "text": "Einen vollständigen Mimonolog halten", "event": "monolog.finished", "count": 1 }
+      ],
+      "rewards": { "mett": 120, "crashout": -10, "quests": { "start": ["islamimon_04"] } }
+    },
+    {
+      "id": "islamimon_04",
+      "title": "ISLAMIMON 4: Mamer merkt es zuerst",
+      "type": "mamer", "act": 10, "faction": "keine", "series": "islamimon", "episode": 4,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "giver": "mamer",
+      "summary": "Sie fragt, seit wann er so redet. Er weiß es nicht.",
+      "requires": { "quests": { "completed": ["islamimon_01"] } },
+      "objectives": [
+        { "id": "o1", "text": "Mamers Einwand anhören", "event": "dialogue.closed", "where": { "dialogue": "mamer_einwand" }, "count": 1 }
+      ],
+      "rewards": { "trust": { "mamer": 10 }, "authenticity": 5, "quests": { "start": ["islamimon_06"] } }
+    },
+    {
+      "id": "islamimon_06",
+      "title": "ISLAMIMON 6: Der Schnitt",
+      "type": "heeter", "act": 10, "faction": "heeter", "series": "islamimon", "episode": 6,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "giver": "self",
+      "summary": "Aus vier Stunden werden neunzig Sekunden. Alles Gesagte, nichts Gemeinte.",
+      "requires": { "quests": { "completed": ["islamimon_04"] } },
+      "objectives": [
+        { "id": "o1", "text": "Den Ausschnitt auf Juhtub finden", "event": "fideo.watched", "where": { "id": "fideo_ausschnitt" }, "count": 1 },
+        { "id": "o2", "text": "Nicht sofort eskalieren", "event": "monolog.finished", "where": { "tierMax": "annoyed" }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 8, "crashout": 18, "quests": { "start": ["islamimon_10"] } }
+    },
+    {
+      "id": "islamimon_10",
+      "title": "ISLAMIMON 10: Wer profitiert",
+      "type": "main", "act": 10, "faction": "heeter", "series": "islamimon", "episode": 10,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "giver": "self",
+      "summary": "Mimon rechnet zum ersten Mal nach, wem seine Eskalation nützt.",
+      "requires": { "quests": { "completed": ["islamimon_06"] } },
+      "objectives": [
+        { "id": "o1", "text": "Die Aufrufzahlen der Ausschnitte vergleichen", "event": "comments.analyzed", "count": 1 },
+        { "id": "o2", "text": "Ein ruhiges Erklärfideo veröffentlichen", "event": "fideo.published", "where": { "angerMax": 30 }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 12, "mett": -60, "quests": { "start": ["islamimon_15"] } }
+    },
+    {
+      "id": "islamimon_15",
+      "title": "ISLAMIMON 15: Zurück ans Fenster",
+      "type": "main", "act": 10, "faction": "keine", "series": "islamimon", "episode": 15,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "islamimon", "giver": "self",
+      "summary": "Er zieht keine Konsequenz. Er zieht einen Vorhang.",
+      "requires": { "quests": { "completed": ["islamimon_10"] } },
+      "objectives": [
+        { "id": "o1", "text": "Aus dem Fenster sehen", "event": "window.observed", "count": 1 }
+      ],
+      "rewards": { "flags": ["islamimon_complete"], "crashout": -15, "authenticity": 6 }
+    },
+
+    {
+      "id": "rechtsextremimon_01",
+      "title": "RECHTSEXTREMIMON 1: Der neue Name in den Kommentaren",
+      "type": "heeter", "act": 11, "faction": "heeter", "series": "rechtsextremimon", "episode": 1,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "giver": "self",
+      "summary": "Ein Handle, das nur aus Provokation besteht. Kein Inhalt, nur Köder.",
+      "requires": { "act": { "min": 11 } },
+      "objectives": [
+        { "id": "o1", "text": "Die Kommentare durchgehen", "event": "comments.analyzed", "count": 1 },
+        { "id": "o2", "text": "Den Köder nicht schlucken", "event": "email.handled", "where": { "action": "ignorieren" }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 6, "quests": { "start": ["rechtsextremimon_04"] } }
+    },
+    {
+      "id": "rechtsextremimon_04",
+      "title": "RECHTSEXTREMIMON 4: Mamer geht dazwischen",
+      "type": "mamer", "act": 11, "faction": "keine", "series": "rechtsextremimon", "episode": 4,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "giver": "mamer",
+      "summary": "Sie sagt einen Satz, der den ganzen Arc trägt: Das bist du nicht.",
+      "requires": { "quests": { "completed": ["rechtsextremimon_01"] } },
+      "objectives": [
+        { "id": "o1", "text": "Mamer zuhören, ohne zu unterbrechen", "event": "dialogue.closed", "where": { "dialogue": "mamer_das_bist_du_nicht" }, "count": 1 }
+      ],
+      "rewards": { "trust": { "mamer": 15 }, "authenticity": 10, "crashout": -20, "quests": { "start": ["rechtsextremimon_06"] } }
+    },
+    {
+      "id": "rechtsextremimon_06",
+      "title": "RECHTSEXTREMIMON 6: Anzeige",
+      "type": "main", "act": 11, "faction": "polizei", "series": "rechtsextremimon", "episode": 6,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "giver": "kommissarin_devrim",
+      "summary": "Devrim nimmt auf. Datum, Uhrzeit, Absender. Mimon hat alles.",
+      "requires": { "quests": { "completed": ["rechtsextremimon_04"] } },
+      "objectives": [
+        { "id": "o1", "text": "Anzeige erstatten", "event": "police.report", "count": 1 },
+        { "id": "o2", "text": "Belege vorlegen", "event": "world.interact", "where": { "interactable": "anzeige" }, "count": 1 }
+      ],
+      "rewards": { "trust": { "kommissarin_devrim": 12 }, "authenticity": 8, "quests": { "start": ["rechtsextremimon_09"] } }
+    },
+    {
+      "id": "rechtsextremimon_09",
+      "title": "RECHTSEXTREMIMON 9: Das Rohmaterial",
+      "type": "heeter", "act": 11, "faction": "heeter", "series": "rechtsextremimon", "episode": 9,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "giver": "self",
+      "summary": "Die ungeschnittene Fassung belegt genau das Gegenteil.",
+      "requires": { "quests": { "completed": ["rechtsextremimon_06"] } },
+      "objectives": [
+        { "id": "o1", "text": "Das Rohmaterial im Internetcafé finden", "event": "world.interact", "where": { "interactable": "fremder_rechner" }, "count": 1 },
+        { "id": "o2", "text": "Es archivieren", "event": "item.gained", "where": { "item": "alte_fideos" }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 10, "quests": { "start": ["rechtsextremimon_11"] } }
+    },
+    {
+      "id": "rechtsextremimon_11",
+      "title": "RECHTSEXTREMIMON 11: Die Methode",
+      "type": "main", "act": 11, "faction": "heeter", "series": "rechtsextremimon", "episode": 11,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "giver": "self",
+      "summary": "Nicht die Leute werden vorgeführt, sondern der Ablauf.",
+      "requires": { "quests": { "completed": ["rechtsextremimon_09"] } },
+      "objectives": [
+        { "id": "o1", "text": "Ein Fideo über die Methode veröffentlichen", "event": "fideo.published", "where": { "evidence": true, "topic": "heeter" }, "count": 1 }
+      ],
+      "rewards": { "authenticity": 15, "mett": 200, "quests": { "start": ["rechtsextremimon_12"] } }
+    },
+    {
+      "id": "rechtsextremimon_12",
+      "title": "RECHTSEXTREMIMON 12: Stille in den Kommentaren",
+      "type": "main", "act": 11, "faction": "heeter", "series": "rechtsextremimon", "episode": 12,
+      "layer": "FICTIONAL_GAME_CONTENT", "derivedFrom": "rechtsextremimon", "giver": "self",
+      "summary": "Zum ersten Mal seit Jahren schreibt unter einem Fideo niemand etwas.",
+      "requires": { "quests": { "completed": ["rechtsextremimon_11"] } },
+      "objectives": [
+        { "id": "o1", "text": "Die Kommentare prüfen", "event": "comments.analyzed", "count": 1 }
+      ],
+      "rewards": { "flags": ["rechtsextremimon_complete"], "authenticity": 12, "achievements": ["ach_methode"] }
+    },
+
+    {
+      "id": "mamer_einkaufen",
+      "title": "Mamer braucht etwas aus dem Supermarkt",
+      "type": "mamer", "act": 1, "faction": "keine",
+      "layer": "FICTIONAL_GAME_CONTENT", "giver": "mamer",
+      "summary": "Zwei Sachen. Es dauert vier Minuten. Es dauert nie vier Minuten.",
+      "requires": {},
+      "objectives": [
+        { "id": "o1", "text": "In den Supermarkt gehen", "event": "world.travel", "where": { "to": "supermarkt" }, "count": 1 },
+        { "id": "o2", "text": "Zurückkommen, ohne unterwegs zu eskalieren", "event": "world.travel", "where": { "to": "mimons_wohnung" }, "count": 1 }
+      ],
+      "rewards": { "trust": { "mamer": 8 }, "crashout": -8, "authenticity": 3 }
+    },
+    {
+      "id": "mett_maschine",
+      "title": "DIE METT-MASCHINE",
+      "type": "mett", "act": 2, "faction": "keine",
+      "layer": "MEME_LORE", "giver": "self",
+      "summary": "Herausfinden, wie viel Aufmerksamkeit ein einziges Fideo tragen kann.",
+      "requires": { "act": { "min": 2 } },
+      "objectives": [
+        { "id": "o1", "text": "1000 Mett ansammeln", "stat": "mett", "min": 1000 },
+        { "id": "o2", "text": "Drei Fideos veröffentlichen", "event": "fideo.published", "count": 3 }
+      ],
+      "rewards": { "subscribers": 2000, "achievements": ["ach_mett"], "lore": ["lore_mett"] }
+    },
+    {
+      "id": "der_grosse_crashout",
+      "title": "DER GROSSE CRASHOUT",
+      "type": "crashout", "act": 3, "faction": "keine",
+      "layer": "MEME_LORE", "giver": "self", "hidden": true,
+      "summary": "Einmal bis ganz nach oben. Danach ist die Welt kurz eine andere.",
+      "requires": { "act": { "min": 3 } },
+      "objectives": [
+        { "id": "o1", "text": "MAXIMUM CRASHOUT erreichen", "event": "crashout.maximum", "count": 1 }
+      ],
+      "rewards": { "mett": 600, "authenticity": -10, "achievements": ["ach_maximum_crashout"] }
+    },
+    {
+      "id": "das_dromedar_raetsel",
+      "title": "DAS DROMEDAR-RÄTSEL",
+      "type": "easter_egg", "act": 1, "faction": "keine",
+      "layer": "MEME_LORE", "giver": "self", "hidden": true,
+      "summary": "Irgendwo wird eine Frage gestellt, auf die es nur eine Antwort gibt. Ein Höcker.",
+      "requires": {},
+      "objectives": [
+        { "id": "o1", "text": "Das Quiz finden", "event": "quiz.opened", "count": 1 },
+        { "id": "o2", "text": "Die Dromedar-Antwort geben", "event": "quiz.answered", "where": { "answer": "dromedar" }, "count": 1 }
+      ],
+      "rewards": { "achievements": ["ach_dromedar"], "lore": ["lore_dromedar"], "flags": ["easter_egg_dromedar"] }
+    },
+    {
+      "id": "das_nano_band",
+      "title": "NANO",
+      "type": "easter_egg", "act": 5, "faction": "keine",
+      "layer": "MEME_LORE", "giver": "self", "hidden": true,
+      "summary": "Eine Kassette mit einem Wort darauf.",
+      "requires": { "act": { "min": 5 } },
+      "objectives": [
+        { "id": "o1", "text": "Die Kassette finden", "event": "item.gained", "where": { "item": "nano_kassette" }, "count": 1 },
+        { "id": "o2", "text": "Sie im Tonstudio abspielen", "event": "labor.area", "where": { "area": "tonstudio" }, "count": 1 }
+      ],
+      "rewards": { "lore": ["lore_nano"], "achievements": ["ach_nano"], "flags": ["easter_egg_nano"] }
+    },
+    {
+      "id": "cap5_druck",
+      "title": "CAP5",
+      "type": "main", "act": 3, "faction": "unabhängig",
+      "layer": "SOURCE_BASED_LORE", "giver": "cap5",
+      "summary": "Ein Angebot, das wie eine Drohung klingt, weil es eine ist.",
+      "requires": { "act": { "min": 3 } },
+      "objectives": [
+        { "id": "o1", "text": "Cap5 anhören", "event": "dialogue.closed", "where": { "npc": "cap5" }, "count": 1 },
+        { "id": "o2", "text": "Mit Mamer darüber sprechen", "event": "dialogue.closed", "where": { "dialogue": "mamer_ueber_cap5" }, "count": 1 },
+        { "id": "o3", "text": "Entscheiden, wie es weitergeht", "flag": "cap5_entschieden" }
+      ],
+      "rewards": { "trust": { "mamer": 10, "cap5": -5 }, "crashout": 10, "mett": 150 }
+    }
+  ]
+}

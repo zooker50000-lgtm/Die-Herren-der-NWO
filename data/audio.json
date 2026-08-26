@@ -1,0 +1,37 @@
+{
+  "$comment": "Soundboard und Musik. Alle Sounds werden zur Laufzeit per WebAudio synthetisiert — es gibt bewusst keine Binärassets im Repository. src ist optional und wird verwendet, sobald echte Samples ergänzt werden.",
+
+  "sfx": [
+    { "id": "ehdzhusten", "synth": "noise_burst", "duration": 0.45, "filter": 900, "gain": 0.35, "layer": "MEME_LORE" },
+    { "id": "phone", "synth": "ring", "duration": 1.2, "freq": [440, 480], "gain": 0.2 },
+    { "id": "keyboard", "synth": "click_seq", "duration": 0.5, "count": 8, "gain": 0.12 },
+    { "id": "old_computer", "synth": "hum", "duration": 1.5, "freq": 60, "gain": 0.1 },
+    { "id": "juhtub", "synth": "chime", "duration": 0.6, "freq": [660, 880], "gain": 0.18 },
+    { "id": "nwo_sting", "synth": "sting", "duration": 2.2, "freq": [110, 55], "gain": 0.3, "layer": "SOURCE_BASED_LORE" },
+    { "id": "door", "synth": "thud", "duration": 0.4, "freq": 90, "gain": 0.25 },
+    { "id": "window", "synth": "slide", "duration": 0.8, "freq": [200, 120], "gain": 0.15 },
+    { "id": "siren", "synth": "siren", "duration": 2.0, "freq": [700, 500], "gain": 0.18 },
+    { "id": "steps", "synth": "click_seq", "duration": 1.2, "count": 4, "gain": 0.1 },
+    { "id": "notification", "synth": "chime", "duration": 0.3, "freq": [880, 1320], "gain": 0.2 },
+    { "id": "ping", "synth": "chime", "duration": 0.2, "freq": [1320], "gain": 0.15 },
+    { "id": "crashout", "synth": "sting", "duration": 1.4, "freq": [220, 70], "gain": 0.35 }
+  ],
+
+  "music": [
+    { "id": "mus_wohnung", "mood": "gemuetlich", "style": "80er Synth, langsam", "bpm": 84, "scale": "dorisch", "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "mus_strasse", "mood": "absurd", "style": "Rockabilly-Bass, schräg", "bpm": 118, "scale": "dur", "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "mus_nwo", "mood": "mysterioes", "style": "düstere Ambience, tiefer Puls", "bpm": 60, "scale": "phrygisch", "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "mus_crashout", "mood": "chaotisch", "style": "verzerrte Synths, steigendes Tempo", "bpm": 156, "scale": "chromatisch", "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "mus_alchemie", "mood": "mystisch", "style": "Blues-Slide über Drone", "bpm": 72, "scale": "moll", "layer": "FICTIONAL_GAME_CONTENT" },
+    { "id": "mus_finale", "mood": "dramatisch", "style": "Bossmusik, langsam aufbauend", "bpm": 96, "scale": "moll", "layer": "FICTIONAL_GAME_CONTENT" }
+  ],
+
+  "musicRules": [
+    { "when": { "crashoutTier": ["maximum", "massiv"] }, "play": "mus_crashout" },
+    { "when": { "location": ["nwo_labor", "nwo_versteck", "nwo_productions"] }, "play": "mus_nwo" },
+    { "when": { "location": ["alchemielabor"] }, "play": "mus_alchemie" },
+    { "when": { "act": { "min": 15 } }, "play": "mus_finale" },
+    { "when": { "location": ["mimons_wohnung", "mamer_bereich"] }, "play": "mus_wohnung" },
+    { "when": {}, "play": "mus_strasse" }
+  ]
+}

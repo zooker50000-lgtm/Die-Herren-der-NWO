@@ -1,0 +1,85 @@
+{
+  "$comment": "Enden und Achievements. Enden werden am Ende von Akt 15 geprüft, in der Reihenfolge dieser Liste (secret zuerst).",
+
+  "endings": [
+    {
+      "id": "ending_secret_dromedar",
+      "code": "SECRET",
+      "title": "DROMEDAR",
+      "secret": true,
+      "layer": "MEME_LORE",
+      "requires": { "flags": ["easter_egg_dromedar", "finale_gehalten"] },
+      "text": "Am Ende steht keine Organisation, keine Anzeige und kein Vertrag. Am Ende steht eine Frage mit genau einer richtigen Antwort, und Mimon hat sie gewusst. Ein Höcker. Der Rest war Verwaltung.",
+      "epilog": "Du weißt jetzt zu viel."
+    },
+    {
+      "id": "ending_e_chaos",
+      "code": "E",
+      "title": "CHAOS",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "requires": { "stats": { "crashout": { "min": 100 } }, "flags": ["finale_gehalten"] },
+      "text": "Der letzte Mimonolog hat keinen Schluss. Er hat nur ein Ende der Aufnahme. Vierzehn Stunden Material, kein Schnitt, keine Kapitel, kein Titel. Es wird das meistgesehene Fideo des Kanals.",
+      "epilog": "Die Kamera läuft noch. Niemand schaltet sie aus."
+    },
+    {
+      "id": "ending_b_nwo",
+      "code": "B",
+      "title": "NWO",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "requires": { "stats": { "nwoReputation": { "min": 80 } }, "flags": ["pressesprecher_angenommen", "finale_gehalten"] },
+      "text": "Die Visitenkarte trägt seinen Namen, richtig geschrieben. Der Posten ist echt, das Mikrofon ist gut, und er darf reden, so lange er will. Was er sagt, wird vorher nicht geprüft. Es wird nachher nicht geprüft. Es wird archiviert.",
+      "epilog": "DIE NWO SIEHT ALLES. Von innen sieht sie genauso aus."
+    },
+    {
+      "id": "ending_d_alchimist",
+      "code": "D",
+      "title": "ALCHIMIST",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "requires": { "stats": { "alchemy": { "min": 75 } }, "flags": ["u7_betreten", "finale_gehalten"], "tagebuchPages": 12 },
+      "text": "Der Kanal läuft weiter, aber die Uploads werden seltener. Im Tagebuch stehen jetzt alle zwölf Seiten, und auf der letzten steht eine Zeile, die vorher nicht da war. Die Organisation ruft noch an. Er geht nicht mehr ran, weil er gerade an etwas arbeitet.",
+      "epilog": "Schwarz, Weiß, Gelb, Rot. Und dann ist es still."
+    },
+    {
+      "id": "ending_c_heeter",
+      "code": "C",
+      "title": "HEETER",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "requires": { "stats": { "heeterAggro": { "min": 80 }, "authenticity": { "max": 25 } }, "flags": ["finale_gehalten"] },
+      "text": "Am Ende gibt es mehr Fideos über Mimon als von Mimon. Sein Material läuft weiter, in fremden Schnitten, mit fremden Titeln, unter fremden Namen. Er ist das meistgesehene, was er je war, und nichts davon gehört ihm.",
+      "epilog": "Die Reaktion war das Produkt. Sie war es immer."
+    },
+    {
+      "id": "ending_a_real_authentisch",
+      "code": "A",
+      "title": "REAL-AUTHENTISCH",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "requires": { "stats": { "authenticity": { "min": 85 } }, "flags": ["finale_gehalten"] },
+      "text": "Der letzte Mimonolog dauert neun Minuten. Neun. Er sagt, was er weiß, er sagt, was er nicht weiß, und er sagt, wo der Unterschied liegt. Danach macht er die Kamera aus und geht in die Küche, weil Mamer gerufen hat.",
+      "epilog": "Real-authentisch. Von Anfang an. Auch das Falsche daran."
+    },
+    {
+      "id": "ending_default",
+      "code": "—",
+      "title": "WEITER",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "requires": { "flags": ["finale_gehalten"] },
+      "text": "Kein Abschluss, kein Bruch. Am nächsten Tag steht wieder ein Fahrzeug da, kommt wieder eine Nachricht an, wird wieder etwas hochgeladen. Und Mimon setzt sich hin und erklärt es. Einmal noch.",
+      "epilog": "Der Vorgang pflegt sich fort."
+    }
+  ],
+
+  "achievements": [
+    { "id": "ach_erster_heeter", "title": "DER ERSTE HEETER", "layer": "SOURCE_BASED_LORE", "description": "Herausgefunden, wer die Fideos verändert." },
+    { "id": "ach_dromedar", "title": "DROMEDAR", "layer": "MEME_LORE", "description": "Du weißt jetzt zu viel.", "secret": true },
+    { "id": "ach_kelchninja", "title": "DER KELCHNINJA", "layer": "MEME_LORE", "description": "An vier Wänden gefunden, an denen nichts hing.", "secret": true },
+    { "id": "ach_nano", "title": "NANO", "layer": "MEME_LORE", "description": "Die Kassette abgespielt.", "secret": true },
+    { "id": "ach_maximum_crashout", "title": "MAXIMUM CRASHOUT", "layer": "MEME_LORE", "description": "Einmal bis ganz nach oben." },
+    { "id": "ach_mett", "title": "DIE METT-MASCHINE", "layer": "MEME_LORE", "description": "1000 Mett auf einmal." },
+    { "id": "ach_alchemimon", "title": "ALCHEMIMON", "layer": "SOURCE_BASED_LORE", "description": "Den Arc bis zum eigenen Archiv gespielt." },
+    { "id": "ach_methode", "title": "DIE METHODE", "layer": "FICTIONAL_GAME_CONTENT", "description": "Nicht die Leute vorgeführt, sondern den Ablauf." },
+    { "id": "ach_ehdzhusten", "title": "EHDZHUST", "layer": "MEME_LORE", "description": "Fünfzig Mal gehustet.", "secret": true },
+    { "id": "ach_ruhig", "title": "RUHIG BLEIBEN", "layer": "FICTIONAL_GAME_CONTENT", "description": "Zehn Mimonologe vollständig ruhig zu Ende gebracht." },
+    { "id": "ach_archivar", "title": "ARCHIVAR", "layer": "FICTIONAL_GAME_CONTENT", "description": "Alle zwölf Tagebuchseiten gefunden." },
+    { "id": "ach_sieht_alles", "title": "DIE NWO SIEHT ALLES", "layer": "SOURCE_BASED_LORE", "description": "NWO INFLUENCE auf 100 gebracht." }
+  ]
+}
