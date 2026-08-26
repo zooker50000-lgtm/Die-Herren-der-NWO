@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MIMON BARAKA UNIVERSE</title>
+  <meta name="description" content="Ein fiktionales, satirisches Open-World-Adventure über Heeter, Mett, Mimonologe und die NWO.">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>👁</text></svg>">
+</head>
+<body data-crashout="ruhig" data-nwo="geruecht">
+  <div id="boot" class="boot">
+    <div class="boot__inner">
+      <h1>MIMON BARAKA</h1>
+      <p class="boot__claim">UNIVERSE</p>
+      <p class="boot__note">Ein fiktionales Satire-Adventure.</p>
+      <button id="boot-start" class="button button--gold">Neues Spiel</button>
+      <button id="boot-load" class="button">Archiv laden</button>
+      <p class="boot__hint">Tasten: <kbd>C</kbd> Computer · <kbd>K</kbd> Kodex · <kbd>I</kbd> Inventar · <kbd>M</kbd> Karte · <kbd>T</kbd> NWO · <kbd>Esc</kbd> zurück</p>
+    </div>
+  </div>
+
+  <div id="app" class="app" hidden>
+    <header id="hud" class="hud"></header>
+    <nav id="nav" class="nav"></nav>
+
+    <main class="layout">
+      <section id="stage" class="stage"></section>
+      <aside class="side">
+        <div id="quests" class="panel panel--quests"></div>
+        <div id="log" class="panel panel--log"></div>
+      </aside>
+    </main>
+
+    <div id="overlay" class="overlay" hidden></div>
+    <div id="toasts" class="toasts"></div>
+  </div>
+
+  <script type="module" src="main.mjs"></script>
+</body>
+</html>

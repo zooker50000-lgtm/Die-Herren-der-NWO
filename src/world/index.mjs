@@ -25,11 +25,24 @@ export class World {
     return store.s.quests.completed.includes(location.unlock);
   }
 
-  /** Erreichbare Nachbarorte. */
+  /**
+   * Nachbarorte. Verbindungen gelten in beide Richtungen — sonst strandet ein
+   * Ort, der zwar auf seinen Nachbarn zeigt, aber nicht umgekehrt.
+   */
+  neighbours(location = this.here) {
+    if (!location) return [];
+    const ids = new Set(location.connections ?? []);
+    for (const other of this.data.locations) {
+      if ((other.connections ?? []).includes(location.id)) ids.add(other.id);
+    }
+    ids.delete(location.id);
+    return [...ids];
+  }
+
   exits() {
     const here = this.here;
     if (!here) return [];
-    return (here.connections ?? [])
+    return this.neighbours(here)
       .map((id) => this.ctx.registry.location(id))
       .filter(Boolean)
       .map((loc) => ({
@@ -51,7 +64,7 @@ export class World {
     const target = this.ctx.registry.location(locationId);
     const here = this.here;
     if (!target) return { ok: false, reason: 'Diesen Ort gibt es nicht.' };
-    if (!here.connections?.includes(locationId)) return { ok: false, reason: 'Von hier führt kein Weg dorthin.' };
+    if (!this.neighbours(here).includes(locationId)) return { ok: false, reason: 'Von hier führt kein Weg dorthin.' };
     if (!this.unlocked(target)) return { ok: false, reason: 'Der Ort ist noch verschlossen.' };
 
     const minutes = this.travelTime(here, target);

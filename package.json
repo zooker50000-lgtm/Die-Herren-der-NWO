@@ -4,14 +4,25 @@
   "private": true,
   "description": "MIMON BARAKA UNIVERSE - ein fiktionales, satirisches Open-World-/Story-Adventure ueber Heeter, Mett, Mimonologe und die NWO.",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node tools/serve.mjs",
     "play": "node src/cli/main.mjs",
     "test": "node --test test/*.test.mjs",
     "validate": "node tools/validate-data.mjs",
-    "lore": "node tools/lore-report.mjs"
+    "lore": "node tools/lore-report.mjs",
+    "simulate": "node tools/simulate.mjs",
+    "solve": "node tools/solve.mjs"
   },
-  "keywords": ["game", "satire", "nwo", "mimon", "adventure", "rpg"],
+  "keywords": [
+    "game",
+    "satire",
+    "nwo",
+    "mimon",
+    "adventure",
+    "rpg"
+  ],
   "license": "UNLICENSED"
 }

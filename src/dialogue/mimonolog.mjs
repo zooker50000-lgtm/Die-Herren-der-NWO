@@ -68,7 +68,7 @@ export class MimonologGenerator {
     let returnedTo = null;
 
     for (let i = 0; i < maxBeats; i++) {
-      const text = this.renderBeat(current, tier, { topic, enemy, crashout });
+      const text = this.renderBeat(current, tier, { topic, enemy, crashout, tier });
       const beat = { type: current, text, tier };
       beats.push(beat);
       bus.emit('monolog.beat', beat);
@@ -116,7 +116,7 @@ export class MimonologGenerator {
     }
 
     if (beats[beats.length - 1]?.type !== 'CLOSER') {
-      const text = this.renderBeat('CLOSER', tier, { topic, enemy, crashout });
+      const text = this.renderBeat('CLOSER', tier, { topic, enemy, crashout, tier });
       beats.push({ type: 'CLOSER', text, tier });
     }
 
@@ -164,24 +164,41 @@ export class MimonologGenerator {
     return this.ctx.meters?.voiceTier ?? 'calm';
   }
 
+  /**
+   * Beat rendern. Gegen Begriffs-Spam wird die Vorlage gewechselt, nicht das
+   * Wort: Vorlagen mit gerade benutzten Begriffen werden zurückgestellt, und
+   * Vorlagen, deren Begriffe thematisch passen, werden bevorzugt.
+   */
   renderBeat(beatType, tier, context) {
     const templates = this.vocab.beats[beatType]?.[tier] ?? this.vocab.beats[beatType]?.calm ?? [''];
+    const contexts = [...(context.topic.tags ?? []), ...(BEAT_CONTEXTS[beatType] ?? [])];
+
     // Denselben Satz nicht zweimal hintereinander - RETURN und THEORIE kommen oft mehrfach vor.
     const fresh = templates.length > 1 ? templates.filter((t) => t !== this.lastTemplate?.[beatType]) : templates;
-    const template = this.ctx.rng.pick(fresh);
+    const frei = fresh.filter((t) => termsOf(t).every((id) => !this.lexicon.isCoolingDown(id)));
+    const passend = frei.filter((t) => termsOf(t).every((id) => this.lexicon.fitsContext(id, contexts)));
+
+    const pool = passend.length ? passend : frei.length ? frei : fresh;
+    const template = this.ctx.rng.pick(pool);
     (this.lastTemplate ??= {})[beatType] = template;
     return this.fill(template, beatType, context);
   }
 
-  /** Slots füllen: {topic} {topicShort} {topicQ} {enemy} {v:id} {cp} */
-  fill(template, beatType, { topic, enemy, crashout }) {
+  /**
+   * Slots füllen: {topic} {topicShort} {topicQ} {enemy} {v:id} {cp}
+   * In der lauten Stufe werden eingesetzte Wörter mitgeschrien — sonst steht
+   * ein kleingeschriebenes Wort mitten in einer Zeile aus Großbuchstaben.
+   */
+  fill(template, beatType, { topic, enemy, crashout, tier }) {
     const contexts = [...(topic.tags ?? []), ...(BEAT_CONTEXTS[beatType] ?? [])];
+    const loud = tier === 'loud';
+    const say = (text) => (loud ? String(text).toUpperCase() : text);
     return template
-      .replace(/\{topicShort\}/g, topic.short)
+      .replace(/\{topicShort\}/g, say(topic.short))
       .replace(/\{topicQ\}/g, topic.question)
-      .replace(/\{topic\}/g, topic.subject)
-      .replace(/\{enemy\}/g, enemy ?? 'die Heeter')
-      .replace(/\{v:([a-z_]+)(\|pl)?\}/g, (_, id, plural) => this.lexicon.term(id, contexts, plural ? 'pl' : 'sg'))
+      .replace(/\{topic\}/g, say(topic.subject))
+      .replace(/\{enemy\}/g, say(enemy ?? 'die Heeter'))
+      .replace(/\{v:([a-z_]+)(\|pl)?\}/g, (_, id, plural) => say(this.lexicon.term(id, contexts, plural ? 'pl' : 'sg')))
       .replace(/\{cp\}/g, () => this.lexicon.catchphrase(contexts, crashout));
   }
 
@@ -205,3 +222,8 @@ export class MimonologGenerator {
 }
 
 function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+
+/** Alle Lexikon-Ids, die eine Vorlage benutzt. */
+function termsOf(template) {
+  return [...String(template).matchAll(/\{v:([a-z_]+)(?:\|pl)?\}/g)].map((m) => m[1]);
+}

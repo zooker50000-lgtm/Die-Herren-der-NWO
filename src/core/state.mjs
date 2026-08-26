@@ -3,7 +3,25 @@
  * Alles, was ein Savegame ausmacht, steht hier — und nur hier.
  */
 
-export const SAVE_VERSION = 3;
+export const SAVE_VERSION = 4;
+
+/**
+ * Gueltige Grenzen je Wert. Sie stehen hier, damit kein Aufrufer sie vergessen
+ * kann - ein Crashout von 102 wuerde sonst durch jedes Stufenraster fallen.
+ */
+export const STAT_BOUNDS = {
+  crashout: { min: 0, max: 100 },
+  authenticity: { min: 0, max: 100 },
+  nwoInfluence: { min: 0, max: 100 },
+  nwoReputation: { min: 0, max: 100 },
+  heeterAggro: { min: 0, max: 100 },
+  mimonolog: { min: 0, max: 100 },
+  alchemy: { min: 1, max: 100 },
+  crashoutResist: { min: -50, max: 50 },
+  mett: { min: 0, max: Infinity },
+  subscribers: { min: 0, max: Infinity },
+  alchemyXp: { min: 0, max: Infinity }
+};
 
 /** Werte mit eigenem Ereignisnamen - siehe docs/ARCHITECTURE.md. */
 const STAT_EVENTS = {
@@ -49,6 +67,7 @@ export function createInitialState(seed = Date.now() >>> 0) {
     inventory: {},
     tagebuch: { pages: [] },
     quests: { active: {}, completed: [], failed: [] },
+    dialogue: { played: [] },
     lore: { unlocked: [] },
     achievements: [],
     emails: { inbox: [], handled: [], nextId: 1 },
@@ -97,7 +116,8 @@ export class Store {
 
   stat(key) { return this.state.stats[key] ?? 0; }
 
-  setStat(key, value, { min = 0, max = Infinity } = {}) {
+  setStat(key, value, bounds) {
+    const { min = 0, max = Infinity } = bounds ?? STAT_BOUNDS[key] ?? {};
     const clamped = Math.max(min, Math.min(max, value));
     const before = this.state.stats[key] ?? 0;
     if (before === clamped) return { key, before, after: clamped, delta: 0 };

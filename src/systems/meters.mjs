@@ -22,7 +22,10 @@ export const AUTHENTICITY_TIERS = [
 ];
 
 export function tierOf(tiers, value) {
-  return tiers.find((t) => value >= t.min && value <= t.max) ?? tiers[0];
+  const found = tiers.find((t) => value >= t.min && value <= t.max);
+  if (found) return found;
+  // Ausserhalb des Rasters: unterhalb die erste, oberhalb die letzte Stufe.
+  return value < tiers[0].min ? tiers[0] : tiers[tiers.length - 1];
 }
 
 export class Meters {
@@ -71,16 +74,29 @@ export class Meters {
     if (key === 'authenticity') this.bus.emit('authenticity.tier', { tier: tier.id, label: tier.label, previous });
     if (key === 'nwo') {
       this.bus.emit('nwo.tier', { tier: tier.id, label: tier.label, previous });
-      for (const unlock of tier.unlocks ?? []) {
-        if (!this.store.s.unlocks.includes(unlock)) {
-          this.store.s.unlocks.push(unlock);
-          this.bus.emit('unlock.granted', { unlock });
-        }
-      }
+      this.grantInfluenceUnlocks();
       if (tier.milestone) {
         this.store.addLog('DIE NWO SIEHT ALLES.', 'nwo');
         this.bus.emit('nwo.sees_all', {});
         this.bus.emit('audio.sfx', { id: 'nwo_sting' });
+      }
+    }
+  }
+
+  /**
+   * Alle Freischaltungen bis zur aktuellen Stufe vergeben — nicht nur die der
+   * gerade erreichten. Ein Sprung von 5 auf 100 würde sonst die Stufen
+   * dazwischen überspringen, und das NWO-Labor bliebe trotz vollem Einfluss zu.
+   */
+  grantInfluenceUnlocks() {
+    const wert = this.store.stat('nwoInfluence');
+    for (const stufe of this.registry.data.nwo.influenceTiers) {
+      if (wert < stufe.min) continue;
+      for (const unlock of stufe.unlocks ?? []) {
+        if (this.store.s.unlocks.includes(unlock)) continue;
+        this.store.s.unlocks.push(unlock);
+        this.store.touch('unlocks');
+        this.bus.emit('unlock.granted', { unlock, tier: stufe.id });
       }
     }
   }

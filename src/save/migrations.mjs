@@ -23,6 +23,13 @@ const MIGRATIONS = {
     s.world.labAreas ??= [];
     payload.version = 3;
     return payload;
+  },
+  // v3 -> v4: gespielte Dialoge werden mitgeschrieben, damit einmalige
+  // Gespraeche nicht erneut angeboten werden.
+  3: (payload) => {
+    payload.state.dialogue ??= { played: [] };
+    payload.version = 4;
+    return payload;
   }
 };
 

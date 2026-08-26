@@ -283,9 +283,10 @@ test('alte Spielstände werden migriert', async () => {
   };
   const result = migrate(alt);
   assert.ok(result.ok, result.reason);
-  assert.equal(result.payload.version, 3);
+  assert.equal(result.payload.version, 4);
   assert.deepEqual(result.payload.state.media.published, [{ id: 'alt' }]);
   assert.ok(Array.isArray(result.payload.state.world.windowScenes));
+  assert.ok(Array.isArray(result.payload.state.dialogue.played));
   assert.equal(result.payload.state.player.act, 2);
 });
 
@@ -365,4 +366,170 @@ test('gesperrte Lore zeigt keinen Text', () => {
   const g = newGame();
   const gesperrt = Object.values(g.codex.view()).flat().filter((e) => !e.unlocked);
   for (const entry of gesperrt) assert.equal(entry.description, null);
+});
+
+test('eingesetzte Begriffe behalten ihre Grammatik', () => {
+  // Frueher wurde ein Begriff auf Cooldown durch einen beliebigen anderen
+  // ersetzt - daraus wurde "mit meinen NWO gemacht".
+  const g = newGame(7);
+  g.store.addStat('crashout', 95);
+  for (let i = 0; i < 25; i++) {
+    const text = MimonologGenerator.toText(g.monolog.generate({ topic: 'fahrzeug' }));
+    assert.ok(!/MIT MEINEN (NWO|MAMER|ALCHEMIE|METT)\b/.test(text), text);
+    assert.ok(!/EIN (FIDEOS|HEETER)\b/.test(text), text);
+  }
+});
+
+test('in der lauten Stufe wird auch der eingesetzte Begriff geschrien', () => {
+  const g = newGame(7);
+  g.store.addStat('crashout', 95);
+  const beats = g.monolog.generate({ topic: 'fahrzeug' }).beats
+    .filter((b) => b.type !== 'EHDZHUSTEN');
+  const mitKleinbuchstaben = beats.filter((b) => /[a-zäöüß]{4,}/.test(b.text));
+  assert.equal(mitKleinbuchstaben.length, 0, mitKleinbuchstaben.map((b) => b.text).join(' | '));
+});
+
+test('Werte bleiben in ihren Grenzen, egal wer sie setzt', () => {
+  const g = newGame();
+  g.store.addStat('crashout', 500);
+  assert.equal(g.store.stat('crashout'), 100);
+  assert.equal(g.meters.crashoutTier.id, 'maximum');
+  g.store.addStat('authenticity', -500);
+  assert.equal(g.store.stat('authenticity'), 0);
+  assert.equal(g.meters.authenticityTier.id, 'feker');
+  g.store.addStat('nwoInfluence', 999);
+  assert.equal(g.store.stat('nwoInfluence'), 100);
+});
+
+test('Stufenraster liefert auch ausserhalb seiner Grenzen eine Stufe', async () => {
+  const { tierOf, CRASHOUT_TIERS } = await import('../src/systems/meters.mjs');
+  assert.equal(tierOf(CRASHOUT_TIERS, -5).id, 'ruhig');
+  assert.equal(tierOf(CRASHOUT_TIERS, 250).id, 'maximum');
+});
+
+test('Vorlagen mit thematisch passenden Begriffen werden bevorzugt', () => {
+  const g = newGame(12);
+  g.store.addStat('crashout', 50);
+  const text = MimonologGenerator.toText(g.monolog.generate({ topic: 'alchemie' }));
+  // Im Alchemie-Kontext darf kein reiner Heeter-Begriff dominieren.
+  assert.ok(!/Trittbrettfahrer/.test(text), text);
+});
+
+test('jeder Dialog ist über einen Kanal erreichbar', () => {
+  // Frueher waren 8 von 17 Dialogen tot: talkTo fand pro Figur immer nur den
+  // ersten Eintrag, und Hatebox stand an keinem Ort.
+  const g = newGame();
+  for (const [id, dlg] of Object.entries(data.dialogue.dialogues)) {
+    assert.ok(dlg.channels?.length, `${id}: channels fehlt`);
+    assert.ok(dlg.npc, `${id}: npc fehlt`);
+    if (dlg.channels.includes('vor_ort')) {
+      const orte = data.locations.locations.filter(
+        (l) => (l.npcs ?? []).includes(dlg.npc) ||
+               (l.interactables ?? []).some((i) => i.dialogue === id)
+      );
+      assert.ok(orte.length, `${id}: ${dlg.npc} steht an keinem Ort`);
+    } else {
+      // Telefon und online laufen über die Vermittlung.
+      assert.ok(g.registry.character(dlg.npc), `${id}: unbekannte Figur`);
+    }
+  }
+});
+
+test('die Dialogvermittlung liefert das jeweils passende Gespräch', () => {
+  const g = newGame();
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_hub');
+
+  g.store.s.quests.active.das_magische_tagebuch = { id: 'das_magische_tagebuch', objectives: {} };
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_tagebuch', 'Quest-Dialog hat Vorrang');
+
+  g.store.setFlag('tagebuch_hinweis');
+  assert.equal(g.roster.dialogueFor('mamer'), 'mamer_hub', 'erledigter Anlass fällt weg');
+});
+
+test('einmalige Gespräche werden nicht erneut angeboten', () => {
+  const g = newGame();
+  g.store.s.player.act = 3;
+  assert.equal(g.roster.dialogueFor('cap5', { channel: 'telefon' }), 'cap5_angebot');
+  g.dialogue.open('cap5_angebot');
+  g.dialogue.close();
+  assert.equal(g.roster.dialogueFor('cap5', { channel: 'telefon' }), null);
+});
+
+test('DER ERSTE HEETER ist auf dem vorgesehenen Weg abschließbar', () => {
+  const g = newGame(3);
+  // 1. Das veränderte Fideo ansehen
+  g.fideos.watch('fideo_veraendert');
+  // 2. Das Heet-Mehl lesen
+  const mail = g.emails.inbox[0];
+  g.emails.read(mail.id);
+  // 3. Kommentare durchgehen
+  g.fideos.analyzeComments();
+  // 4. Hatebox über den Online-Kanal zur Rede stellen
+  const heeter = g.registry.heeters.get(mail.from);
+  const dialogueId = g.roster.dialogueFor(heeter.character, { channel: 'online' });
+  assert.equal(dialogueId, 'hatebox_konfrontation');
+  g.dialogue.open(dialogueId);
+  g.dialogue.choose(0);
+  g.dialogue.close();
+
+  assert.ok(g.store.s.quests.completed.includes('der_erste_heeter'));
+  assert.equal(g.store.s.player.act, 2);
+  assert.ok(g.store.s.quests.active.die_nwo_sieht_alles, 'Folgequest muss starten');
+});
+
+test('bereits Erledigtes zählt beim Queststart mit', () => {
+  // Sonst waere ALCHEMIMON 3 unloesbar, wenn die gesuchte Tagebuchseite
+  // zufaellig vor dem Queststart gefunden wurde.
+  const g = newGame();
+  g.inventory.addPage('seite_07');
+  g.store.s.player.act = 6;
+  g.store.s.quests.completed.push('alchemimon_01', 'alchemimon_02');
+  g.quests.start('alchemimon_03');
+  const quest = g.quests.journal().active.find((q) => q.id === 'alchemimon_03');
+  assert.ok(quest.objectives[0].done, 'gefundene Seite muss zählen');
+});
+
+test('Besitz und besuchte Orte zählen ebenfalls rückwirkend', () => {
+  const g = newGame();
+  g.store.addItem('nwo_ausweis');
+  g.store.s.world.visited.push('geheimer_treffpunkt');
+  assert.equal(g.quests.seedObjective({ event: 'item.gained', where: { item: 'nwo_ausweis' } }), 1);
+  assert.equal(g.quests.seedObjective({ event: 'world.travel', where: { to: 'geheimer_treffpunkt' } }), 1);
+  assert.equal(g.quests.seedObjective({ event: 'world.travel', where: { to: 'hamburg_hafen' } }), 0);
+  // Reine Handlungsziele starten bei null.
+  assert.equal(g.quests.seedObjective({ event: 'monolog.finished' }), 0);
+});
+
+test('ein Sprung im NWO-Einfluss vergibt auch die übersprungenen Freischaltungen', () => {
+  // Frueher blieb das NWO-Labor bei 100 Prozent Einfluss verschlossen, weil
+  // nur die Freischaltungen der zuletzt erreichten Stufe vergeben wurden.
+  const g = newGame();
+  g.store.addStat('nwoInfluence', 100);
+  for (const unlock of ['nwo_terminal', 'nwo_versteck', 'nwo_labor', 'nwo_terminal_root']) {
+    assert.ok(g.store.s.unlocks.includes(unlock), `${unlock} fehlt`);
+  }
+  g.store.s.player.location = 'geheimer_treffpunkt';
+  assert.ok(g.world.exits().find((e) => e.id === 'nwo_labor')?.unlocked, 'U-7 muss erreichbar sein');
+});
+
+test('jede Alchemie-Zutat hat eine Quelle im Spiel', () => {
+  // Ohne Bezugsquelle waeren alle Rezepte ab Stufe 2 unbraubar.
+  const quellen = new Set();
+  for (const shop of Object.values(data.locations.shops)) for (const id of shop.stock) quellen.add(id);
+  const sammle = (effects) => { for (const id of effects?.items ?? []) quellen.add(id); };
+  for (const q of data.quests.quests) { sammle(q.rewards); sammle(q.onStart); }
+  for (const dlg of Object.values(data.dialogue.dialogues)) {
+    for (const node of Object.values(dlg.nodes)) {
+      sammle(node.effects);
+      for (const choice of node.choices ?? []) sammle(choice.effects);
+    }
+  }
+  for (const ev of data.events.events) { sammle(ev.effects); for (const c of ev.choices ?? []) sammle(c.effects); }
+  for (const action of data.emails.actions) sammle(action.effects);
+
+  for (const recipe of data.alchemy.recipes) {
+    for (const zutat of recipe.ingredients) {
+      assert.ok(quellen.has(zutat), `${zutat} (für ${recipe.id}) ist nirgends zu bekommen`);
+    }
+  }
 });

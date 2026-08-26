@@ -87,8 +87,12 @@ export class Game {
     this.bus.on('nwo.tier', () => this.emails.deliverNwoMail());
     this.bus.on('clock.day', () => this.emails.deliverNwoMail());
 
-    // Kelchninja-Sichtungen zählen für die versteckte Quest.
-    this.bus.on('easteregg.kelchninja', () => this.store.count('kelchninjaSightings'));
+    // Kelchninja-Sichtungen zählen für die versteckte Quest — und ab der
+    // vierten steht er selbst im Park. Ohne das käme man nie an sein Schwert.
+    this.bus.on('easteregg.kelchninja', () => {
+      const gesehen = this.store.count('kelchninjaSightings');
+      if (gesehen >= 4) this.store.setFlag('kelchninja_gesichtet');
+    });
 
     // Musikwechsel an Ort und Stimmung koppeln.
     this.bus.on('world.travel', () => this.audio.syncMusic());
@@ -128,6 +132,7 @@ export class Game {
       authenticity: this.meters.authenticityTier.id,
       nwo: this.meters.influenceTier.id
     };
+    this.meters.grantInfluenceUnlocks();
     this.audio.syncMusic();
     this.bus.emit('game.resumed', { act: this.store.s.player.act });
     return this;

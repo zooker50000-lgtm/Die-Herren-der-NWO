@@ -23,10 +23,18 @@ kennt weder DOM noch Konsole.
 ```bash
 npm start          # startet den lokalen Dev-Server -> http://localhost:5173
 npm run play       # spielt dieselbe Engine im Terminal
-npm test           # Engine-Tests (node:test, keine Dependencies)
-npm run validate   # prueft die gesamte Lore-/Content-Datenbank auf Konsistenz
-npm run lore       # Lore-Report: Eintraege pro Layer, Unlocks, Referenzen
+npm test           # 56 Tests (node:test, keine Dependencies)
+npm run validate   # prueft die gesamte Content-Datenbank auf Konsistenz
+npm run lore       # Lore-Report: Verteilung ueber die Layer, Inhaltsmischung
+npm run simulate   # zufaelliger Durchlauf: findet Abstuerze und tote Wege
+npm run solve      # zielgerichteter Durchlauf: beweist, dass das Spiel durchspielbar ist
 ```
+
+Die beiden Durchlaeufe sind keine Spielereien, sondern die wichtigsten
+Werkzeuge des Projekts: `solve` sucht zu jedem offenen Questziel die passende
+Handlung und meldet, woran es haengt. Genau so wurden die Verklemmungen um das
+NWO-Labor, die Lagerhalle und den Kelchninja gefunden — Stellen, an denen die
+Hauptgeschichte nicht weiterging. Der Durchlauf laeuft als Test mit.
 
 Node >= 20 wird benoetigt (ESM + `node:test` + JSON-Import).
 
@@ -52,7 +60,7 @@ src/audio/     Soundboard (WebAudio-synthetisiert, keine Binaerassets)
 src/ui/        Browser-UI (Screens, HUD, Computer, Terminal)
 src/cli/       Terminal-Client
 web/           Statische Shell fuer den Browser-Client
-tools/         Dev-Server, Datenvalidierung, Lore-Report
+tools/         Dev-Server, Datenvalidierung, Lore-Report, Durchlaeufe
 test/          Engine-Tests
 docs/          Architektur, Game-Design, Content-Guide, Roadmap
 ```
@@ -79,6 +87,14 @@ Vier Meter treiben alles an:
 | **CRASHOUT** | Wie nah ist die Eskalation? Aendert Musik, Kamera, UI, NPC-Verhalten. |
 | **METT** | Aufmerksamkeit als Ressource. Mehr Mett = mehr Reichweite = mehr Heeter. |
 | **NWO INFLUENCE** | Wie tief ist die Organisation in deiner Welt? Bei 100%: DIE NWO SIEHT ALLES. |
+
+## Wie man Figuren erreicht
+
+Jeder Dialog haengt an einer Figur und an einem Kanal: **vor Ort**, **Telefon**
+oder **online**. Welches Gespraech eine Figur gerade fuehrt, entscheidet die
+Vermittlung aus Prioritaet und Voraussetzungen — deshalb sagt Mamer im dritten
+Akt etwas anderes als im zehnten, und deshalb ist Hatebox nur ueber das
+Heet-Mehl-Postfach zu stellen und nie auf der Strasse.
 
 ## Lore-Layer
 

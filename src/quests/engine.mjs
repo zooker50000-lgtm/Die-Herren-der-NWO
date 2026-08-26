@@ -29,6 +29,8 @@ export class QuestEngine {
     bus.on('authenticity.changed', () => this.checkAll());
     bus.on('nwo.influence', () => this.checkAll());
     bus.on('alchemy.levelup', () => this.checkAll());
+    // Wer mit einer Figur gesprochen hat, bekommt ihre offenen Auftraege.
+    bus.on('dialogue.closed', ({ npc }) => this.offerFrom(npc));
     bus.on('*', (payload, type) => this.observe(type, payload));
   }
 
@@ -51,7 +53,9 @@ export class QuestEngine {
       id: questId,
       started: this.ctx.store.s.world.minutes,
       day: this.ctx.store.s.world.day,
-      objectives: Object.fromEntries(quest.objectives.map((o) => [o.id, 0]))
+      // Bereits Erledigtes zaehlt sofort: wer die gesuchte Tagebuchseite schon
+      // gefunden hat, bevor die Quest anlief, koennte sie sonst nie abschliessen.
+      objectives: Object.fromEntries(quest.objectives.map((o) => [o.id, this.seedObjective(o)]))
     };
     this.ctx.store.touch('quests');
     if (quest.onStart) applyEffects(this.ctx, quest.onStart, { quest: questId });
@@ -70,8 +74,56 @@ export class QuestEngine {
     }
   }
 
+  /**
+   * Anfangsstand eines Ziels aus dem bestehenden Spielzustand.
+   * Deckt die Ziele ab, die auf einen dauerhaften Zustand zeigen (Besitz,
+   * besuchte Orte, gefundene Seiten) - reine Handlungsziele starten bei 0.
+   */
+  seedObjective(objective) {
+    const s = this.ctx.store.s;
+    const where = objective.where ?? {};
+    const treffer = (bedingung) => (bedingung ? 1 : 0);
+    let zaehler = 0;
+
+    switch (objective.event) {
+      case 'tagebuch.page':
+        zaehler = where.page ? treffer(s.tagebuch.pages.includes(where.page)) : s.tagebuch.pages.length;
+        break;
+      case 'item.gained':
+        zaehler = where.item ? treffer((s.inventory[where.item] ?? 0) > 0) : 0;
+        break;
+      case 'labor.area':
+        zaehler = where.area ? treffer(s.world.labAreas.includes(where.area)) : s.world.labAreas.length;
+        break;
+      case 'world.travel':
+        zaehler = where.to ? treffer(s.world.visited.includes(where.to)) : 0;
+        break;
+      case 'dialogue.closed':
+        zaehler = where.dialogue ? treffer(s.dialogue.played.includes(where.dialogue)) : 0;
+        break;
+      case 'fideo.watched':
+        zaehler = where.id ? treffer(s.media.watched.includes(where.id)) : 0;
+        break;
+      case 'quest.completed':
+        zaehler = where.quest ? treffer(s.quests.completed.includes(where.quest)) : 0;
+        break;
+      default:
+        zaehler = 0;
+    }
+    return Math.min(zaehler, objective.count ?? 1);
+  }
+
+  /** Auftraege, die diese Figur vergibt und die jetzt moeglich sind. */
+  offerFrom(npcId) {
+    if (!npcId) return [];
+    const offen = this.available().filter((q) => q.giver === npcId && !q.hidden);
+    for (const quest of offen) this.start(quest.id);
+    return offen;
+  }
+
   observe(type, payload) {
     if (type.startsWith('quest.')) return;
+    this.discoverHidden(type, payload);
     let changed = false;
     for (const questId of Object.keys(this.state.active)) {
       const quest = this.ctx.registry.quest(questId);
@@ -96,6 +148,21 @@ export class QuestEngine {
       }
     }
     if (changed) { this.ctx.store.touch('quests'); this.checkAll(); }
+  }
+
+  /**
+   * Versteckte Quests werden nicht angeboten, sondern entdeckt: sobald ein
+   * Ereignis auf ihr erstes Ziel passt, laufen sie an. Ohne das koennten sie
+   * nie beginnen, weil sie in keiner Liste auftauchen.
+   */
+  discoverHidden(type, payload) {
+    for (const quest of this.available()) {
+      if (!quest.hidden) continue;
+      const erstes = quest.objectives[0];
+      if (erstes?.event !== type) continue;
+      if (!matchWhere(erstes.where, payload)) continue;
+      this.start(quest.id);
+    }
   }
 
   forceObjective(questId, objectiveId) {

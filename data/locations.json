@@ -1,12 +1,25 @@
 {
   "$comment": "Locationgraph. Die Karte ist eine fiktionalisierte Version von Berlin; die Orte sind Spielorte und keine Aussagen über reale Adressen.",
-
   "regions": [
-    { "id": "berlin", "name": "Berlin (fiktionalisiert)", "unlock": "start", "layer": "FICTIONAL_GAME_CONTENT" },
-    { "id": "hamburg", "name": "Hamburg (fiktionalisiert)", "unlock": "akt_9", "layer": "FICTIONAL_GAME_CONTENT" },
-    { "id": "untergrund", "name": "Der Untergrund", "unlock": "akt_8", "layer": "FICTIONAL_GAME_CONTENT" }
+    {
+      "id": "berlin",
+      "name": "Berlin (fiktionalisiert)",
+      "unlock": "start",
+      "layer": "FICTIONAL_GAME_CONTENT"
+    },
+    {
+      "id": "hamburg",
+      "name": "Hamburg (fiktionalisiert)",
+      "unlock": "akt_9",
+      "layer": "FICTIONAL_GAME_CONTENT"
+    },
+    {
+      "id": "untergrund",
+      "name": "Der Untergrund",
+      "unlock": "akt_8",
+      "layer": "FICTIONAL_GAME_CONTENT"
+    }
   ],
-
   "locations": [
     {
       "id": "mimons_wohnung",
@@ -16,17 +29,65 @@
       "layer": "SOURCE_BASED_LORE",
       "description": "Zwei Zimmer, ein Fenster zur Straße, ein Computer, sehr viele Ordner. Hier wird alles aufgehoben.",
       "crashoutDecay": 2.0,
-      "connections": ["strasse", "mamer_bereich"],
+      "connections": [
+        "strasse",
+        "mamer_bereich"
+      ],
       "interactables": [
-        { "id": "computer", "label": "Computer", "type": "app", "app": "computer" },
-        { "id": "telefon", "label": "Telefon", "type": "app", "app": "telefon" },
-        { "id": "fenster", "label": "Fenster", "type": "window" },
-        { "id": "buecher", "label": "Bücherregal", "type": "reading", "topics": ["alchemie", "geschichte", "religion", "alte_dokumente"] },
-        { "id": "alchemie_ecke", "label": "Alchemie-Ecke", "type": "alchemy", "labLevel": 1 },
-        { "id": "kleidung", "label": "Kleiderschrank", "type": "outfit" },
-        { "id": "archiv", "label": "Das Archiv", "type": "archive" },
-        { "id": "kueche", "label": "Küche", "type": "rest" },
-        { "id": "bett", "label": "Schlafen", "type": "sleep" }
+        {
+          "id": "computer",
+          "label": "Computer",
+          "type": "app",
+          "app": "computer"
+        },
+        {
+          "id": "telefon",
+          "label": "Telefon",
+          "type": "app",
+          "app": "telefon"
+        },
+        {
+          "id": "fenster",
+          "label": "Fenster",
+          "type": "window"
+        },
+        {
+          "id": "buecher",
+          "label": "Bücherregal",
+          "type": "reading",
+          "topics": [
+            "alchemie",
+            "geschichte",
+            "religion",
+            "alte_dokumente"
+          ]
+        },
+        {
+          "id": "alchemie_ecke",
+          "label": "Alchemie-Ecke",
+          "type": "alchemy",
+          "labLevel": 1
+        },
+        {
+          "id": "kleidung",
+          "label": "Kleiderschrank",
+          "type": "outfit"
+        },
+        {
+          "id": "archiv",
+          "label": "Das Archiv",
+          "type": "archive"
+        },
+        {
+          "id": "kueche",
+          "label": "Küche",
+          "type": "rest"
+        },
+        {
+          "id": "bett",
+          "label": "Schlafen",
+          "type": "sleep"
+        }
       ]
     },
     {
@@ -36,11 +97,25 @@
       "layer": "SOURCE_BASED_LORE",
       "description": "Ordentlich. Ein Fernseher, der leise läuft, und ein Stuhl, auf dem seit Jahren dieselbe Jacke hängt.",
       "crashoutDecay": 3.0,
-      "connections": ["mimons_wohnung"],
-      "npcs": ["mamer"],
+      "connections": [
+        "mimons_wohnung"
+      ],
+      "npcs": [
+        "mamer"
+      ],
       "interactables": [
-        { "id": "mamer_reden", "label": "Mit Mamer reden", "type": "dialogue", "dialogue": "mamer_hub" },
-        { "id": "mamer_foto", "label": "Das alte Foto", "type": "lore", "lore": "lore_familienfoto" }
+        {
+          "id": "mamer_reden",
+          "label": "Mit Mamer reden",
+          "type": "dialogue",
+          "dialogue": "mamer_hub"
+        },
+        {
+          "id": "mamer_foto",
+          "label": "Das alte Foto",
+          "type": "lore",
+          "lore": "lore_familienfoto"
+        }
       ]
     },
     {
@@ -50,11 +125,32 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "description": "Parkende Fahrzeuge, ein Kiosk, vier Kameras, von denen zwei niemandem gehören.",
       "crashoutDecay": 0.6,
-      "connections": ["mimons_wohnung", "supermarkt", "doenerladen", "park", "internetcafe", "polizeistation", "bahnhof"],
-      "npcs": ["seekarl", "toni"],
+      "connections": [
+        "mimons_wohnung",
+        "supermarkt",
+        "doenerladen",
+        "park",
+        "internetcafe",
+        "polizeistation",
+        "bahnhof"
+      ],
+      "npcs": [
+        "seekarl",
+        "toni"
+      ],
       "interactables": [
-        { "id": "fahrzeuge_pruefen", "label": "Fahrzeuge prüfen", "type": "investigate", "check": "authenticity" },
-        { "id": "kiosk", "label": "Kiosk", "type": "shop", "shop": "kiosk" }
+        {
+          "id": "fahrzeuge_pruefen",
+          "label": "Fahrzeuge prüfen",
+          "type": "investigate",
+          "check": "authenticity"
+        },
+        {
+          "id": "kiosk",
+          "label": "Kiosk",
+          "type": "shop",
+          "shop": "kiosk"
+        }
       ]
     },
     {
@@ -64,11 +160,25 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "description": "Neonlicht, Musik von 1994, und an der Kasse jemand, der Mimon aus einem Fideo kennt.",
       "crashoutDecay": 0.8,
-      "connections": ["strasse"],
-      "npcs": ["honig"],
+      "connections": [
+        "strasse"
+      ],
+      "npcs": [
+        "honig"
+      ],
       "interactables": [
-        { "id": "einkaufen", "label": "Einkaufen", "type": "shop", "shop": "supermarkt" },
-        { "id": "erkannt_werden", "label": "Erkannt werden", "type": "event", "event": "ev_erkannt_supermarkt" }
+        {
+          "id": "einkaufen",
+          "label": "Einkaufen",
+          "type": "shop",
+          "shop": "supermarkt"
+        },
+        {
+          "id": "erkannt_werden",
+          "label": "Erkannt werden",
+          "type": "event",
+          "event": "ev_erkannt_supermarkt"
+        }
       ]
     },
     {
@@ -78,11 +188,25 @@
       "layer": "MEME_LORE",
       "description": "Der beste Dönerteller der Gegend, und der einzige Ort, an dem Mimon nachweislich schweigt. Kurz.",
       "crashoutDecay": 2.5,
-      "connections": ["strasse"],
-      "npcs": ["toni"],
+      "connections": [
+        "strasse"
+      ],
+      "npcs": [
+        "toni"
+      ],
       "interactables": [
-        { "id": "doenerteller", "label": "Dönerteller bestellen", "type": "consume", "item": "doenerteller" },
-        { "id": "toni_reden", "label": "Mit Toni reden", "type": "dialogue", "dialogue": "toni_hub" }
+        {
+          "id": "doenerteller",
+          "label": "Dönerteller bestellen",
+          "type": "consume",
+          "item": "doenerteller"
+        },
+        {
+          "id": "toni_reden",
+          "label": "Mit Toni reden",
+          "type": "dialogue",
+          "dialogue": "toni_hub"
+        }
       ]
     },
     {
@@ -92,11 +216,24 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "description": "Sechs Rechner, drei funktionieren. Auf Platz vier hat jemand etwas gesucht und den Verlauf nicht gelöscht.",
       "crashoutDecay": 0.5,
-      "connections": ["strasse"],
-      "npcs": ["markus_grohe"],
+      "connections": [
+        "strasse"
+      ],
+      "npcs": [
+        "markus_grohe"
+      ],
       "interactables": [
-        { "id": "fremder_rechner", "label": "Rechner Nr. 4", "type": "investigate", "check": "mimonolog" },
-        { "id": "anonym_hochladen", "label": "Anonym hochladen", "type": "upload" }
+        {
+          "id": "fremder_rechner",
+          "label": "Rechner Nr. 4",
+          "type": "investigate",
+          "check": "mimonolog"
+        },
+        {
+          "id": "anonym_hochladen",
+          "label": "Anonym hochladen",
+          "type": "upload"
+        }
       ]
     },
     {
@@ -106,10 +243,25 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "description": "Ein Basketballkorb ohne Netz, eine Bank, und abends Leute, die dort nicht wohnen.",
       "crashoutDecay": 1.6,
-      "connections": ["strasse", "geheimer_treffpunkt"],
+      "connections": [
+        "strasse",
+        "geheimer_treffpunkt"
+      ],
       "interactables": [
-        { "id": "basketball", "label": "Basketball", "type": "minigame", "minigame": "basketball" },
-        { "id": "bank_sitzen", "label": "Auf der Bank sitzen", "type": "rest" }
+        {
+          "id": "basketball",
+          "label": "Basketball",
+          "type": "minigame",
+          "minigame": "basketball"
+        },
+        {
+          "id": "bank_sitzen",
+          "label": "Auf der Bank sitzen",
+          "type": "rest"
+        }
+      ],
+      "npcs": [
+        "der_kelchninja"
       ]
     },
     {
@@ -119,11 +271,24 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "description": "Wartenummer 41. Aufgerufen wird gerade die 12. An der Wand hängt ein Hinweis zu Onlinekriminalität.",
       "crashoutDecay": 0.3,
-      "connections": ["strasse"],
-      "npcs": ["kommissarin_devrim"],
+      "connections": [
+        "strasse"
+      ],
+      "npcs": [
+        "kommissarin_devrim"
+      ],
       "interactables": [
-        { "id": "anzeige", "label": "Anzeige erstatten", "type": "police_report" },
-        { "id": "devrim_reden", "label": "Mit Kommissarin Devrim reden", "type": "dialogue", "dialogue": "devrim_hub" }
+        {
+          "id": "anzeige",
+          "label": "Anzeige erstatten",
+          "type": "police_report"
+        },
+        {
+          "id": "devrim_reden",
+          "label": "Mit Kommissarin Devrim reden",
+          "type": "dialogue",
+          "dialogue": "devrim_hub"
+        }
       ]
     },
     {
@@ -133,11 +298,32 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "description": "Durchsagen, die niemand versteht, und ein Mann, der seit vier Stunden dieselbe Zeitung nicht liest.",
       "crashoutDecay": 0.4,
-      "connections": ["strasse", "nwo_productions", "hamburg_hafen"],
-      "npcs": ["nwo_flunder"],
+      "connections": [
+        "strasse",
+        "nwo_productions",
+        "hamburg_hafen"
+      ],
+      "npcs": [
+        "nwo_flunder"
+      ],
       "interactables": [
-        { "id": "beobachten", "label": "Den Mann beobachten", "type": "investigate", "check": "authenticity" },
-        { "id": "reisen_hamburg", "label": "Nach Hamburg fahren", "type": "travel", "target": "hamburg_hafen", "requires": { "act": { "min": 9 } } }
+        {
+          "id": "beobachten",
+          "label": "Den Mann beobachten",
+          "type": "investigate",
+          "check": "authenticity"
+        },
+        {
+          "id": "reisen_hamburg",
+          "label": "Nach Hamburg fahren",
+          "type": "travel",
+          "target": "hamburg_hafen",
+          "requires": {
+            "act": {
+              "min": 9
+            }
+          }
+        }
       ]
     },
     {
@@ -148,11 +334,25 @@
       "unlock": "nwo_versteck",
       "description": "Ein Hinterhof, eine Tür ohne Klingel. Drinnen riecht es nach altem Papier und neuer Technik.",
       "crashoutDecay": 0.2,
-      "connections": ["geheimer_treffpunkt"],
-      "npcs": ["reiter_wixler", "judas_timme"],
+      "connections": [
+        "geheimer_treffpunkt"
+      ],
+      "npcs": [
+        "reiter_wixler",
+        "judas_timme"
+      ],
       "interactables": [
-        { "id": "reiter_reden", "label": "Mit Reiter Wixler reden", "type": "dialogue", "dialogue": "reiter_hub" },
-        { "id": "nwo_terminal_zugang", "label": "NWO-Terminal", "type": "terminal" }
+        {
+          "id": "reiter_reden",
+          "label": "Mit Reiter Wixler reden",
+          "type": "dialogue",
+          "dialogue": "reiter_hub"
+        },
+        {
+          "id": "nwo_terminal_zugang",
+          "label": "NWO-Terminal",
+          "type": "terminal"
+        }
       ]
     },
     {
@@ -163,12 +363,37 @@
       "unlock": "akt_5",
       "description": "Ein Studio mit vier Mikrofonen und einer Wand voller Aufnahmen, die nach Serien sortiert sind.",
       "crashoutDecay": 0.7,
-      "connections": ["bahnhof", "geheimer_treffpunkt"],
-      "npcs": ["henry_heaven", "nwo_kai"],
+      "connections": [
+        "bahnhof",
+        "geheimer_treffpunkt"
+      ],
+      "npcs": [
+        "henry_heaven",
+        "nwo_kai"
+      ],
       "interactables": [
-        { "id": "serien_hoeren", "label": "Aufnahmen anhören", "type": "series" },
-        { "id": "studio", "label": "Ins Studio", "type": "dialogue", "dialogue": "productions_hub" },
-        { "id": "pressestelle", "label": "Pressestelle", "type": "dialogue", "dialogue": "pressesprecher_angebot", "requires": { "act": { "min": 13 } } }
+        {
+          "id": "serien_hoeren",
+          "label": "Aufnahmen anhören",
+          "type": "series"
+        },
+        {
+          "id": "studio",
+          "label": "Ins Studio",
+          "type": "dialogue",
+          "dialogue": "productions_hub"
+        },
+        {
+          "id": "pressestelle",
+          "label": "Pressestelle",
+          "type": "dialogue",
+          "dialogue": "pressesprecher_angebot",
+          "requires": {
+            "act": {
+              "min": 13
+            }
+          }
+        }
       ]
     },
     {
@@ -179,10 +404,23 @@
       "unlock": "akt_4",
       "description": "Unter der Brücke, dort wo das Licht ausfällt. Immer dieselbe Uhrzeit, nie derselbe Mensch.",
       "crashoutDecay": 0.4,
-      "connections": ["park", "nwo_versteck", "nwo_productions", "alchemielabor"],
-      "npcs": ["nra_beats_nwo", "nwo_watch"],
+      "connections": [
+        "park",
+        "nwo_versteck",
+        "nwo_productions",
+        "alchemielabor",
+        "nwo_labor"
+      ],
+      "npcs": [
+        "nra_beats_nwo",
+        "nwo_watch"
+      ],
       "interactables": [
-        { "id": "treffen", "label": "Auf den Kontakt warten", "type": "wait_contact" }
+        {
+          "id": "treffen",
+          "label": "Auf den Kontakt warten",
+          "type": "wait_contact"
+        }
       ]
     },
     {
@@ -193,12 +431,30 @@
       "unlock": "akt_6",
       "description": "Ein Kellerraum voller Gläser mit Beschriftungen in einer Handschrift, die niemand mehr schreibt.",
       "crashoutDecay": 1.2,
-      "connections": ["geheimer_treffpunkt"],
-      "npcs": ["myrrmoasta"],
+      "connections": [
+        "geheimer_treffpunkt"
+      ],
+      "npcs": [
+        "myrrmoasta"
+      ],
       "interactables": [
-        { "id": "brauen", "label": "Brauen", "type": "alchemy", "labLevel": 2 },
-        { "id": "zutaten_kaufen", "label": "Zutaten kaufen", "type": "shop", "shop": "myrrmoasta" },
-        { "id": "buecher_studieren", "label": "Bücher studieren", "type": "study" }
+        {
+          "id": "brauen",
+          "label": "Brauen",
+          "type": "alchemy",
+          "labLevel": 2
+        },
+        {
+          "id": "zutaten_kaufen",
+          "label": "Zutaten kaufen",
+          "type": "shop",
+          "shop": "myrrmoasta"
+        },
+        {
+          "id": "buecher_studieren",
+          "label": "Bücher studieren",
+          "type": "study"
+        }
       ]
     },
     {
@@ -210,19 +466,103 @@
       "endgame": true,
       "description": "Unter der Stadt. Zwölf Meter tief, Lüftung von 1974, Server von letzter Woche.",
       "crashoutDecay": 0.0,
-      "connections": ["geheimer_treffpunkt"],
-      "npcs": ["martin_goldnatz", "johann_von_grafenfried"],
+      "connections": [
+        "geheimer_treffpunkt"
+      ],
+      "npcs": [
+        "martin_goldnatz",
+        "johann_von_grafenfried"
+      ],
       "areas": [
-        { "id": "eingang", "label": "Eingang", "requires": {} },
-        { "id": "sicherheitskontrolle", "label": "Sicherheitskontrolle", "requires": { "items": ["nwo_ausweis"] } },
-        { "id": "nwo_archiv", "label": "NWO-Archiv", "requires": { "stats": { "nwoInfluence": { "min": 60 } } } },
-        { "id": "serverraum", "label": "Serverraum", "requires": { "items": ["nwo_usb_stick"] } },
-        { "id": "tonstudio", "label": "Tonstudio", "requires": {} },
-        { "id": "alchemielabor_u7", "label": "Alchemielabor", "requires": { "stats": { "alchemy": { "min": 40 } } } },
-        { "id": "besprechungsraum", "label": "Besprechungsraum", "requires": { "flags": ["eingeladen_u7"] } },
-        { "id": "geheime_bibliothek", "label": "Geheime Bibliothek", "requires": { "items": ["nwo_pergament"] } },
-        { "id": "ueberwachungszentrum", "label": "Überwachungszentrum", "requires": { "stats": { "nwoInfluence": { "min": 80 } } } },
-        { "id": "mimon_archiv", "label": "Verstecktes Mimon-Archiv", "hidden": true, "requires": { "flags": ["u7_hinweis_gefunden"] } }
+        {
+          "id": "eingang",
+          "label": "Eingang",
+          "requires": {}
+        },
+        {
+          "id": "sicherheitskontrolle",
+          "label": "Sicherheitskontrolle",
+          "requires": {
+            "items": [
+              "nwo_ausweis"
+            ]
+          }
+        },
+        {
+          "id": "nwo_archiv",
+          "label": "NWO-Archiv",
+          "requires": {
+            "stats": {
+              "nwoInfluence": {
+                "min": 60
+              }
+            }
+          }
+        },
+        {
+          "id": "serverraum",
+          "label": "Serverraum",
+          "requires": {
+            "items": [
+              "nwo_usb_stick"
+            ]
+          }
+        },
+        {
+          "id": "tonstudio",
+          "label": "Tonstudio",
+          "requires": {}
+        },
+        {
+          "id": "alchemielabor_u7",
+          "label": "Alchemielabor",
+          "requires": {
+            "stats": {
+              "alchemy": {
+                "min": 40
+              }
+            }
+          }
+        },
+        {
+          "id": "besprechungsraum",
+          "label": "Besprechungsraum",
+          "requires": {
+            "flags": [
+              "eingeladen_u7"
+            ]
+          }
+        },
+        {
+          "id": "geheime_bibliothek",
+          "label": "Geheime Bibliothek",
+          "requires": {
+            "flags": [
+              "u7_hinweis_gefunden"
+            ]
+          }
+        },
+        {
+          "id": "ueberwachungszentrum",
+          "label": "Überwachungszentrum",
+          "requires": {
+            "stats": {
+              "nwoInfluence": {
+                "min": 80
+              }
+            }
+          }
+        },
+        {
+          "id": "mimon_archiv",
+          "label": "Verstecktes Mimon-Archiv",
+          "hidden": true,
+          "requires": {
+            "flags": [
+              "u7_hinweis_gefunden"
+            ]
+          }
+        }
       ]
     },
     {
@@ -233,10 +573,19 @@
       "unlock": "akt_9",
       "description": "Container, Nebel, und ein Termin, den Mimon nicht selbst vereinbart hat.",
       "crashoutDecay": 0.3,
-      "connections": ["bahnhof", "hamburg_lagerhalle"],
-      "npcs": ["olligo"],
+      "connections": [
+        "bahnhof",
+        "hamburg_lagerhalle"
+      ],
+      "npcs": [
+        "olligo"
+      ],
       "interactables": [
-        { "id": "warten", "label": "Warten", "type": "wait_contact" }
+        {
+          "id": "warten",
+          "label": "Warten",
+          "type": "wait_contact"
+        }
       ]
     },
     {
@@ -244,20 +593,56 @@
       "name": "Lagerhalle 9",
       "region": "hamburg",
       "layer": "IN_UNIVERSE_AUDIO_LORE",
-      "unlock": "operation_hades",
+      "unlock": "hinweis_lagerhalle",
       "description": "Eine Halle, in der eine einzige Lampe brennt, und zwar über einem Stuhl.",
       "crashoutDecay": 0.0,
-      "connections": ["hamburg_hafen"],
-      "npcs": ["olligo", "cap5"],
+      "connections": [
+        "hamburg_hafen"
+      ],
+      "npcs": [
+        "olligo",
+        "cap5"
+      ],
       "interactables": [
-        { "id": "hades_konfrontation", "label": "Hineingehen", "type": "dialogue", "dialogue": "hades_konfrontation" }
+        {
+          "id": "hades_konfrontation",
+          "label": "Hineingehen",
+          "type": "dialogue",
+          "dialogue": "hades_konfrontation"
+        }
       ]
     }
   ],
-
   "shops": {
-    "kiosk": { "name": "Kiosk", "currency": "mett", "stock": ["energydrink", "zeitung", "prepaid_karte"] },
-    "supermarkt": { "name": "Supermarkt", "currency": "mett", "stock": ["mett_packung", "notizbuch", "batterien"] },
-    "myrrmoasta": { "name": "Myrrmoastas Bestand", "currency": "mett", "stock": ["harz_der_stille", "salz_der_erde", "essenz_des_kelchs", "alchemiebuch_ii"] }
+    "kiosk": {
+      "name": "Kiosk",
+      "currency": "mett",
+      "stock": [
+        "energydrink",
+        "zeitung",
+        "prepaid_karte"
+      ]
+    },
+    "supermarkt": {
+      "name": "Supermarkt",
+      "currency": "mett",
+      "stock": [
+        "mett_packung",
+        "notizbuch",
+        "batterien"
+      ]
+    },
+    "myrrmoasta": {
+      "name": "Myrrmoastas Bestand",
+      "currency": "mett",
+      "stock": [
+        "harz_der_stille",
+        "salz_der_erde",
+        "essenz_des_kelchs",
+        "quecksilbriges_zeichen",
+        "asche_des_archivs",
+        "alchemiebuch_ii"
+      ]
+    }
   }
 }

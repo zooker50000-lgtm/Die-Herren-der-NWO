@@ -1,51 +1,416 @@
 {
   "$comment": "Inventar. type: key | quest | wearable | consumable | ingredient | document | collectible | tool",
-
   "items": [
-    { "id": "magisches_tagebuch", "name": "Magisches Tagebuch", "type": "key", "unique": true, "layer": "SOURCE_BASED_LORE", "icon": "book", "description": "Erinnerungen, Notizen, Alchemie, Gedichte, Theorien, Namen, Hinweise. Es fehlen Seiten.", "pages": 12, "startPages": 3 },
-    { "id": "alchemiebuch_i", "name": "Alchemiebuch I — Von den Essenzen", "type": "document", "layer": "FICTIONAL_GAME_CONTENT", "icon": "book", "description": "Grundlagen, symbolisch geschrieben. Farben, Stufen, Planetenzeichen. Keine Anleitung zu irgendetwas Realem.", "effects": { "alchemyXp": 60 } },
-    { "id": "alchemiebuch_ii", "name": "Alchemiebuch II — Vom Kelch", "type": "document", "layer": "FICTIONAL_GAME_CONTENT", "icon": "book", "description": "Beschreibt den Kelch als Gefäß und als Prüfung. Der Autor ist nicht genannt.", "price": 220, "effects": { "alchemyXp": 140 } },
-    { "id": "lederjacke", "name": "Lederjacke", "type": "wearable", "slot": "oberkoerper", "layer": "SOURCE_BASED_LORE", "icon": "jacket", "description": "Getragen, nicht gekauft. Erkennungszeichen.", "effects": { "authenticity": 4 } },
-    { "id": "jeans", "name": "Jeans", "type": "wearable", "slot": "beine", "layer": "SOURCE_BASED_LORE", "icon": "pants", "description": "Praktisch. Fertig.", "effects": { "authenticity": 1 } },
-    { "id": "tutanchamun_anhaenger", "name": "Tutanchamun-Anhänger", "type": "wearable", "slot": "hals", "layer": "SOURCE_BASED_LORE", "icon": "amulet", "description": "Geschichte zum Umhängen. Mimon kann dazu vierzig Minuten sagen.", "effects": { "alchemyXp": 10, "authenticity": 2 } },
-    { "id": "widderkopf_anhaenger", "name": "Widderkopf-Anhänger", "type": "wearable", "slot": "hals", "layer": "SOURCE_BASED_LORE", "icon": "amulet", "description": "Widder. Feuer. Anfang. Mehr Erklärung gibt es nicht, und das ist Absicht.", "effects": { "crashoutResist": -5, "authenticity": 3 } },
-    { "id": "kelch", "name": "Der Kelch", "type": "quest", "unique": true, "layer": "IN_UNIVERSE_AUDIO_LORE", "icon": "cup", "description": "Schwerer als er aussieht. Innen eine Gravur, die erst bei Licht von unten lesbar wird.", "effects": { "alchemyXp": 200 } },
-    { "id": "schwert_des_kelchninjas", "name": "Schwert des Kelchninjas", "type": "collectible", "unique": true, "layer": "MEME_LORE", "icon": "sword", "description": "Es hing an einer Wand, an der nichts hing.", "effects": { "authenticity": 5 } },
-    { "id": "heet_mehl_ausdruck", "name": "Ausgedrucktes Heet-Mehl", "type": "document", "stackable": true, "layer": "SOURCE_BASED_LORE", "icon": "mail", "description": "Beweismittel. Mit Datum, Uhrzeit und Absender. Alles aufgehoben." },
-    { "id": "nwo_ausweis", "name": "NWO-Ausweis", "type": "key", "unique": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "card", "description": "Ein Name, der nicht Mimons ist, und ein Foto, das eindeutig Mimon zeigt." },
-    { "id": "nwo_usb_stick", "name": "NWO-USB-Stick", "type": "key", "unique": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "chip", "description": "Vier Ordner. Drei sind leer. Der vierte heißt BARAKA." },
-    { "id": "nwo_pergament", "name": "NWO-Pergament", "type": "key", "unique": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "scroll", "description": "Alt aussehendes Papier mit sehr neuem Druckbild." },
-    { "id": "mamer_foto", "name": "Foto von Mamer", "type": "collectible", "unique": true, "layer": "SOURCE_BASED_LORE", "icon": "photo", "description": "Irene, jünger, vor einem Haus, das es nicht mehr gibt. Auf der Rückseite steht ein Datum.", "effects": { "crashoutResist": 6 } },
-    { "id": "alte_fideos", "name": "Alte Fideos (Datenträger)", "type": "document", "stackable": true, "layer": "SOURCE_BASED_LORE", "icon": "tape", "description": "Das Archiv in physischer Form. Zwei davon existieren online nicht mehr." },
-    { "id": "juhtub_kamera", "name": "Juhtub-Kamera", "type": "tool", "unique": true, "layer": "SOURCE_BASED_LORE", "icon": "camera", "description": "Damit fängt alles an und damit hört alles auf.", "effects": { "mett": 0 } },
-    { "id": "harz_der_stille", "name": "Harz der Stille", "type": "ingredient", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "flask", "price": 40, "description": "Riecht nach nichts. Genau das ist der Punkt." },
-    { "id": "salz_der_erde", "name": "Salz der Erde", "type": "ingredient", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "flask", "price": 25, "description": "Grob, grau, unspektakulär. Grundlage von allem." },
-    { "id": "essenz_des_kelchs", "name": "Essenz des Kelchs", "type": "ingredient", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "flask", "price": 90, "description": "Nur bei Kerzenlicht sichtbar. Bei Neonlicht angeblich auch, aber niemand prüft das nach." },
-    { "id": "quecksilbriges_zeichen", "name": "Merkurzeichen", "type": "ingredient", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "sigil", "description": "Ein Symbol, kein Stoff. In der Alchemie ist das kein Widerspruch." },
-    { "id": "asche_des_archivs", "name": "Asche des Archivs", "type": "ingredient", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "flask", "description": "Was übrig bleibt, wenn ein Fideo gelöscht wird. Symbolisch. Vermutlich." },
-    { "id": "doenerteller", "name": "Dönerteller", "type": "consumable", "stackable": true, "layer": "MEME_LORE", "icon": "food", "price": 12, "description": "Der einzige dokumentierte Grund für eine Pause.", "effects": { "crashout": -14, "log": "Kurze Ruhe. Sehr kurze Ruhe." } },
-    { "id": "energydrink", "name": "Energydrink", "type": "consumable", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "food", "price": 8, "description": "Wirkt in beide Richtungen.", "effects": { "crashout": 6, "mett": 15 } },
-    { "id": "zeitung", "name": "Zeitung", "type": "consumable", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "paper", "price": 4, "description": "Steht nichts drin. Das ist die Information.", "effects": { "nwoInfluence": 1, "authenticity": 1 } },
-    { "id": "prepaid_karte", "name": "Prepaid-Karte", "type": "tool", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "card", "price": 30, "description": "Für Anrufe, die nicht zurückverfolgt werden sollen." },
-    { "id": "mett_packung", "name": "Packung Mett", "type": "consumable", "stackable": true, "layer": "MEME_LORE", "icon": "food", "price": 6, "description": "Buchstäblich Mett. Der Witz ist alt und funktioniert trotzdem.", "effects": { "mett": 30, "crashout": -4 } },
-    { "id": "notizbuch", "name": "Notizbuch", "type": "tool", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "book", "price": 10, "description": "Für das, was nicht ins Tagebuch gehört." },
-    { "id": "batterien", "name": "Batterien", "type": "tool", "stackable": true, "layer": "FICTIONAL_GAME_CONTENT", "icon": "chip", "price": 9, "description": "Für die Kamera. Ohne die geht gar nichts." },
-    { "id": "basketball", "name": "Basketball", "type": "tool", "unique": true, "layer": "MEME_LORE", "icon": "ball", "description": "Steht im Flur. Wird selten benutzt, aber er steht da.", "effects": { "crashout": -8 } },
-    { "id": "nano_kassette", "name": "Kassette: NANO", "type": "collectible", "unique": true, "layer": "MEME_LORE", "icon": "tape", "description": "Handbeschriftet. Ein Wort: NANO. Sonst nichts." }
+    {
+      "id": "magisches_tagebuch",
+      "name": "Magisches Tagebuch",
+      "type": "key",
+      "unique": true,
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "book",
+      "description": "Erinnerungen, Notizen, Alchemie, Gedichte, Theorien, Namen, Hinweise. Es fehlen Seiten.",
+      "pages": 12,
+      "startPages": 3
+    },
+    {
+      "id": "alchemiebuch_i",
+      "name": "Alchemiebuch I — Von den Essenzen",
+      "type": "document",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "book",
+      "description": "Grundlagen, symbolisch geschrieben. Farben, Stufen, Planetenzeichen. Keine Anleitung zu irgendetwas Realem.",
+      "effects": {
+        "alchemyXp": 60
+      }
+    },
+    {
+      "id": "alchemiebuch_ii",
+      "name": "Alchemiebuch II — Vom Kelch",
+      "type": "document",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "book",
+      "description": "Beschreibt den Kelch als Gefäß und als Prüfung. Der Autor ist nicht genannt.",
+      "price": 220,
+      "effects": {
+        "alchemyXp": 140
+      }
+    },
+    {
+      "id": "lederjacke",
+      "name": "Lederjacke",
+      "type": "wearable",
+      "slot": "oberkoerper",
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "jacket",
+      "description": "Getragen, nicht gekauft. Erkennungszeichen.",
+      "effects": {
+        "authenticity": 4
+      }
+    },
+    {
+      "id": "jeans",
+      "name": "Jeans",
+      "type": "wearable",
+      "slot": "beine",
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "pants",
+      "description": "Praktisch. Fertig.",
+      "effects": {
+        "authenticity": 1
+      }
+    },
+    {
+      "id": "tutanchamun_anhaenger",
+      "name": "Tutanchamun-Anhänger",
+      "type": "wearable",
+      "slot": "hals",
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "amulet",
+      "description": "Geschichte zum Umhängen. Mimon kann dazu vierzig Minuten sagen.",
+      "effects": {
+        "alchemyXp": 10,
+        "authenticity": 2
+      }
+    },
+    {
+      "id": "widderkopf_anhaenger",
+      "name": "Widderkopf-Anhänger",
+      "type": "wearable",
+      "slot": "hals",
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "amulet",
+      "description": "Widder. Feuer. Anfang. Mehr Erklärung gibt es nicht, und das ist Absicht.",
+      "effects": {
+        "crashoutResist": -5,
+        "authenticity": 3
+      }
+    },
+    {
+      "id": "kelch",
+      "name": "Der Kelch",
+      "type": "quest",
+      "unique": true,
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "icon": "cup",
+      "description": "Schwerer als er aussieht. Innen eine Gravur, die erst bei Licht von unten lesbar wird.",
+      "effects": {
+        "alchemyXp": 200
+      }
+    },
+    {
+      "id": "schwert_des_kelchninjas",
+      "name": "Schwert des Kelchninjas",
+      "type": "collectible",
+      "unique": true,
+      "layer": "MEME_LORE",
+      "icon": "sword",
+      "description": "Es hing an einer Wand, an der nichts hing.",
+      "effects": {
+        "authenticity": 5
+      }
+    },
+    {
+      "id": "heet_mehl_ausdruck",
+      "name": "Ausgedrucktes Heet-Mehl",
+      "type": "document",
+      "stackable": true,
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "mail",
+      "description": "Beweismittel. Mit Datum, Uhrzeit und Absender. Alles aufgehoben."
+    },
+    {
+      "id": "nwo_ausweis",
+      "name": "NWO-Ausweis",
+      "type": "key",
+      "unique": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "card",
+      "description": "Ein Name, der nicht Mimons ist, und ein Foto, das eindeutig Mimon zeigt."
+    },
+    {
+      "id": "nwo_usb_stick",
+      "name": "NWO-USB-Stick",
+      "type": "key",
+      "unique": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "chip",
+      "description": "Vier Ordner. Drei sind leer. Der vierte heißt BARAKA."
+    },
+    {
+      "id": "nwo_pergament",
+      "name": "NWO-Pergament",
+      "type": "key",
+      "unique": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "scroll",
+      "description": "Alt aussehendes Papier mit sehr neuem Druckbild."
+    },
+    {
+      "id": "mamer_foto",
+      "name": "Foto von Mamer",
+      "type": "collectible",
+      "unique": true,
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "photo",
+      "description": "Irene, jünger, vor einem Haus, das es nicht mehr gibt. Auf der Rückseite steht ein Datum.",
+      "effects": {
+        "crashoutResist": 6
+      }
+    },
+    {
+      "id": "alte_fideos",
+      "name": "Alte Fideos (Datenträger)",
+      "type": "document",
+      "stackable": true,
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "tape",
+      "description": "Das Archiv in physischer Form. Zwei davon existieren online nicht mehr."
+    },
+    {
+      "id": "juhtub_kamera",
+      "name": "Juhtub-Kamera",
+      "type": "tool",
+      "unique": true,
+      "layer": "SOURCE_BASED_LORE",
+      "icon": "camera",
+      "description": "Damit fängt alles an und damit hört alles auf.",
+      "effects": {
+        "mett": 0
+      }
+    },
+    {
+      "id": "harz_der_stille",
+      "name": "Harz der Stille",
+      "type": "ingredient",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "flask",
+      "price": 40,
+      "description": "Riecht nach nichts. Genau das ist der Punkt."
+    },
+    {
+      "id": "salz_der_erde",
+      "name": "Salz der Erde",
+      "type": "ingredient",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "flask",
+      "price": 25,
+      "description": "Grob, grau, unspektakulär. Grundlage von allem."
+    },
+    {
+      "id": "essenz_des_kelchs",
+      "name": "Essenz des Kelchs",
+      "type": "ingredient",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "flask",
+      "price": 90,
+      "description": "Nur bei Kerzenlicht sichtbar. Bei Neonlicht angeblich auch, aber niemand prüft das nach."
+    },
+    {
+      "id": "quecksilbriges_zeichen",
+      "name": "Merkurzeichen",
+      "type": "ingredient",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "sigil",
+      "description": "Ein Symbol, kein Stoff. In der Alchemie ist das kein Widerspruch.",
+      "price": 70
+    },
+    {
+      "id": "asche_des_archivs",
+      "name": "Asche des Archivs",
+      "type": "ingredient",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "flask",
+      "description": "Was übrig bleibt, wenn ein Fideo gelöscht wird. Symbolisch. Vermutlich.",
+      "price": 55
+    },
+    {
+      "id": "doenerteller",
+      "name": "Dönerteller",
+      "type": "consumable",
+      "stackable": true,
+      "layer": "MEME_LORE",
+      "icon": "food",
+      "price": 12,
+      "description": "Der einzige dokumentierte Grund für eine Pause.",
+      "effects": {
+        "crashout": -14,
+        "log": "Kurze Ruhe. Sehr kurze Ruhe."
+      }
+    },
+    {
+      "id": "energydrink",
+      "name": "Energydrink",
+      "type": "consumable",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "food",
+      "price": 8,
+      "description": "Wirkt in beide Richtungen.",
+      "effects": {
+        "crashout": 6,
+        "mett": 15
+      }
+    },
+    {
+      "id": "zeitung",
+      "name": "Zeitung",
+      "type": "consumable",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "paper",
+      "price": 4,
+      "description": "Steht nichts drin. Das ist die Information.",
+      "effects": {
+        "nwoInfluence": 1,
+        "authenticity": 1
+      }
+    },
+    {
+      "id": "prepaid_karte",
+      "name": "Prepaid-Karte",
+      "type": "tool",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "card",
+      "price": 30,
+      "description": "Für Anrufe, die nicht zurückverfolgt werden sollen."
+    },
+    {
+      "id": "mett_packung",
+      "name": "Packung Mett",
+      "type": "consumable",
+      "stackable": true,
+      "layer": "MEME_LORE",
+      "icon": "food",
+      "price": 6,
+      "description": "Buchstäblich Mett. Der Witz ist alt und funktioniert trotzdem.",
+      "effects": {
+        "mett": 30,
+        "crashout": -4
+      }
+    },
+    {
+      "id": "notizbuch",
+      "name": "Notizbuch",
+      "type": "tool",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "book",
+      "price": 10,
+      "description": "Für das, was nicht ins Tagebuch gehört."
+    },
+    {
+      "id": "batterien",
+      "name": "Batterien",
+      "type": "tool",
+      "stackable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "icon": "chip",
+      "price": 9,
+      "description": "Für die Kamera. Ohne die geht gar nichts."
+    },
+    {
+      "id": "basketball",
+      "name": "Basketball",
+      "type": "tool",
+      "unique": true,
+      "layer": "MEME_LORE",
+      "icon": "ball",
+      "description": "Steht im Flur. Wird selten benutzt, aber er steht da.",
+      "effects": {
+        "crashout": -8
+      }
+    },
+    {
+      "id": "nano_kassette",
+      "name": "Kassette: NANO",
+      "type": "collectible",
+      "unique": true,
+      "layer": "MEME_LORE",
+      "icon": "tape",
+      "description": "Handbeschriftet. Ein Wort: NANO. Sonst nichts."
+    }
   ],
-
   "tagebuchSeiten": [
-    { "id": "seite_01", "title": "Erste Seite", "layer": "FICTIONAL_GAME_CONTENT", "found": true, "text": "Wenn ich das aufschreibe, existiert es. Wenn ich es nicht aufschreibe, kann es später jemand anders erzählen." },
-    { "id": "seite_02", "title": "Über das Aufheben", "layer": "FICTIONAL_GAME_CONTENT", "found": true, "text": "Alles aufheben. Alles. Auch das, was heute unwichtig aussieht. Besonders das." },
-    { "id": "seite_03", "title": "Alchemie, erster Eintrag", "layer": "FICTIONAL_GAME_CONTENT", "found": true, "text": "Die Stufen sind: schwarz, weiß, gelb, rot. Nicht als Rezept. Als Reihenfolge, in der man selbst durchgeht." },
-    { "id": "seite_04", "title": "Der Kelch", "layer": "IN_UNIVERSE_AUDIO_LORE", "text": "Der Kelch ist kein Gegenstand, sagt man. Doch. Ich hab ihn in der Hand gehabt. Er ist schwer." },
-    { "id": "seite_05", "title": "Über Heeter", "layer": "FICTIONAL_GAME_CONTENT", "text": "Sie brauchen mich mehr als ich sie. Das ist keine Beruhigung. Das ist eine Beschreibung der Abhängigkeit." },
-    { "id": "seite_06", "title": "Oppar", "layer": "FICTIONAL_GAME_CONTENT", "text": "Oppar hat gesagt: Wer alles glaubt und wer nichts glaubt, kommt am selben Punkt raus. Ich hab damals gelacht." },
-    { "id": "seite_07", "title": "Namen", "layer": "FICTIONAL_GAME_CONTENT", "text": "Eine Liste. Sieben Namen. Bei drei steht ein Fragezeichen. Bei einem steht: ruft immer nachts an." },
-    { "id": "seite_08", "title": "Gedicht ohne Titel", "layer": "FICTIONAL_GAME_CONTENT", "text": "Vor dem Fenster steht ein Wagen / im Wagen sitzt ein Mann / der Mann hat nichts zu sagen / und deshalb fängt es an." },
-    { "id": "seite_09", "title": "U-7", "layer": "IN_UNIVERSE_AUDIO_LORE", "text": "Zwölf Meter. Zwei Freigaben. Ein Raum ohne Schild. Wer schreibt so einen Grundriss?" },
-    { "id": "seite_10", "title": "Über Mamer", "layer": "FICTIONAL_GAME_CONTENT", "text": "Sie sagt, ich soll essen. Ich rede von der Organisation. Später merke ich: sie hat recht gehabt, und zwar in beidem." },
-    { "id": "seite_11", "title": "Der letzte Absatz", "layer": "FICTIONAL_GAME_CONTENT", "text": "Wenn das hier jemand liest, der nicht ich ist: es war real-authentisch. Von Anfang an. Auch das Falsche daran." },
-    { "id": "seite_12", "title": "Nachtrag, eine Zeile", "layer": "MEME_LORE", "text": "Ein Höcker." }
+    {
+      "id": "seite_01",
+      "title": "Erste Seite",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "found": true,
+      "text": "Wenn ich das aufschreibe, existiert es. Wenn ich es nicht aufschreibe, kann es später jemand anders erzählen."
+    },
+    {
+      "id": "seite_02",
+      "title": "Über das Aufheben",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "found": true,
+      "text": "Alles aufheben. Alles. Auch das, was heute unwichtig aussieht. Besonders das."
+    },
+    {
+      "id": "seite_03",
+      "title": "Alchemie, erster Eintrag",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "found": true,
+      "text": "Die Stufen sind: schwarz, weiß, gelb, rot. Nicht als Rezept. Als Reihenfolge, in der man selbst durchgeht."
+    },
+    {
+      "id": "seite_04",
+      "title": "Der Kelch",
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "text": "Der Kelch ist kein Gegenstand, sagt man. Doch. Ich hab ihn in der Hand gehabt. Er ist schwer."
+    },
+    {
+      "id": "seite_05",
+      "title": "Über Heeter",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "text": "Sie brauchen mich mehr als ich sie. Das ist keine Beruhigung. Das ist eine Beschreibung der Abhängigkeit."
+    },
+    {
+      "id": "seite_06",
+      "title": "Oppar",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "text": "Oppar hat gesagt: Wer alles glaubt und wer nichts glaubt, kommt am selben Punkt raus. Ich hab damals gelacht."
+    },
+    {
+      "id": "seite_07",
+      "title": "Namen",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "text": "Eine Liste. Sieben Namen. Bei drei steht ein Fragezeichen. Bei einem steht: ruft immer nachts an."
+    },
+    {
+      "id": "seite_08",
+      "title": "Gedicht ohne Titel",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "text": "Vor dem Fenster steht ein Wagen / im Wagen sitzt ein Mann / der Mann hat nichts zu sagen / und deshalb fängt es an."
+    },
+    {
+      "id": "seite_09",
+      "title": "U-7",
+      "layer": "IN_UNIVERSE_AUDIO_LORE",
+      "text": "Zwölf Meter. Zwei Freigaben. Ein Raum ohne Schild. Wer schreibt so einen Grundriss?"
+    },
+    {
+      "id": "seite_10",
+      "title": "Über Mamer",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "text": "Sie sagt, ich soll essen. Ich rede von der Organisation. Später merke ich: sie hat recht gehabt, und zwar in beidem."
+    },
+    {
+      "id": "seite_11",
+      "title": "Der letzte Absatz",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "text": "Wenn das hier jemand liest, der nicht ich ist: es war real-authentisch. Von Anfang an. Auch das Falsche daran."
+    },
+    {
+      "id": "seite_12",
+      "title": "Nachtrag, eine Zeile",
+      "layer": "MEME_LORE",
+      "text": "Ein Höcker."
+    }
   ]
 }

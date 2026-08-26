@@ -182,7 +182,7 @@
     "RETURN": {
       "calm": [
         "Wo war ich? Genau. Bei {topicShort}.",
-        "Also. Zurück zu {topicShort}.",
+        "Also. Zurück: {topicShort}.",
         "Aber gut, wir waren ja bei {topicShort}.",
         "Wie gesagt: {topicShort}."
       ],

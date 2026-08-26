@@ -125,6 +125,9 @@ export class DialogueEngine {
     const { id, npc, history } = this.active;
     const dialogue = this.active.dialogue;
     this.active = null;
+
+    const played = this.ctx.store.s.dialogue.played;
+    if (!played.includes(id)) { played.push(id); this.ctx.store.touch('dialogue'); }
     this.ctx.bus.emit('dialogue.closed', {
       dialogue: id,
       npc,

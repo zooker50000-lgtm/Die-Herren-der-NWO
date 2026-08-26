@@ -29,11 +29,25 @@ Easter Eggs (umgesetzt), geheime Enden (umgesetzt), dynamische Ereignisse
 (umgesetzt), Sounddesign (synthetisiertes Soundboard umgesetzt, gesampelte
 Assets offen), Performance und UI/UX-Politur (laufend).
 
+## Gemessener Stand
+
+`npm run lore` und `npm run solve` liefern die Zahlen, nicht das Bauchgefuehl:
+
+| Kennzahl | Stand |
+|---|---|
+| Quests | 47, davon 43-44 in einem Durchlauf abschliessbar |
+| Dialoge | 32 Graphen, alle ueber einen Kanal erreichbar |
+| Episoden | 51 gelistet, 27 mit eigener Quest |
+| Orte | 16, alle von Mimons Wohnung aus erreichbar |
+| Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
+
 ## Naechste konkrete Schritte
 
-1. Restliche Episoden der vier Serien als Quests ausformulieren
-   (`data/series.json` fuehrt alle 51 Episoden, ein Teil hat bereits Questdaten).
-2. Zweite Stadt (Hamburg) an den Locationgraph anschliessen.
-3. Dialogzweige fuer niedrigen Trust bei allen Hauptfiguren ergaenzen.
+1. Restliche 24 Episoden als Quests ausformulieren — ALCHEMIMON und BAPHOMIMON
+   sind weitgehend bespielbar, ISLAMIMON und RECHTSEXTREMIMON haben Luecken.
+2. Hamburg ausbauen: bisher zwei Orte, gedacht als eigener Bezirk.
+3. Dialogzweige fuer niedrigen Trust bei allen Hauptfiguren ergaenzen —
+   aktuell reagieren die Figuren kaum darauf, wenn man sie verprellt hat.
 4. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
-5. Controller-/Keyboard-Navigation und Barrierefreiheit in der Web-UI.
+5. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
+   bisher nur farblich unterschieden).

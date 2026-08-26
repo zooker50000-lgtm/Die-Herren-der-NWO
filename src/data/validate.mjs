@@ -89,8 +89,17 @@ export function validateData(data) {
   }
 
   // --- Dialoge ----------------------------------------------------------
+  const KANAELE = ['vor_ort', 'telefon', 'online'];
   for (const [id, dlg] of Object.entries(data.dialogue.dialogues)) {
     if (dlg.npc && !characterIds.has(dlg.npc)) err(`dialogue/${id}: unbekannter npc "${dlg.npc}"`);
+    if (!dlg.channels?.length) err(`dialogue/${id}: channels fehlt`);
+    for (const kanal of dlg.channels ?? []) if (!KANAELE.includes(kanal)) err(`dialogue/${id}: unbekannter Kanal "${kanal}"`);
+    // Ein Vor-Ort-Dialog braucht einen Ort, an dem die Figur auch steht.
+    if ((dlg.channels ?? []).includes('vor_ort')) {
+      const erreichbar = data.locations.locations.some((l) =>
+        (l.npcs ?? []).includes(dlg.npc) || (l.interactables ?? []).some((i) => i.dialogue === id));
+      if (!erreichbar) err(`dialogue/${id}: "${dlg.npc}" steht an keinem Ort, ist aber als vor_ort markiert`);
+    }
     if (!dlg.nodes?.[dlg.start]) err(`dialogue/${id}: start-Knoten "${dlg.start}" fehlt`);
     for (const [nodeId, node] of Object.entries(dlg.nodes ?? {})) {
       const where = `dialogue/${id}/${nodeId}`;
@@ -120,6 +129,25 @@ export function validateData(data) {
       if (it.shop && !data.locations.shops[it.shop]) err(`locations/${loc.id}/${it.id}: Shop "${it.shop}" existiert nicht`);
     }
   }
+  // Sackgassen finden: Verbindungen gelten beidseitig, aber ein Ort ohne
+  // jede Kante waere im Spiel nie zu betreten.
+  const kanten = new Map(data.locations.locations.map((l) => [l.id, new Set(l.connections ?? [])]));
+  for (const loc of data.locations.locations) {
+    for (const ziel of loc.connections ?? []) kanten.get(ziel)?.add(loc.id);
+  }
+  const gesehen = new Set(['mimons_wohnung']);
+  const rand = ['mimons_wohnung'];
+  while (rand.length) {
+    for (const nachbar of kanten.get(rand.pop()) ?? []) {
+      if (!gesehen.has(nachbar)) { gesehen.add(nachbar); rand.push(nachbar); }
+    }
+  }
+  for (const loc of data.locations.locations) {
+    if (!gesehen.has(loc.id)) err(`locations/${loc.id}: von Mimons Wohnung aus nicht erreichbar`);
+    const einseitig = (loc.connections ?? []).filter((z) => !(locationIds.has(z) && (data.locations.locations.find((l) => l.id === z)?.connections ?? []).includes(loc.id)));
+    for (const z of einseitig) warn(`locations/${loc.id}: Verbindung nach "${z}" ist nur einseitig eingetragen`);
+  }
+
   for (const [shopId, shop] of Object.entries(data.locations.shops)) {
     for (const item of shop.stock) if (!itemIds.has(item)) err(`shops/${shopId}: unbekanntes Item "${item}"`);
   }

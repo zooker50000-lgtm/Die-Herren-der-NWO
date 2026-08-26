@@ -4,18 +4,12 @@
  * Siehe docs/ARCHITECTURE.md, Abschnitt "Das Effekt-Format".
  */
 
-const STAT_KEYS = {
-  crashout: { min: 0, max: 100 },
-  authenticity: { min: 0, max: 100 },
-  nwoInfluence: { min: 0, max: 100 },
-  nwoReputation: { min: 0, max: 100 },
-  heeterAggro: { min: 0, max: 100 },
-  mett: { min: 0, max: Infinity },
-  subscribers: { min: 0, max: Infinity },
-  alchemyXp: { min: 0, max: Infinity },
-  crashoutResist: { min: -50, max: 50 },
-  mimonolog: { min: 0, max: 100 }
-};
+import { STAT_BOUNDS } from './state.mjs';
+
+/** Werte, die ein Effekt direkt veraendern darf (alchemy selbst nur ueber XP). */
+const STAT_KEYS = Object.fromEntries(
+  Object.entries(STAT_BOUNDS).filter(([key]) => key !== 'alchemy')
+);
 
 /**
  * @param {object} ctx  { store, bus, registry, rng }

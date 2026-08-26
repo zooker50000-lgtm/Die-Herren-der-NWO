@@ -35,6 +35,12 @@ export class EmailSystem {
       mail = this.fromPool((m) => m.from === from);
     } else if (spec !== 'auto' && this.ctx.registry.mailPool.get(spec)) {
       mail = this.materialize(this.ctx.registry.mailPool.get(spec));
+    } else if (spec !== 'auto') {
+      // Auch NWO-Mail lässt sich gezielt zustellen — eine Quest, die auf eine
+      // bestimmte Nachricht wartet, darf nicht daran scheitern, dass die
+      // Nachricht vorher schon abgearbeitet wurde.
+      const nwoMail = this.data.nwoMail.find((m) => m.id === spec);
+      if (nwoMail) mail = this.materialize({ ...nwoMail, channel: 'nwo' });
     }
 
     if (!mail) mail = this.fromPool() ?? this.procedural();

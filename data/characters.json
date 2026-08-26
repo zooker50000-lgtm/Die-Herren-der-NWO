@@ -1,6 +1,5 @@
 {
   "$comment": "Alle Figuren sind fiktionale Spielcharaktere. voice.* steuert, wie die Dialog-Engine Zeilen einfärbt; keine zwei Figuren teilen ein Sprachmuster.",
-
   "characters": [
     {
       "id": "mimon_baraka",
@@ -12,20 +11,42 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#e8c34a",
       "bio": "Fideo-Produzent, Alchemie-Interessierter, Chronist der eigenen Verfolgung. Hebt alles auf. Erklärt alles. Immer.",
-      "tags": ["hauptfigur", "juhtub", "alchemie", "nwo"],
-      "traits": ["gesprächig", "misstrauisch", "authentizitätsfixiert", "monologisch", "eskalationsfähig"],
+      "tags": [
+        "hauptfigur",
+        "juhtub",
+        "alchemie",
+        "nwo"
+      ],
+      "traits": [
+        "gesprächig",
+        "misstrauisch",
+        "authentizitätsfixiert",
+        "monologisch",
+        "eskalationsfähig"
+      ],
       "voice": {
         "register": "eruptiv",
         "sentenceLength": "wechselnd",
-        "tics": ["Genau.", "Eben.", "Ja?", "Hmnja."],
-        "avoids": ["ironie_ueber_sich_selbst", "kurze_zustimmung", "netzsprache"],
+        "tics": [
+          "Genau.",
+          "Eben.",
+          "Ja?",
+          "Hmnja."
+        ],
+        "avoids": [
+          "ironie_ueber_sich_selbst",
+          "kurze_zustimmung",
+          "netzsprache"
+        ],
         "addressesOthers": "du"
       }
     },
     {
       "id": "mamer",
       "name": "Irene Baraka",
-      "aliases": ["Mamer"],
+      "aliases": [
+        "Mamer"
+      ],
       "role": "familie",
       "faction": "keine",
       "trust": 70,
@@ -34,13 +55,29 @@
       "color": "#c98fb0",
       "home": "mimons_wohnung",
       "bio": "Mimons Mutter. Nüchtern, wach, hat einen eigenen Kopf. Sie hört sich die Theorien an und stellt danach die eine Frage, die nicht beantwortet ist.",
-      "tags": ["familie", "hauptfigur", "quest_geber"],
-      "traits": ["nüchtern", "beobachtend", "eigenständig", "beharrlich"],
+      "tags": [
+        "familie",
+        "hauptfigur",
+        "quest_geber"
+      ],
+      "traits": [
+        "nüchtern",
+        "beobachtend",
+        "eigenständig",
+        "beharrlich"
+      ],
       "voice": {
         "register": "trocken",
         "sentenceLength": "kurz",
-        "tics": ["Simon.", "Hm."],
-        "avoids": ["nwo_jargon", "grossbuchstaben", "verschwoerungsbegriffe"],
+        "tics": [
+          "Simon.",
+          "Hm."
+        ],
+        "avoids": [
+          "nwo_jargon",
+          "grossbuchstaben",
+          "verschwoerungsbegriffe"
+        ],
         "addressesMimon": "Simon",
         "note": "Widerspricht mit Gründen, nie mit Spott. Weiß Dinge, die Mimon nicht weiß."
       }
@@ -55,13 +92,27 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#9d3b3b",
       "bio": "Der erste Heeter. Lädt Mimons Fideos verändert erneut hoch und wartet auf die Reaktion. Die Reaktion ist das Produkt.",
-      "tags": ["heeter", "akt_1", "gegner"],
-      "traits": ["provokativ", "geduldig", "kalkuliert"],
+      "tags": [
+        "heeter",
+        "akt_1",
+        "gegner"
+      ],
+      "traits": [
+        "provokativ",
+        "geduldig",
+        "kalkuliert"
+      ],
       "voice": {
         "register": "kalt-höflich",
         "sentenceLength": "kurz",
-        "tics": ["mfg", "lg"],
-        "avoids": ["wut", "ausrufezeichen"],
+        "tics": [
+          "mfg",
+          "lg"
+        ],
+        "avoids": [
+          "wut",
+          "ausrufezeichen"
+        ],
         "note": "Schreibt nie in Großbuchstaben. Die Ruhe ist die Provokation."
       }
     },
@@ -76,13 +127,27 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#5c2a6e",
       "bio": "Taucht spät auf und redet, als wäre er schon lange da. Verhandelt nicht, er terminiert. Zentrale Figur von OPERATION HADES.",
-      "tags": ["nwo", "gegner", "akt_9", "operation_hades"],
-      "traits": ["kontrolliert", "bedrohlich", "informiert"],
+      "tags": [
+        "nwo",
+        "gegner",
+        "akt_9",
+        "operation_hades"
+      ],
+      "traits": [
+        "kontrolliert",
+        "bedrohlich",
+        "informiert"
+      ],
       "voice": {
         "register": "leise-formell",
         "sentenceLength": "mittel",
-        "tics": ["Sehen Sie,"],
-        "avoids": ["duzen", "beleidigungen"],
+        "tics": [
+          "Sehen Sie,"
+        ],
+        "avoids": [
+          "duzen",
+          "beleidigungen"
+        ],
         "note": "Siezt konsequent. Je gefährlicher der Satz, desto höflicher der Ton."
       }
     },
@@ -97,13 +162,29 @@
       "color": "#3f7f8f",
       "home": "nwo_versteck",
       "bio": "Kontaktperson zur NWO. Liefert Informationen, die immer zu 80 Prozent stimmen. Die restlichen 20 Prozent sind der Grund, warum er anruft.",
-      "tags": ["nwo", "quest_geber", "informant", "hauptfigur"],
-      "traits": ["hilfsbereit", "ausweichend", "gut informiert", "möglicherweise manipulativ"],
+      "tags": [
+        "nwo",
+        "quest_geber",
+        "informant",
+        "hauptfigur"
+      ],
+      "traits": [
+        "hilfsbereit",
+        "ausweichend",
+        "gut informiert",
+        "möglicherweise manipulativ"
+      ],
       "voice": {
         "register": "kumpelhaft-glatt",
         "sentenceLength": "mittel",
-        "tics": ["Pass auf,", "unter uns:"],
-        "avoids": ["klare_zusagen", "namen_nennen"],
+        "tics": [
+          "Pass auf,",
+          "unter uns:"
+        ],
+        "avoids": [
+          "klare_zusagen",
+          "namen_nennen"
+        ],
         "note": "Beantwortet nie exakt die Frage, die gestellt wurde. Immer die daneben."
       }
     },
@@ -118,13 +199,27 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#b06a2c",
       "bio": "Setzt Mimon unter Druck und bringt Irene ins Spiel. Verfolgt eine eigene Agenda, die mit der NWO nur zufällig überlappt.",
-      "tags": ["gegner", "druck", "moralische_entscheidung", "mamer"],
-      "traits": ["berechnend", "kontaktfreudig", "eigennützig"],
+      "tags": [
+        "gegner",
+        "druck",
+        "moralische_entscheidung",
+        "mamer"
+      ],
+      "traits": [
+        "berechnend",
+        "kontaktfreudig",
+        "eigennützig"
+      ],
       "voice": {
         "register": "vertraulich-drängend",
         "sentenceLength": "kurz",
-        "tics": ["Hör zu.", "Wir zwei."],
-        "avoids": ["drohungen_direkt"],
+        "tics": [
+          "Hör zu.",
+          "Wir zwei."
+        ],
+        "avoids": [
+          "drohungen_direkt"
+        ],
         "note": "Formuliert Drohungen als Angebote."
       }
     },
@@ -139,9 +234,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#7a3f5f",
       "bio": "Kommentiert unter jedem Fideo innerhalb von vier Minuten. Behauptet, das sei Zufall.",
-      "tags": ["heeter", "kommentar", "juhtub"],
-      "traits": ["ausdauernd", "theatralisch"],
-      "voice": { "register": "pathetisch", "sentenceLength": "lang", "tics": ["...", "Sieh her:"], "avoids": ["klarheit"] }
+      "tags": [
+        "heeter",
+        "kommentar",
+        "juhtub"
+      ],
+      "traits": [
+        "ausdauernd",
+        "theatralisch"
+      ],
+      "voice": {
+        "register": "pathetisch",
+        "sentenceLength": "lang",
+        "tics": [
+          "...",
+          "Sieh her:"
+        ],
+        "avoids": [
+          "klarheit"
+        ]
+      }
     },
     {
       "id": "franz_fack",
@@ -154,9 +266,25 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#6b6b3f",
       "bio": "Behauptet, alles sei nur Spaß gewesen. Behauptet das seit Jahren, jeden Tag, mit steigender Genauigkeit.",
-      "tags": ["heeter", "trittbrettfahrer"],
-      "traits": ["ausweichend", "selbstgerecht"],
-      "voice": { "register": "flapsig", "sentenceLength": "kurz", "tics": ["war doch nur Spaß", "lol"], "avoids": ["ernst"] }
+      "tags": [
+        "heeter",
+        "trittbrettfahrer"
+      ],
+      "traits": [
+        "ausweichend",
+        "selbstgerecht"
+      ],
+      "voice": {
+        "register": "flapsig",
+        "sentenceLength": "kurz",
+        "tics": [
+          "war doch nur Spaß",
+          "lol"
+        ],
+        "avoids": [
+          "ernst"
+        ]
+      }
     },
     {
       "id": "henry_heaven",
@@ -169,9 +297,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#4f8f5f",
       "bio": "Stimme bei NWO Productions. Freundlich zu jedem, auch zu denen, über die gerade eine Folge läuft.",
-      "tags": ["nwo_productions", "medien", "hoerspiel"],
-      "traits": ["freundlich", "professionell", "distanziert"],
-      "voice": { "register": "radiofreundlich", "sentenceLength": "mittel", "tics": ["Alles gut,"], "avoids": ["konflikt"] }
+      "tags": [
+        "nwo_productions",
+        "medien",
+        "hoerspiel"
+      ],
+      "traits": [
+        "freundlich",
+        "professionell",
+        "distanziert"
+      ],
+      "voice": {
+        "register": "radiofreundlich",
+        "sentenceLength": "mittel",
+        "tics": [
+          "Alles gut,"
+        ],
+        "avoids": [
+          "konflikt"
+        ]
+      }
     },
     {
       "id": "johann_von_grafenfried",
@@ -184,9 +329,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#8f7f3f",
       "bio": "Spricht von der Organisation im Plural und von sich in der dritten Person. Hat Akten, die es offiziell nicht gibt.",
-      "tags": ["nwo", "elite", "archiv"],
-      "traits": ["hochtrabend", "belesen", "herablassend"],
-      "voice": { "register": "gestelzt", "sentenceLength": "lang", "tics": ["Man wird verstehen,"], "avoids": ["umgangssprache"] }
+      "tags": [
+        "nwo",
+        "elite",
+        "archiv"
+      ],
+      "traits": [
+        "hochtrabend",
+        "belesen",
+        "herablassend"
+      ],
+      "voice": {
+        "register": "gestelzt",
+        "sentenceLength": "lang",
+        "tics": [
+          "Man wird verstehen,"
+        ],
+        "avoids": [
+          "umgangssprache"
+        ]
+      }
     },
     {
       "id": "judas_timme",
@@ -199,9 +361,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#7f4f4f",
       "bio": "War auf jeder Seite mindestens einmal. Erinnert sich an alle Versionen und hält sie sauber auseinander.",
-      "tags": ["nwo", "verrat", "informant"],
-      "traits": ["wendig", "reuelos", "nützlich"],
-      "voice": { "register": "entschuldigend", "sentenceLength": "kurz", "tics": ["Ich sag's ja ungern,"], "avoids": ["festlegung"] }
+      "tags": [
+        "nwo",
+        "verrat",
+        "informant"
+      ],
+      "traits": [
+        "wendig",
+        "reuelos",
+        "nützlich"
+      ],
+      "voice": {
+        "register": "entschuldigend",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Ich sag's ja ungern,"
+        ],
+        "avoids": [
+          "festlegung"
+        ]
+      }
     },
     {
       "id": "markus_grohe",
@@ -214,9 +393,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#5f7f9f",
       "bio": "Kennt jeden im Umfeld, gehört zu niemandem. Verkauft keine Informationen, tauscht sie.",
-      "tags": ["informant", "tausch", "neutral"],
-      "traits": ["sachlich", "vernetzt", "vorsichtig"],
-      "voice": { "register": "sachlich", "sentenceLength": "kurz", "tics": ["Sagen wir so:"], "avoids": ["spekulation"] }
+      "tags": [
+        "informant",
+        "tausch",
+        "neutral"
+      ],
+      "traits": [
+        "sachlich",
+        "vernetzt",
+        "vorsichtig"
+      ],
+      "voice": {
+        "register": "sachlich",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Sagen wir so:"
+        ],
+        "avoids": [
+          "spekulation"
+        ]
+      }
     },
     {
       "id": "master_versus",
@@ -229,9 +425,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#8f3f6f",
       "bio": "Fordert Mimon regelmäßig zu Debatten heraus, deren Regeln er währenddessen ändert.",
-      "tags": ["heeter", "debatte", "provokation"],
-      "traits": ["streitlustig", "regelbeugend"],
-      "voice": { "register": "herausfordernd", "sentenceLength": "kurz", "tics": ["Beweis es.", "Falsch."], "avoids": ["zugestaendnis"] }
+      "tags": [
+        "heeter",
+        "debatte",
+        "provokation"
+      ],
+      "traits": [
+        "streitlustig",
+        "regelbeugend"
+      ],
+      "voice": {
+        "register": "herausfordernd",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Beweis es.",
+          "Falsch."
+        ],
+        "avoids": [
+          "zugestaendnis"
+        ]
+      }
     },
     {
       "id": "myrrmoasta",
@@ -244,9 +457,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#3f8f7f",
       "bio": "Handelt mit Harzen, Essenzen und Büchern, die niemand katalogisiert hat. Rechnet in Mett.",
-      "tags": ["alchemie", "haendler", "wissen"],
-      "traits": ["kryptisch", "geschäftstüchtig", "belesen"],
-      "voice": { "register": "raunend", "sentenceLength": "mittel", "tics": ["Man sagt,"], "avoids": ["direkte_preise"] }
+      "tags": [
+        "alchemie",
+        "haendler",
+        "wissen"
+      ],
+      "traits": [
+        "kryptisch",
+        "geschäftstüchtig",
+        "belesen"
+      ],
+      "voice": {
+        "register": "raunend",
+        "sentenceLength": "mittel",
+        "tics": [
+          "Man sagt,"
+        ],
+        "avoids": [
+          "direkte_preise"
+        ]
+      }
     },
     {
       "id": "nra_beats_nwo",
@@ -259,9 +489,27 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#9f8f2f",
       "bio": "Sammelt seit Jahren Belege gegen die Organisation. Behauptet, Mimon sei zu spät dran, und hilft trotzdem.",
-      "tags": ["anti_nwo", "widerstand", "archiv"],
-      "traits": ["kämpferisch", "ungeduldig", "loyal"],
-      "voice": { "register": "hektisch", "sentenceLength": "kurz", "tics": ["Schnell.", "Nicht hier."], "avoids": ["small_talk"] }
+      "tags": [
+        "anti_nwo",
+        "widerstand",
+        "archiv"
+      ],
+      "traits": [
+        "kämpferisch",
+        "ungeduldig",
+        "loyal"
+      ],
+      "voice": {
+        "register": "hektisch",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Schnell.",
+          "Nicht hier."
+        ],
+        "avoids": [
+          "small_talk"
+        ]
+      }
     },
     {
       "id": "nwo_flunder",
@@ -274,9 +522,25 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#4f6f8f",
       "bio": "Unterste Ebene der Organisation. Weiß wenig, sagt viel, wird deshalb überall hingeschickt.",
-      "tags": ["nwo", "agent", "niedere_ebene"],
-      "traits": ["geschwätzig", "harmlos wirkend"],
-      "voice": { "register": "beflissen", "sentenceLength": "kurz", "tics": ["Kann ich nicht sagen."], "avoids": ["details"] }
+      "tags": [
+        "nwo",
+        "agent",
+        "niedere_ebene"
+      ],
+      "traits": [
+        "geschwätzig",
+        "harmlos wirkend"
+      ],
+      "voice": {
+        "register": "beflissen",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Kann ich nicht sagen."
+        ],
+        "avoids": [
+          "details"
+        ]
+      }
     },
     {
       "id": "nwo_kai",
@@ -289,9 +553,27 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#4f5f9f",
       "bio": "Technische Ebene. Kümmert sich um Übertragungen, Aufzeichnungen und darum, dass Aufzeichnungen verschwinden.",
-      "tags": ["nwo", "technik", "ueberwachung"],
-      "traits": ["knapp", "kompetent", "unbeeindruckt"],
-      "voice": { "register": "technisch", "sentenceLength": "kurz", "tics": ["Läuft.", "Negativ."], "avoids": ["emotion"] }
+      "tags": [
+        "nwo",
+        "technik",
+        "ueberwachung"
+      ],
+      "traits": [
+        "knapp",
+        "kompetent",
+        "unbeeindruckt"
+      ],
+      "voice": {
+        "register": "technisch",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Läuft.",
+          "Negativ."
+        ],
+        "avoids": [
+          "emotion"
+        ]
+      }
     },
     {
       "id": "nwo_reichsschaender",
@@ -304,13 +586,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#6f2f2f",
       "bio": "Ein Schock-Handle, mehr nicht. Die Figur besteht ausschließlich aus dem Versuch, mit einem Namen eine Reaktion zu erzwingen — und bricht zusammen, sobald die Reaktion ausbleibt.",
-      "tags": ["heeter", "provokation", "akt_11"],
-      "traits": ["provokativ", "inhaltsleer"],
+      "tags": [
+        "heeter",
+        "provokation",
+        "akt_11"
+      ],
+      "traits": [
+        "provokativ",
+        "inhaltsleer"
+      ],
       "voice": {
         "register": "provokant-leer",
         "sentenceLength": "kurz",
-        "tics": ["?", "und?"],
-        "avoids": ["inhalt", "ideologie_ausformuliert"],
+        "tics": [
+          "?",
+          "und?"
+        ],
+        "avoids": [
+          "inhalt",
+          "ideologie_ausformuliert"
+        ],
         "note": "Schreibt nie ausformulierte Positionen — die Figur ist Köder, kein Programm. Content-Regel: reproduziert keine Parolen."
       }
     },
@@ -325,9 +620,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#7f7f7f",
       "bio": "Beobachtet die Organisation — oder für sie. Beide Lesarten passen zu allem, was NWO Watch je getan hat.",
-      "tags": ["nwo", "beobachtung", "zweideutig"],
-      "traits": ["distanziert", "genau", "unlesbar"],
-      "voice": { "register": "protokollarisch", "sentenceLength": "kurz", "tics": ["Notiert."], "avoids": ["meinung"] }
+      "tags": [
+        "nwo",
+        "beobachtung",
+        "zweideutig"
+      ],
+      "traits": [
+        "distanziert",
+        "genau",
+        "unlesbar"
+      ],
+      "voice": {
+        "register": "protokollarisch",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Notiert."
+        ],
+        "avoids": [
+          "meinung"
+        ]
+      }
     },
     {
       "id": "seekarl",
@@ -340,9 +652,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#5f9f9f",
       "bio": "Kennt die Stadt und die Uhrzeiten, zu denen darin nichts passieren sollte. Redet gern und lang, aber über Wetter.",
-      "tags": ["neutral", "stadt", "beobachter"],
-      "traits": ["gemütlich", "aufmerksam"],
-      "voice": { "register": "gemütlich", "sentenceLength": "lang", "tics": ["Na?", "Sach ma,"], "avoids": ["eile"] }
+      "tags": [
+        "neutral",
+        "stadt",
+        "beobachter"
+      ],
+      "traits": [
+        "gemütlich",
+        "aufmerksam"
+      ],
+      "voice": {
+        "register": "gemütlich",
+        "sentenceLength": "lang",
+        "tics": [
+          "Na?",
+          "Sach ma,"
+        ],
+        "avoids": [
+          "eile"
+        ]
+      }
     },
     {
       "id": "honig",
@@ -355,9 +684,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#c9a23f",
       "bio": "Betreibt den Laden, in dem alle irgendwann vorbeikommen. Hört alles, wiederholt fast nichts.",
-      "tags": ["neutral", "haendler", "geruechte"],
-      "traits": ["freundlich", "verschwiegen", "zuverlässig"],
-      "voice": { "register": "warm", "sentenceLength": "kurz", "tics": ["Ach komm."], "avoids": ["laestern"] }
+      "tags": [
+        "neutral",
+        "haendler",
+        "geruechte"
+      ],
+      "traits": [
+        "freundlich",
+        "verschwiegen",
+        "zuverlässig"
+      ],
+      "voice": {
+        "register": "warm",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Ach komm."
+        ],
+        "avoids": [
+          "laestern"
+        ]
+      }
     },
     {
       "id": "martin_goldnatz",
@@ -370,9 +716,26 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#8f6f2f",
       "bio": "Verwaltet das, was im Labor unten steht. Nennt es Bestand. Nennt Menschen ebenfalls Bestand.",
-      "tags": ["nwo", "labor", "elite"],
-      "traits": ["bürokratisch", "kalt", "penibel"],
-      "voice": { "register": "bürokratisch", "sentenceLength": "mittel", "tics": ["Formal betrachtet"], "avoids": ["mitgefuehl"] }
+      "tags": [
+        "nwo",
+        "labor",
+        "elite"
+      ],
+      "traits": [
+        "bürokratisch",
+        "kalt",
+        "penibel"
+      ],
+      "voice": {
+        "register": "bürokratisch",
+        "sentenceLength": "mittel",
+        "tics": [
+          "Formal betrachtet"
+        ],
+        "avoids": [
+          "mitgefuehl"
+        ]
+      }
     },
     {
       "id": "toni",
@@ -384,9 +747,27 @@
       "layer": "SOURCE_BASED_LORE",
       "color": "#7f9f5f",
       "bio": "Hört sich die Mimonologe komplett an. Jedes Mal. Fragt danach trotzdem nach, weil er wirklich wissen will, wie es weitergeht.",
-      "tags": ["freund", "unterstuetzer", "alltag"],
-      "traits": ["loyal", "geduldig", "gutgläubig"],
-      "voice": { "register": "unkompliziert", "sentenceLength": "kurz", "tics": ["Alter.", "Krass."], "avoids": ["kritik_hart"] }
+      "tags": [
+        "freund",
+        "unterstuetzer",
+        "alltag"
+      ],
+      "traits": [
+        "loyal",
+        "geduldig",
+        "gutgläubig"
+      ],
+      "voice": {
+        "register": "unkompliziert",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Alter.",
+          "Krass."
+        ],
+        "avoids": [
+          "kritik_hart"
+        ]
+      }
     },
     {
       "id": "kommissarin_devrim",
@@ -399,9 +780,27 @@
       "color": "#6f8fbf",
       "home": "polizeistation",
       "bio": "Nimmt jede Anzeige auf, wirklich jede. Ordnet Mimon nicht ein und will das auch nicht.",
-      "tags": ["polizei", "quest_geber", "neutral"],
-      "traits": ["korrekt", "skeptisch", "gründlich"],
-      "voice": { "register": "amtlich", "sentenceLength": "mittel", "tics": ["Herr Baraka."], "avoids": ["spekulation", "duzen"] }
+      "tags": [
+        "polizei",
+        "quest_geber",
+        "neutral"
+      ],
+      "traits": [
+        "korrekt",
+        "skeptisch",
+        "gründlich"
+      ],
+      "voice": {
+        "register": "amtlich",
+        "sentenceLength": "mittel",
+        "tics": [
+          "Herr Baraka."
+        ],
+        "avoids": [
+          "spekulation",
+          "duzen"
+        ]
+      }
     },
     {
       "id": "der_kelchninja",
@@ -410,13 +809,29 @@
       "faction": "keine",
       "trust": 50,
       "available": false,
-      "unlock": "easter_egg_kelchninja",
+      "unlock": "kelchninja_gesichtet",
       "layer": "MEME_LORE",
       "color": "#bfbfbf",
       "bio": "Ein Selbstbildnis aus der Frühzeit, das an Orten auftaucht, an denen es nicht hängt. Spricht nur in Fragen.",
-      "tags": ["easter_egg", "meme", "alchemie"],
-      "traits": ["rätselhaft", "still"],
-      "voice": { "register": "fragend", "sentenceLength": "kurz", "tics": ["Und der Kelch?"], "avoids": ["antworten"] }
+      "tags": [
+        "easter_egg",
+        "meme",
+        "alchemie"
+      ],
+      "traits": [
+        "rätselhaft",
+        "still"
+      ],
+      "voice": {
+        "register": "fragend",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Und der Kelch?"
+        ],
+        "avoids": [
+          "antworten"
+        ]
+      }
     }
   ]
 }

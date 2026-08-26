@@ -30,20 +30,26 @@ export class Lexicon {
   }
 
   /**
-   * Begriff auflösen. `preferredId` wird genommen, wenn er passt und frei ist —
-   * sonst tritt ein thematisch passender Begriff an seine Stelle.
+   * Begriff einsetzen. Es wird immer der angeforderte Begriff geliefert:
+   * die Vorlage hat ihn aus grammatischen Gründen gewählt, und ein Tausch
+   * ("mit meinen NWO gemacht") zerstört den Satz. Gegen Begriffs-Spam hilft
+   * stattdessen die Vorlagenauswahl im Generator, die Vorlagen mit gerade
+   * benutzten Begriffen zurückstellt.
    */
-  term(preferredId, contexts = [], form = 'sg') {
-    const preferred = this.byId.get(preferredId);
-    if (preferred && this.available(preferred, contexts)) return this.use(preferred, 1, form);
+  term(id, contexts = [], form = 'sg') {
+    const entry = this.byId.get(id);
+    if (!entry) return id;
+    return this.use(entry, 1, form);
+  }
 
-    const candidates = this.terms.filter((t) => this.available(t, contexts));
-    const picked = this.rng.weighted(candidates, (t) => t.weight ?? 1);
-    if (picked) return this.use(picked, 1, form);
+  /** Steht dieser Begriff gerade auf Cooldown? */
+  isCoolingDown(id) { return this.cooldowns.has(id); }
 
-    // Alles gesperrt: der bevorzugte Begriff darf noch einmal, danach längere Sperre.
-    if (preferred) return this.use(preferred, 2, form);
-    return this.use(this.rng.pick(this.terms), 1, form);
+  /** Passt der Begriff thematisch zu diesen Kontexten? */
+  fitsContext(id, contexts = []) {
+    const entry = this.byId.get(id);
+    if (!entry || !contexts.length) return true;
+    return entry.contexts.some((c) => contexts.includes(c));
   }
 
   /**

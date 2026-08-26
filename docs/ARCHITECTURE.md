@@ -60,6 +60,11 @@
 | `conditions.mjs` | Einheitliche Bedingungspruefung (`requires`) fuer alle Systeme. |
 | `registry.mjs` | Nachschlagetabellen ueber die geladenen Daten (by id / by tag). |
 
+Alle Wertegrenzen stehen in `STAT_BOUNDS` (`state.mjs`) und werden im Store
+erzwungen — kein Aufrufer kann sie umgehen. Statusaenderungen werden
+ausschliesslich dort gemeldet, damit Stufenwechsel auch dann greifen, wenn ein
+System den Wert direkt aendert (etwa der Crashout-Verfall ueber Zeit).
+
 ## Das Effekt-Format
 
 Ein einziges deklaratives Objekt, ueberall verwendbar:
@@ -106,6 +111,29 @@ Teil-Effekte zurueck, damit die UI sie anzeigen kann ("+40 METT").
 ```
 
 Alle Felder sind optional und werden UND-verknuepft.
+
+## Wer spricht wann? Die Dialogvermittlung
+
+Ein Dialog gehoert zu einer Figur (`npc`) und laeuft ueber einen oder mehrere
+Kanaele (`channels`: `vor_ort`, `telefon`, `online`). Welches Gespraech eine
+Figur gerade fuehrt, entscheidet `Roster.dialogueFor()`:
+
+1. alle Dialoge dieser Figur auf dem gewuenschten Kanal,
+2. gefiltert nach `requires`,
+3. ohne bereits gefuehrte Einmal-Gespraeche (`repeatable: false`),
+4. sortiert nach `priority`.
+
+Ohne diese Vermittlung waere pro Figur immer nur das erste Gespraech
+erreichbar. Der Validator prueft, dass jede Figur mit einem `vor_ort`-Dialog
+auch tatsaechlich an einem Ort steht.
+
+## Ziele, die schon erfuellt sind
+
+Quest-Objectives zaehlen Ereignisse. Wer den gesuchten Gegenstand schon vorher
+gefunden hat, wuerde ein solches Ziel nie erfuellen — deshalb setzt
+`QuestEngine.seedObjective()` beim Start den Stand aus dem bestehenden
+Zustand: gefundene Tagebuchseiten, besessene Gegenstaende, besuchte Orte,
+gefuehrte Dialoge, betretene Laborbereiche.
 
 ## Ereignisnamen
 
