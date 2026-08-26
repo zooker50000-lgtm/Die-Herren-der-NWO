@@ -24,6 +24,6 @@ for (const seed of [7, 11, 42]) {
     assert.match(ausgabe, /Akt 15\/15/, ausgabe);
     assert.match(ausgabe, /Ende: ending_/, ausgabe);
     const quests = Number(ausgabe.match(/Quests: (\d+)\//)?.[1] ?? 0);
-    assert.ok(quests >= 70, `nur ${quests} Quests abgeschlossen\n${ausgabe}`);
+    assert.ok(quests >= 75, `nur ${quests} Quests abgeschlossen\n${ausgabe}`);
   });
 }

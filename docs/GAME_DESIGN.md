@@ -184,5 +184,11 @@ Entscheidung.
 ## Balance-Zielverteilung
 
 40 % Story · 20 % Open World · 15 % Dialog/Mimonolog · 10 % NWO · 10 % Memes ·
-5 % Easter Eggs. `npm run lore` misst die tatsaechliche Verteilung des Contents
-gegen dieses Ziel.
+5 % Easter Eggs. `npm run lore` misst die tatsaechliche Verteilung gegen dieses
+Ziel.
+
+Aktuell liegt der Dialoganteil deutlich ueber der Vorgabe (rund 27 % statt
+15 %), weil der Mimonolog-Generator und 49 Dialoggraphen schwer wiegen. Das ist
+eine bewusste Abweichung: der Monolog ist das, was dieses Spiel von einem
+Adventure mit Meme-Anstrich unterscheidet. Untergewichtet ist die Open World —
+der naechste Ausbau gehoert dorthin, nicht in weitere Dialoge.

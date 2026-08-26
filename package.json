@@ -14,7 +14,8 @@
     "validate": "node tools/validate-data.mjs",
     "lore": "node tools/lore-report.mjs",
     "simulate": "node tools/simulate.mjs",
-    "solve": "node tools/solve.mjs"
+    "solve": "node tools/solve.mjs",
+    "contrast": "node tools/check-contrast.mjs"
   },
   "keywords": [
     "game",

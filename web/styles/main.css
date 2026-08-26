@@ -6,13 +6,15 @@
   --bg-3: #191d26;
   --line: #262b36;
   --text: #d8dbe2;
-  --muted: #7b8290;
+  --muted: #808794;
   --gold: #e8c34a;
-  --red: #c8493f;
-  --blue: #5b7fc4;
+  --red: #d0645c;
+  --blue: #6284c6;
   --green: #6aa96f;
-  --violet: #8a5fb0;
+  --violet: #9c77bc;
 
+  /* Alle Textfarben erfuellen WCAG AA (4.5:1) auf allen drei Hintergruenden.
+     Geprueft mit tools/check-contrast.mjs — Aenderungen dort gegenpruefen. */
   --font: "Inter", "Segoe UI", system-ui, sans-serif;
   --mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
   --radius: 10px;

@@ -35,21 +35,22 @@ Soundboard sind umgesetzt. Offen bleiben gesampelte Audioassets.
 
 | Kennzahl | Stand |
 |---|---|
-| Quests | 74, davon 73 in einem Durchlauf abschliessbar |
+| Quests | 79, davon 78 in einem Durchlauf abschliessbar |
 | Dialoge | 49 Graphen, alle ueber einen Kanal erreichbar |
 | Episoden | 51 von 51 mit eigener Quest — alle vier Serien vollstaendig |
 | Mimonolog | 12 Beat-Typen, 232 Vorlagen ueber drei Sprachstufen |
 | Vertrauen | sechs Figuren mit eigenem Zweig fuer niedriges Vertrauen, zwei fuer hohes |
-| Orte | 20 in drei Regionen, alle von Mimons Wohnung aus erreichbar |
+| Orte | 20 in drei Regionen, alle im Durchlauf tatsaechlich besucht |
 | Figuren | 28, davon 24 mit eigenem Gespraech |
 | Ereignisse | 21, davon 6 nur im Norden; Wohnungs-Ereignisse ortsgebunden |
 | Bedienung | Ziffern waehlen Antworten, sichtbarer Fokus, ARIA auf Metern und Overlays |
+| Kontrast | alle Farbtokens erfuellen WCAG AA auf allen drei Hintergruenden |
 | Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
 
 ## Naechste konkrete Schritte
 
 1. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
-2. Kontrastpruefung der Farbtokens gegen WCAG AA — Fokus und ARIA stehen,
-   die Farbwerte selbst sind noch nicht geprueft.
-3. Mehr Nebenquests fuer Berlin: der Bezirk hat die meisten Orte, aber die
-   wenigsten eigenen Auftraege ausserhalb der Hauptlinie.
+2. Mehr Fideo-Parameter: bisher entscheiden Thema, Laenge, Wut und Belege.
+   Schnitt, Titelbild und Uhrzeit des Uploads waeren naheliegende Ergaenzungen.
+3. Die Heeter reagieren noch nicht aufeinander — ein Heeter, der einen anderen
+   uebernimmt oder verraet, waere der naechste Schritt fuer das Netz.

@@ -3554,6 +3554,241 @@
         "mett": 150,
         "log": "Zwischen zwei und vier. Immer zwischen zwei und vier."
       }
+    },
+    {
+      "id": "der_doenerteller",
+      "title": "DER DÖNERTELLER",
+      "type": "mett",
+      "act": 1,
+      "faction": "keine",
+      "layer": "MEME_LORE",
+      "giver": "toni",
+      "summary": "Toni behauptet, es gäbe genau einen dokumentierten Grund für eine Pause. Er will ihn beweisen.",
+      "requires": {},
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Mit Toni in den Dönerladen gehen",
+          "event": "world.travel",
+          "where": {
+            "to": "doenerladen"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Einen Dönerteller bestellen",
+          "event": "world.interact",
+          "where": {
+            "interactable": "doenerteller"
+          },
+          "count": 1
+        },
+        {
+          "id": "o3",
+          "text": "Dabei nicht über die Organisation reden",
+          "event": "monolog.finished",
+          "where": {
+            "tierMax": "annoyed"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crashout": -20,
+        "trust": {
+          "toni": 10
+        },
+        "authenticity": 6,
+        "lore": [
+          "lore_doenerteller"
+        ],
+        "log": "Elf Minuten Schweigen. Toni hat mitgezählt."
+      }
+    },
+    {
+      "id": "seekarls_beobachtung",
+      "title": "SEEKARLS WETTERBERICHT",
+      "type": "main",
+      "act": 2,
+      "faction": "unabhängig",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "seekarl",
+      "summary": "SeeKarl redet vierzig Minuten über Nebel. In Minute achtunddreißig steht etwas Brauchbares.",
+      "requires": {
+        "act": {
+          "min": 2
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "SeeKarl bis zum Ende zuhören",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "seekarl"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Seine Angabe am Fenster überprüfen",
+          "event": "window.observed",
+          "count": 2
+        },
+        {
+          "id": "o3",
+          "text": "Die Beobachtung im Tagebuch festhalten",
+          "event": "tagebuch.page",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 10,
+        "nwoInfluence": 4,
+        "trust": {
+          "seekarl": 12
+        },
+        "log": "Die anderen stehen weiter hinten. Motor an, keiner steigt aus."
+      }
+    },
+    {
+      "id": "honigs_bitte",
+      "title": "HONIGS BITTE",
+      "type": "main",
+      "act": 2,
+      "faction": "unabhängig",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "honig",
+      "summary": "Sie will nicht in einem Fideo vorkommen. Nicht aus Angst — weil hier Leute einkaufen sollen.",
+      "requires": {
+        "act": {
+          "min": 2
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Honig anhören",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "honig"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Ein Fideo ohne sie veröffentlichen",
+          "event": "fideo.published",
+          "where": {
+            "topic": "alltag"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 12,
+        "trust": {
+          "honig": 15
+        },
+        "mett": -20,
+        "log": "Sie sagt nichts dazu. Am nächsten Tag liegt eine Tüte bereit."
+      }
+    },
+    {
+      "id": "die_wartenummer",
+      "title": "WARTENUMMER 41",
+      "type": "main",
+      "act": 2,
+      "faction": "polizei",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "kommissarin_devrim",
+      "summary": "Aufgerufen wird die 12. Mimon hat die 41. Devrim sagt, er soll warten. Er wartet.",
+      "requires": {
+        "act": {
+          "min": 2
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Auf der Wache warten",
+          "event": "world.interact",
+          "where": {
+            "interactable": "anzeige"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Die Anzeige zu Ende bringen",
+          "event": "police.report",
+          "count": 1
+        },
+        {
+          "id": "o3",
+          "text": "Dabei ruhig bleiben",
+          "event": "monolog.finished",
+          "where": {
+            "tier": "calm"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "trust": {
+          "kommissarin_devrim": 15
+        },
+        "authenticity": 14,
+        "crashout": -10,
+        "log": "Zwei Stunden vierzig. Und am Ende eine Aktennummer, die es wirklich gibt."
+      }
+    },
+    {
+      "id": "rechner_vier",
+      "title": "RECHNER VIER",
+      "type": "heeter",
+      "act": 3,
+      "faction": "unabhängig",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "markus_grohe",
+      "summary": "Dienstags zwischen zwei und vier sitzt da immer derselbe. Er lädt nichts hoch. Er lädt nur runter.",
+      "requires": {
+        "act": {
+          "min": 3
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Grohe nach dem Rechner fragen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "markus_grohe"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Den Rechner dreimal prüfen",
+          "event": "world.interact",
+          "where": {
+            "interactable": "fremder_rechner"
+          },
+          "count": 3
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 8,
+        "authenticity": 8,
+        "items": [
+          "alte_fideos"
+        ],
+        "trust": {
+          "markus_grohe": 10
+        },
+        "log": "Im Verlauf steht ein Suchbegriff, der aus zwei Buchstaben besteht."
+      }
     }
   ]
 }

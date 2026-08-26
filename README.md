@@ -28,6 +28,7 @@ npm run validate   # prueft die gesamte Content-Datenbank auf Konsistenz
 npm run lore       # Lore-Report: Verteilung ueber die Layer, Inhaltsmischung
 npm run simulate   # zufaelliger Durchlauf: findet Abstuerze und tote Wege
 npm run solve      # zielgerichteter Durchlauf: beweist, dass das Spiel durchspielbar ist
+npm run contrast   # prueft die Farbtokens gegen WCAG AA
 ```
 
 Die beiden Durchlaeufe sind keine Spielereien, sondern die wichtigsten
