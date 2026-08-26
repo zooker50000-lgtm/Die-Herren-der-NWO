@@ -12,18 +12,33 @@ import { dirname, resolve } from 'node:path';
  */
 const wurzel = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = 5199;
-const basis = `http://127.0.0.1:${PORT}`;
+let basis;
 let server;
 
-before(async () => {
-  server = spawn(process.execPath, ['tools/serve.mjs'], {
-    cwd: wurzel, env: { ...process.env, PORT: String(PORT) }, stdio: 'ignore'
+/** Startet den Server und liest den Port aus seiner Ausgabe. */
+function starteServer(port) {
+  const kind = spawn(process.execPath, ['tools/serve.mjs'], {
+    cwd: wurzel, env: { ...process.env, PORT: String(port) }, stdio: ['ignore', 'pipe', 'ignore']
   });
-  // Warten, bis er antwortet — hoechstens fuenf Sekunden.
-  for (let versuch = 0; versuch < 50; versuch++) {
-    try { await fetch(basis); return; } catch { await new Promise((r) => setTimeout(r, 100)); }
-  }
-  throw new Error('Server ist nicht hochgekommen');
+  const adresse = new Promise((erfuellen, ablehnen) => {
+    let ausgabe = '';
+    kind.stdout.on('data', (stueck) => {
+      ausgabe += stueck;
+      // Der Server weicht auf den naechsten Port aus, wenn einer belegt ist -
+      // deshalb wird der Port gelesen und nicht angenommen.
+      const treffer = ausgabe.match(/laeuft auf (http:\/\/localhost:(\d+))/);
+      if (treffer) erfuellen({ adresse: treffer[1], port: Number(treffer[2]) });
+    });
+    setTimeout(() => ablehnen(new Error('Server ist nicht hochgekommen')), 8000);
+  });
+  return { kind, adresse };
+}
+
+before(async () => {
+  const gestartet = starteServer(PORT);
+  server = gestartet.kind;
+  const { adresse } = await gestartet.adresse;
+  basis = adresse.replace('localhost', '127.0.0.1');
 });
 
 after(() => server?.kill());
@@ -59,4 +74,19 @@ test('der Server gibt nichts oberhalb des Projektordners heraus', async () => {
 
 test('unbekannte Pfade antworten mit 404', async () => {
   assert.equal((await fetch(basis + '/gibtesnicht.html')).status, 404);
+});
+
+test('ein belegter Port laesst den Server ausweichen statt abstuerzen', async () => {
+  // Vorher endete das in einem Stapelspeicherauszug (EADDRINUSE), mit dem
+  // niemand etwas anfangen kann - und genau das passiert staendig, weil noch
+  // ein Fenster von vorhin laeuft.
+  const zweiter = starteServer(PORT);
+  try {
+    const { port } = await zweiter.adresse;
+    assert.ok(port > PORT, `zweiter Server blieb auf ${port}`);
+    const antwort = await fetch(`http://127.0.0.1:${port}/`);
+    assert.equal(antwort.status, 200, 'der ausgewichene Server liefert nichts aus');
+  } finally {
+    zweiter.kind.kill();
+  }
 });

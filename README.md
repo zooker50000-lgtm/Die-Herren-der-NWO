@@ -45,6 +45,10 @@ zurueck. Der Rest erklaert sich im Spiel.
 dem 26. August 2026. Der Server fand unter Windows seine eigenen Dateien nicht.
 Einfach das ZIP neu herunterladen — der Fehler ist behoben.
 
+**Wenn ein Fenster von vorhin noch laeuft:** Das ist kein Problem, der Server
+nimmt dann den naechsten freien Port und sagt das auch. Aufraeumen schadet
+trotzdem nicht — die alten schwarzen Fenster einfach schliessen.
+
 ---
 
 ## Was das hier ist

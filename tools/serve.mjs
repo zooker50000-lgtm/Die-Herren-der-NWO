@@ -48,18 +48,49 @@ const server = createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, async () => {
-  const adresse = `http://localhost:${PORT}`;
+/** Browser oeffnen, plattformabhaengig. */
+async function oeffneBrowser(adresse) {
+  const { exec } = await import('node:child_process');
+  const befehl = process.platform === 'win32' ? `start "" "${adresse}"`
+    : process.platform === 'darwin' ? `open "${adresse}"`
+    : `xdg-open "${adresse}"`;
+  exec(befehl, () => { /* kein Browser gefunden - die Adresse steht oben */ });
+}
+
+/**
+ * Ist der Port belegt, wird der naechste genommen. Das passiert staendig:
+ * ein Fenster von vorhin laeuft noch. Frueher ist der Server dabei mit einem
+ * Stapelspeicherauszug abgestuerzt, mit dem niemand etwas anfangen kann.
+ */
+const MAX_VERSUCHE = 20;
+let port = PORT;
+let versuche = 0;
+
+server.on('error', (fehler) => {
+  if (fehler.code !== 'EADDRINUSE') {
+    console.error(`\n  Der Server konnte nicht starten: ${fehler.message}\n`);
+    process.exit(1);
+  }
+  if (++versuche > MAX_VERSUCHE) {
+    console.error(`\n  Die Ports ${PORT} bis ${port} sind alle belegt.`);
+    console.error('  Schliesse die anderen Fenster oder starte den Rechner neu.\n');
+    process.exit(1);
+  }
+  port++;
+  server.listen(port);
+});
+
+server.on('listening', async () => {
+  const adresse = `http://localhost:${port}`;
   console.log(`\n  MIMON BARAKA UNIVERSE`);
-  console.log(`  läuft auf ${adresse}`);
+  if (port !== PORT) {
+    console.log(`  (Port ${PORT} war belegt - vermutlich laeuft noch ein Fenster von vorhin.)`);
+  }
+  console.log(`  laeuft auf ${adresse}`);
   console.log(`  Zum Beenden: Strg+C\n`);
 
   // Mit --open den Browser gleich mit oeffnen (macht start.bat so).
-  if (process.argv.includes('--open')) {
-    const { exec } = await import('node:child_process');
-    const befehl = process.platform === 'win32' ? `start "" "${adresse}"`
-      : process.platform === 'darwin' ? `open "${adresse}"`
-      : `xdg-open "${adresse}"`;
-    exec(befehl, () => { /* kein Browser gefunden - die Adresse steht oben */ });
-  }
+  if (process.argv.includes('--open')) await oeffneBrowser(adresse);
 });
+
+server.listen(port);
