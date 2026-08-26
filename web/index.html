@@ -16,7 +16,11 @@
       <p class="boot__note">Ein fiktionales Satire-Adventure.</p>
       <button id="boot-start" class="button button--gold">Neues Spiel</button>
       <button id="boot-load" class="button">Archiv laden</button>
-      <p class="boot__hint">Tasten: <kbd>C</kbd> Computer · <kbd>K</kbd> Kodex · <kbd>I</kbd> Inventar · <kbd>M</kbd> Karte · <kbd>T</kbd> NWO · <kbd>Esc</kbd> zurück</p>
+      <p class="boot__hint">
+      <kbd>1</kbd>–<kbd>9</kbd> Antwort wählen · <kbd>C</kbd> Computer · <kbd>K</kbd> Kodex ·
+      <kbd>I</kbd> Inventar · <kbd>M</kbd> Karte · <kbd>F</kbd> Figuren · <kbd>A</kbd> Alchemie ·
+      <kbd>P</kbd> Telefon · <kbd>T</kbd> NWO · <kbd>Esc</kbd> zurück
+    </p>
     </div>
   </div>
 
@@ -25,10 +29,10 @@
     <nav id="nav" class="nav"></nav>
 
     <main class="layout">
-      <section id="stage" class="stage"></section>
+      <section id="stage" class="stage" aria-label="Geschehen" tabindex="-1"></section>
       <aside class="side">
-        <div id="quests" class="panel panel--quests"></div>
-        <div id="log" class="panel panel--log"></div>
+        <div id="quests" class="panel panel--quests" aria-label="Quests"></div>
+        <div id="log" class="panel panel--log" aria-label="Protokoll"></div>
       </aside>
     </main>
 

@@ -136,3 +136,27 @@ test('jeder Ort mit Figuren hat auch etwas zu tun', () => {
       `${loc.id}: Figuren, aber keine Interaktion`);
   }
 });
+
+test('jede Region hat eigene Ereignisse', () => {
+  // Sonst fuehlt sich ein Bezirk an wie eine Kulisse mit fremden Geraeuschen.
+  const regionVonOrt = new Map(data.locations.locations.map((l) => [l.id, l.region]));
+  const regionen = new Set();
+  for (const ev of data.events.events) {
+    for (const ort of ev.requires?.location ?? []) regionen.add(regionVonOrt.get(ort));
+  }
+  for (const region of ['berlin', 'hamburg']) {
+    assert.ok(regionen.has(region), `${region}: keine ortsgebundenen Ereignisse`);
+  }
+});
+
+test('ortsgebundene Ereignisse spielen nur dort, wo sie hingehören', () => {
+  // "Aus dem anderen Zimmer: Simon?" darf nicht in Hamburg kommen.
+  const zuhause = ['ev_mamer_ruft', 'ev_internet_ausfall', 'ev_unbekannter_besucher'];
+  const wohnorte = new Set(['mimons_wohnung', 'mamer_bereich']);
+  for (const id of zuhause) {
+    const ev = data.events.events.find((e) => e.id === id);
+    const orte = ev.requires?.location ?? [];
+    assert.ok(orte.length, `${id}: an keinen Ort gebunden`);
+    for (const ort of orte) assert.ok(wohnorte.has(ort), `${id}: spielt auch in ${ort}`);
+  }
+});

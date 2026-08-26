@@ -68,10 +68,32 @@ export class UI {
 
   onKey(e) {
     if (e.target.matches('input, select, textarea')) return;
-    const map = { k: 'kodex', i: 'inventar', m: 'karte', f: 'figuren', t: 'terminal', a: 'alchemie' };
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+
     if (e.key === 'Escape') { this.overlay ? this.closeOverlay() : (this.view = 'welt'); this.render(); return; }
+
+    // Ziffern waehlen die angezeigte Antwort - schneller als Tab und Enter,
+    // und der einzige Weg, der ohne Maus wirklich fluessig laeuft.
+    if (/^[1-9]$/.test(e.key) && this.zifferAuswahl(Number(e.key) - 1)) { e.preventDefault(); return; }
+
     if (e.key === 'c') { this.view = this.view === 'computer' ? 'welt' : 'computer'; this.render(); return; }
-    if (map[e.key]) { this.toggleOverlay(map[e.key]); }
+    const map = { k: 'kodex', i: 'inventar', m: 'karte', f: 'figuren', t: 'terminal', a: 'alchemie', p: 'telefon' };
+    if (map[e.key]) this.toggleOverlay(map[e.key]);
+  }
+
+  /** Antwort per Ziffer - Ereignis vor Dialog, sonst nichts. */
+  zifferAuswahl(index) {
+    const ereignis = this.game.events.view();
+    if (ereignis) {
+      if (index >= ereignis.choices.length) return false;
+      this.respondEvent(index);
+      return true;
+    }
+    if (this.overlay) return false;
+    const choice = this.dialogueView?.choices?.[index];
+    if (!choice || !choice.available) return false;
+    this.choose(index);
+    return true;
   }
 
   // --- Zeichnen ---------------------------------------------------------
@@ -118,6 +140,8 @@ export class UI {
   }
 
   drawToasts() {
+    this.nodes.toasts.setAttribute('role', 'status');
+    this.nodes.toasts.setAttribute('aria-live', 'polite');
     mount(this.nodes.toasts, this.toasts.slice(-6).map((t) =>
       h('div', { class: `toast toast--${t.kind}` }, t.text)
     ));
@@ -145,6 +169,7 @@ export class UI {
     if (this.overlay === 'terminal' && this.game.nwo.terminalAvailable() && !this.game.nwo.quizPending()) this.game.nwo.openTerminal();
     if (this.overlay === 'archiv') this.saveSlots = await this.game.save.list();
     this.render();
+    if (this.overlay) requestAnimationFrame(() => this.nodes.overlay.querySelector('.overlay__panel')?.focus());
   }
 
   closeOverlay() { this.overlay = null; this.render(); }

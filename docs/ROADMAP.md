@@ -23,11 +23,11 @@ Alle vier Serien sind vollstaendig als Quests spielbar: ALCHEMIMON 21/21,
 ISLAMIMON 15/15, RECHTSEXTREMIMON 12/12, BAPHOMIMON 3/3. Dazu Operation
 Hades, Pressesprecher und Fenster.
 
-## Phase 5 - Feinschliff  (Status: weitgehend umgesetzt)
+## Phase 5 - Feinschliff  (Status: umgesetzt bis auf Audio-Assets)
 
 Easter Eggs (Dromedar-Raetsel, Kelchninja, NANO, Ehdzhusten), geheime Enden,
-dynamische Ereignisse und das synthetisierte Soundboard sind umgesetzt.
-Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
+dynamische Ereignisse je Region, Tastaturbedienung und das synthetisierte
+Soundboard sind umgesetzt. Offen bleiben gesampelte Audioassets.
 
 ## Gemessener Stand
 
@@ -42,12 +42,14 @@ Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 | Vertrauen | sechs Figuren mit eigenem Zweig fuer niedriges Vertrauen, zwei fuer hohes |
 | Orte | 20 in drei Regionen, alle von Mimons Wohnung aus erreichbar |
 | Figuren | 28, davon 24 mit eigenem Gespraech |
+| Ereignisse | 21, davon 6 nur im Norden; Wohnungs-Ereignisse ortsgebunden |
+| Bedienung | Ziffern waehlen Antworten, sichtbarer Fokus, ARIA auf Metern und Overlays |
 | Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
 
 ## Naechste konkrete Schritte
 
 1. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
-2. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
-   bisher nur farblich unterschieden).
-3. Eigene Ereignisse fuer Hamburg — bisher greift dort die Berliner
-   Ereignistabelle mit.
+2. Kontrastpruefung der Farbtokens gegen WCAG AA — Fokus und ARIA stehen,
+   die Farbwerte selbst sind noch nicht geprueft.
+3. Mehr Nebenquests fuer Berlin: der Bezirk hat die meisten Orte, aber die
+   wenigsten eigenen Auftraege ausserhalb der Hauptlinie.

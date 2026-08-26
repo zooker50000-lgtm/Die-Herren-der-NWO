@@ -27,12 +27,22 @@ export function $(selector, root = document) { return root.querySelector(selecto
 /** Nummer mit deutscher Tausendertrennung. */
 export function num(value) { return Math.round(value ?? 0).toLocaleString('de-DE'); }
 
-/** Meter-Balken als Element. */
+/**
+ * Meter-Balken. Farbe allein reicht nicht: der Wert steht als Text daneben
+ * und der Balken traegt die ARIA-Rolle, damit Screenreader ihn ansagen.
+ */
 export function meter(label, value, max, variant) {
   const percent = Math.max(0, Math.min(100, (value / max) * 100));
   return h('div', { class: `meter meter--${variant}` },
-    h('span', { class: 'meter__label' }, label),
-    h('span', { class: 'meter__track' }, h('span', { class: 'meter__fill', style: { width: `${percent}%` } })),
+    h('span', { class: 'meter__label', id: `meter-${variant}` }, label),
+    h('span', {
+      class: 'meter__track',
+      role: 'meter',
+      'aria-labelledby': `meter-${variant}`,
+      'aria-valuenow': String(Math.round(value)),
+      'aria-valuemin': '0',
+      'aria-valuemax': String(max)
+    }, h('span', { class: 'meter__fill', style: { width: `${percent}%` } })),
     h('span', { class: 'meter__value' }, num(value))
   );
 }

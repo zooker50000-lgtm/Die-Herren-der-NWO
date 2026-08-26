@@ -1,28 +1,78 @@
 {
   "$comment": "Dynamischer Ereignis-Scheduler. weight wird mit den Faktoren aus 'scale' multipliziert. cooldown in Spielminuten.",
-
   "scaling": {
-    "nwoInfluence": { "field": "nwoInfluence", "max": 100 },
-    "mett": { "field": "mett", "max": 3000 },
-    "crashout": { "field": "crashout", "max": 100 },
-    "heeterAggro": { "field": "heeterAggro", "max": 100 }
+    "nwoInfluence": {
+      "field": "nwoInfluence",
+      "max": 100
+    },
+    "mett": {
+      "field": "mett",
+      "max": 3000
+    },
+    "crashout": {
+      "field": "crashout",
+      "max": 100
+    },
+    "heeterAggro": {
+      "field": "heeterAggro",
+      "max": 100
+    }
   },
-
   "events": [
     {
       "id": "ev_fahrzeug_vor_der_wohnung",
       "title": "Ein unbekanntes Fahrzeug",
       "layer": "SOURCE_BASED_LORE",
       "weight": 10,
-      "scale": { "nwoInfluence": 1.4 },
+      "scale": {
+        "nwoInfluence": 1.4
+      },
       "cooldown": 240,
-      "requires": { "location": ["mimons_wohnung", "strasse"] },
+      "requires": {
+        "location": [
+          "mimons_wohnung",
+          "strasse"
+        ]
+      },
       "text": "Vor dem Haus steht ein Fahrzeug, das gestern nicht da war. Der Motor läuft nicht. Jemand sitzt drin.",
       "choices": [
-        { "text": "Beobachten und notieren.", "tone": "ruhig", "effects": { "authenticity": 4, "nwoInfluence": 2, "log": "Kennzeichen notiert. Uhrzeit notiert." } },
-        { "text": "Rausgehen und ansprechen.", "tone": "eskalieren", "effects": { "crashout": 14, "nwoInfluence": 4, "mett": 40 } },
-        { "text": "Ein Fideo daraus machen.", "tone": "mimonolog", "effects": { "mett": 90, "crashout": 8, "monolog": { "topic": "fahrzeug" } } },
-        { "text": "Vorhang zuziehen.", "tone": "thema_wechseln", "effects": { "crashout": -4, "authenticity": -2 } }
+        {
+          "text": "Beobachten und notieren.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 4,
+            "nwoInfluence": 2,
+            "log": "Kennzeichen notiert. Uhrzeit notiert."
+          }
+        },
+        {
+          "text": "Rausgehen und ansprechen.",
+          "tone": "eskalieren",
+          "effects": {
+            "crashout": 14,
+            "nwoInfluence": 4,
+            "mett": 40
+          }
+        },
+        {
+          "text": "Ein Fideo daraus machen.",
+          "tone": "mimonolog",
+          "effects": {
+            "mett": 90,
+            "crashout": 8,
+            "monolog": {
+              "topic": "fahrzeug"
+            }
+          }
+        },
+        {
+          "text": "Vorhang zuziehen.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "crashout": -4,
+            "authenticity": -2
+          }
+        }
       ]
     },
     {
@@ -30,24 +80,70 @@
       "title": "Neues Heet-Mehl",
       "layer": "SOURCE_BASED_LORE",
       "weight": 14,
-      "scale": { "mett": 1.6, "heeterAggro": 1.3 },
+      "scale": {
+        "mett": 1.6,
+        "heeterAggro": 1.3
+      },
       "cooldown": 90,
       "text": "Der Rechner gibt einen Ton von sich. Eine neue Nachricht, kein Absendername, nur ein Kürzel.",
-      "effects": { "spawnEmail": "auto", "sfx": ["notification"] }
+      "effects": {
+        "spawnEmail": "auto",
+        "sfx": [
+          "notification"
+        ]
+      }
     },
     {
       "id": "ev_nwo_anruf",
       "title": "Ein Anruf",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 8,
-      "scale": { "nwoInfluence": 1.8 },
+      "scale": {
+        "nwoInfluence": 1.8
+      },
       "cooldown": 300,
-      "requires": { "stats": { "nwoInfluence": { "min": 25 } } },
+      "requires": {
+        "stats": {
+          "nwoInfluence": {
+            "min": 25
+          }
+        }
+      },
       "text": "Das Telefon klingelt. Auf dem Display steht keine Nummer, sondern ein Strich.",
       "choices": [
-        { "text": "Rangehen.", "tone": "nwo_kontaktieren", "effects": { "nwoInfluence": 5, "crashout": 6, "flags": ["nwo_anruf_angenommen"], "sfx": ["phone"] } },
-        { "text": "Klingeln lassen.", "tone": "ruhig", "effects": { "crashout": 4, "nwoInfluence": 2 } },
-        { "text": "Rangehen und sofort losreden.", "tone": "mimonolog", "effects": { "crashout": 12, "mett": 60, "monolog": { "topic": "nwo" } } }
+        {
+          "text": "Rangehen.",
+          "tone": "nwo_kontaktieren",
+          "effects": {
+            "nwoInfluence": 5,
+            "crashout": 6,
+            "flags": [
+              "nwo_anruf_angenommen"
+            ],
+            "sfx": [
+              "phone"
+            ]
+          }
+        },
+        {
+          "text": "Klingeln lassen.",
+          "tone": "ruhig",
+          "effects": {
+            "crashout": 4,
+            "nwoInfluence": 2
+          }
+        },
+        {
+          "text": "Rangehen und sofort losreden.",
+          "tone": "mimonolog",
+          "effects": {
+            "crashout": 12,
+            "mett": 60,
+            "monolog": {
+              "topic": "nwo"
+            }
+          }
+        }
       ]
     },
     {
@@ -55,14 +151,44 @@
       "title": "Es klingelt",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 6,
-      "scale": { "nwoInfluence": 1.5 },
+      "scale": {
+        "nwoInfluence": 1.5
+      },
       "cooldown": 420,
-      "requires": { "location": ["mimons_wohnung"] },
+      "requires": {
+        "location": [
+          "mimons_wohnung"
+        ]
+      },
       "text": "Es klingelt an der Wohnungstür. Durch den Spion: niemand. Auf der Fußmatte: nichts.",
       "choices": [
-        { "text": "Aufmachen.", "tone": "eskalieren", "effects": { "crashout": 16, "nwoInfluence": 3 } },
-        { "text": "Warten und lauschen.", "tone": "ruhig", "effects": { "crashout": 6, "authenticity": 3, "nwoInfluence": 2 } },
-        { "text": "Mamer fragen, ob sie was gehört hat.", "tone": "mamer_fragen", "effects": { "trust": { "mamer": 4 }, "crashout": -4 } }
+        {
+          "text": "Aufmachen.",
+          "tone": "eskalieren",
+          "effects": {
+            "crashout": 16,
+            "nwoInfluence": 3
+          }
+        },
+        {
+          "text": "Warten und lauschen.",
+          "tone": "ruhig",
+          "effects": {
+            "crashout": 6,
+            "authenticity": 3,
+            "nwoInfluence": 2
+          }
+        },
+        {
+          "text": "Mamer fragen, ob sie was gehört hat.",
+          "tone": "mamer_fragen",
+          "effects": {
+            "trust": {
+              "mamer": 4
+            },
+            "crashout": -4
+          }
+        }
       ]
     },
     {
@@ -70,14 +196,43 @@
       "title": "Ein Streifenwagen",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 5,
-      "scale": { "crashout": 1.2 },
+      "scale": {
+        "crashout": 1.2
+      },
       "cooldown": 360,
-      "requires": { "location": ["strasse", "park", "bahnhof"] },
+      "requires": {
+        "location": [
+          "strasse",
+          "park",
+          "bahnhof"
+        ]
+      },
       "text": "Ein Streifenwagen fährt langsam vorbei. Sehr langsam. Dann noch einmal.",
       "choices": [
-        { "text": "Winken.", "tone": "ruhig", "effects": { "trust": { "kommissarin_devrim": 3 }, "crashout": -2 } },
-        { "text": "Filmen.", "tone": "mimonolog", "effects": { "mett": 50, "crashout": 8, "nwoInfluence": 3 } },
-        { "text": "Weitergehen.", "tone": "thema_wechseln", "effects": {} }
+        {
+          "text": "Winken.",
+          "tone": "ruhig",
+          "effects": {
+            "trust": {
+              "kommissarin_devrim": 3
+            },
+            "crashout": -2
+          }
+        },
+        {
+          "text": "Filmen.",
+          "tone": "mimonolog",
+          "effects": {
+            "mett": 50,
+            "crashout": 8,
+            "nwoInfluence": 3
+          }
+        },
+        {
+          "text": "Weitergehen.",
+          "tone": "thema_wechseln",
+          "effects": {}
+        }
       ]
     },
     {
@@ -85,10 +240,14 @@
       "title": "Ein neuer Kommentar",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 12,
-      "scale": { "mett": 1.5 },
+      "scale": {
+        "mett": 1.5
+      },
       "cooldown": 60,
       "text": "Unter dem letzten Fideo steht ein neuer Kommentar. Vier Minuten nach dem Upload.",
-      "effects": { "spawnComment": 1 }
+      "effects": {
+        "spawnComment": 1
+      }
     },
     {
       "id": "ev_mamer_ruft",
@@ -96,12 +255,44 @@
       "layer": "SOURCE_BASED_LORE",
       "weight": 9,
       "cooldown": 200,
-      "requires": { "notLocation": ["mamer_bereich"] },
+      "requires": {
+        "location": [
+          "mimons_wohnung"
+        ]
+      },
       "text": "Aus dem anderen Zimmer: \"Simon? Kommst du mal?\"",
       "choices": [
-        { "text": "Hingehen.", "tone": "mamer_fragen", "effects": { "trust": { "mamer": 6 }, "crashout": -8 } },
-        { "text": "\"Gleich!\"", "tone": "thema_wechseln", "effects": { "trust": { "mamer": -3 }, "crashout": 3 } },
-        { "text": "Nicht reagieren.", "tone": "eskalieren", "effects": { "trust": { "mamer": -8 }, "authenticity": -5, "crashout": 6 } }
+        {
+          "text": "Hingehen.",
+          "tone": "mamer_fragen",
+          "effects": {
+            "trust": {
+              "mamer": 6
+            },
+            "crashout": -8
+          }
+        },
+        {
+          "text": "\"Gleich!\"",
+          "tone": "thema_wechseln",
+          "effects": {
+            "trust": {
+              "mamer": -3
+            },
+            "crashout": 3
+          }
+        },
+        {
+          "text": "Nicht reagieren.",
+          "tone": "eskalieren",
+          "effects": {
+            "trust": {
+              "mamer": -8
+            },
+            "authenticity": -5,
+            "crashout": 6
+          }
+        }
       ]
     },
     {
@@ -109,28 +300,93 @@
       "title": "Internet weg",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 7,
-      "scale": { "nwoInfluence": 1.6 },
+      "scale": {
+        "nwoInfluence": 1.6
+      },
       "cooldown": 300,
       "text": "Die Verbindung bricht ab. Nur hier. Beim Nachbarn läuft der Fernseher.",
       "choices": [
-        { "text": "Router neu starten.", "tone": "ruhig", "effects": { "crashout": 6 } },
-        { "text": "Das ist kein Zufall.", "tone": "mimonolog", "effects": { "crashout": 18, "nwoInfluence": 6, "monolog": { "topic": "nwo" } } },
-        { "text": "Ins Internetcafé gehen.", "tone": "thema_wechseln", "effects": { "log": "Rechner vier ist frei." } }
-      ]
+        {
+          "text": "Router neu starten.",
+          "tone": "ruhig",
+          "effects": {
+            "crashout": 6
+          }
+        },
+        {
+          "text": "Das ist kein Zufall.",
+          "tone": "mimonolog",
+          "effects": {
+            "crashout": 18,
+            "nwoInfluence": 6,
+            "monolog": {
+              "topic": "nwo"
+            }
+          }
+        },
+        {
+          "text": "Ins Internetcafé gehen.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "log": "Rechner vier ist frei."
+          }
+        }
+      ],
+      "requires": {
+        "location": [
+          "mimons_wohnung",
+          "mamer_bereich"
+        ]
+      }
     },
     {
       "id": "ev_geraeusch",
       "title": "Ein Geräusch",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 8,
-      "scale": { "nwoInfluence": 1.3, "crashout": 1.2 },
+      "scale": {
+        "nwoInfluence": 1.3,
+        "crashout": 1.2
+      },
       "cooldown": 150,
-      "requires": { "phase": ["nacht"] },
+      "requires": {
+        "phase": [
+          "nacht"
+        ],
+        "location": [
+          "mimons_wohnung",
+          "mamer_bereich",
+          "hamburg_pension"
+        ]
+      },
       "text": "Im Treppenhaus. Kein Schritt, kein Türgeräusch. Etwas dazwischen.",
       "choices": [
-        { "text": "Nachsehen.", "tone": "eskalieren", "effects": { "crashout": 14, "nwoInfluence": 3 } },
-        { "text": "Aufnehmen.", "tone": "ruhig", "effects": { "authenticity": 5, "mett": 30, "items": ["alte_fideos"] } },
-        { "text": "Ignorieren.", "tone": "thema_wechseln", "effects": { "crashout": 5 } }
+        {
+          "text": "Nachsehen.",
+          "tone": "eskalieren",
+          "effects": {
+            "crashout": 14,
+            "nwoInfluence": 3
+          }
+        },
+        {
+          "text": "Aufnehmen.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 5,
+            "mett": 30,
+            "items": [
+              "alte_fideos"
+            ]
+          }
+        },
+        {
+          "text": "Ignorieren.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "crashout": 5
+          }
+        }
       ]
     },
     {
@@ -138,14 +394,47 @@
       "title": "Jemand hat etwas hochgeladen",
       "layer": "SOURCE_BASED_LORE",
       "weight": 9,
-      "scale": { "heeterAggro": 1.7, "mett": 1.2 },
+      "scale": {
+        "heeterAggro": 1.7,
+        "mett": 1.2
+      },
       "cooldown": 180,
-      "requires": { "flags": ["kennt_hatebox"] },
+      "requires": {
+        "flags": [
+          "kennt_hatebox"
+        ]
+      },
       "text": "Ein Fideo mit Mimons Stimme, das Mimon so nie aufgenommen hat. Die Aufrufe stehen schon vierstellig.",
       "choices": [
-        { "text": "Rohmaterial suchen.", "tone": "ruhig", "effects": { "authenticity": 8, "flags": ["sucht_rohmaterial"] } },
-        { "text": "Sofort antworten.", "tone": "eskalieren", "effects": { "crashout": 22, "mett": 180, "spawnHeeter": 1 } },
-        { "text": "Melden lassen.", "tone": "polizei", "effects": { "trust": { "kommissarin_devrim": 5 }, "crashout": 6 } }
+        {
+          "text": "Rohmaterial suchen.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 8,
+            "flags": [
+              "sucht_rohmaterial"
+            ]
+          }
+        },
+        {
+          "text": "Sofort antworten.",
+          "tone": "eskalieren",
+          "effects": {
+            "crashout": 22,
+            "mett": 180,
+            "spawnHeeter": 1
+          }
+        },
+        {
+          "text": "Melden lassen.",
+          "tone": "polizei",
+          "effects": {
+            "trust": {
+              "kommissarin_devrim": 5
+            },
+            "crashout": 6
+          }
+        }
       ]
     },
     {
@@ -153,25 +442,76 @@
       "title": "Eine Übertragung",
       "layer": "IN_UNIVERSE_AUDIO_LORE",
       "weight": 4,
-      "scale": { "nwoInfluence": 2.0 },
+      "scale": {
+        "nwoInfluence": 2.0
+      },
       "cooldown": 600,
-      "requires": { "stats": { "nwoInfluence": { "min": 50 } } },
+      "requires": {
+        "stats": {
+          "nwoInfluence": {
+            "min": 50
+          }
+        }
+      },
       "text": "Im Radio, zwischen zwei Sendern, für elf Sekunden: eine Stimme, die einen Text vorliest. Der Text ist eine Liste. Ein Name darauf ist deiner.",
-      "effects": { "nwoInfluence": 6, "crashout": 12, "sfx": ["nwo_sting"], "lore": ["nwo_die_nwo_sieht_alles"] }
+      "effects": {
+        "nwoInfluence": 6,
+        "crashout": 12,
+        "sfx": [
+          "nwo_sting"
+        ],
+        "lore": [
+          "nwo_die_nwo_sieht_alles"
+        ]
+      }
     },
     {
       "id": "ev_erkannt_supermarkt",
       "title": "Erkannt",
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 6,
-      "scale": { "mett": 1.8 },
+      "scale": {
+        "mett": 1.8
+      },
       "cooldown": 240,
-      "requires": { "location": ["supermarkt", "doenerladen", "bahnhof"] },
+      "requires": {
+        "location": [
+          "supermarkt",
+          "doenerladen",
+          "bahnhof",
+          "hamburg_bahnhof"
+        ]
+      },
       "text": "Jemand an der Kasse: \"Sind Sie nicht der aus den Fideos?\"",
       "choices": [
-        { "text": "Freundlich bestätigen.", "tone": "ruhig", "effects": { "authenticity": 5, "subscribers": 40, "mett": 25 } },
-        { "text": "Sofort erklären, worum es geht.", "tone": "mimonolog", "effects": { "mett": 80, "crashout": 6, "monolog": { "topic": "allgemein" } } },
-        { "text": "Abstreiten.", "tone": "thema_wechseln", "effects": { "authenticity": -8, "crashout": 4 } }
+        {
+          "text": "Freundlich bestätigen.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 5,
+            "subscribers": 40,
+            "mett": 25
+          }
+        },
+        {
+          "text": "Sofort erklären, worum es geht.",
+          "tone": "mimonolog",
+          "effects": {
+            "mett": 80,
+            "crashout": 6,
+            "monolog": {
+              "topic": "allgemein"
+            }
+          }
+        },
+        {
+          "text": "Abstreiten.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "authenticity": -8,
+            "crashout": 4
+          }
+        }
       ]
     },
     {
@@ -179,14 +519,45 @@
       "title": "Ein Trittbrettfahrer",
       "layer": "SOURCE_BASED_LORE",
       "weight": 7,
-      "scale": { "mett": 1.6 },
+      "scale": {
+        "mett": 1.6
+      },
       "cooldown": 300,
-      "requires": { "stats": { "subscribers": { "min": 2000 } } },
+      "requires": {
+        "stats": {
+          "subscribers": {
+            "min": 2000
+          }
+        }
+      },
       "text": "Ein Kanal benutzt deine Formulierungen, deinen Schnitt und deinen Tonfall. Nur der Name ist anders.",
       "choices": [
-        { "text": "Öffentlich benennen.", "tone": "beschuldigen", "effects": { "crashout": 20, "mett": 200, "authenticity": -4, "spawnHeeter": 1 } },
-        { "text": "Anschreiben.", "tone": "ruhig", "effects": { "authenticity": 6, "crashout": 5 } },
-        { "text": "Ignorieren.", "tone": "thema_wechseln", "effects": { "crashout": 8, "authenticity": 2 } }
+        {
+          "text": "Öffentlich benennen.",
+          "tone": "beschuldigen",
+          "effects": {
+            "crashout": 20,
+            "mett": 200,
+            "authenticity": -4,
+            "spawnHeeter": 1
+          }
+        },
+        {
+          "text": "Anschreiben.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 6,
+            "crashout": 5
+          }
+        },
+        {
+          "text": "Ignorieren.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "crashout": 8,
+            "authenticity": 2
+          }
+        }
       ]
     },
     {
@@ -196,7 +567,12 @@
       "weight": 3,
       "cooldown": 500,
       "text": "An einer Wand, an der eben noch nichts hing, hängt ein Bild. Ein Selbstbildnis. Es ist eindeutig, wer darauf zu sehen ist, und ebenso eindeutig, dass es hier nicht hängen kann.",
-      "effects": { "log": "Der Kelchninja.", "sfx": ["ping"] },
+      "effects": {
+        "log": "Der Kelchninja.",
+        "sfx": [
+          "ping"
+        ]
+      },
       "emits": "easteregg.kelchninja"
     },
     {
@@ -205,12 +581,273 @@
       "layer": "FICTIONAL_GAME_CONTENT",
       "weight": 6,
       "cooldown": 120,
-      "requires": { "stats": { "crashout": { "min": 60 } } },
+      "requires": {
+        "stats": {
+          "crashout": {
+            "min": 60
+          }
+        }
+      },
       "text": "Kein Fahrzeug. Keine Nachricht. Kein Kommentar. Seit vier Stunden nichts.",
       "choices": [
-        { "text": "Das ist verdächtig.", "tone": "mimonolog", "effects": { "crashout": 14, "nwoInfluence": 5 } },
-        { "text": "Die Ruhe nutzen.", "tone": "ruhig", "effects": { "crashout": -18, "authenticity": 6 } }
+        {
+          "text": "Das ist verdächtig.",
+          "tone": "mimonolog",
+          "effects": {
+            "crashout": 14,
+            "nwoInfluence": 5
+          }
+        },
+        {
+          "text": "Die Ruhe nutzen.",
+          "tone": "ruhig",
+          "effects": {
+            "crashout": -18,
+            "authenticity": 6
+          }
+        }
       ]
+    },
+    {
+      "id": "ev_hamburg_schild",
+      "title": "Der Mann mit dem Schild",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "weight": 9,
+      "scale": {
+        "nwoInfluence": 1.4
+      },
+      "cooldown": 260,
+      "requires": {
+        "location": [
+          "hamburg_bahnhof",
+          "hamburg_pension",
+          "hamburg_kontor",
+          "hamburg_werft",
+          "hamburg_hafen",
+          "hamburg_lagerhalle"
+        ]
+      },
+      "text": "Am Ende des Bahnsteigs steht wieder jemand mit einem Schild. Es ist dasselbe Schild. Es steht immer noch nichts darauf.",
+      "choices": [
+        {
+          "text": "Hingehen und fragen.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 6,
+            "nwoInfluence": 4,
+            "crashout": 6
+          }
+        },
+        {
+          "text": "Fotografieren.",
+          "tone": "mimonolog",
+          "effects": {
+            "mett": 90,
+            "nwoInfluence": 3,
+            "crashout": 8
+          }
+        },
+        {
+          "text": "Vorbeigehen.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "crashout": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "ev_hamburg_container",
+      "title": "Zwischen zwei und vier",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "weight": 10,
+      "scale": {
+        "nwoInfluence": 1.6
+      },
+      "cooldown": 300,
+      "requires": {
+        "location": [
+          "hamburg_hafen",
+          "hamburg_werft",
+          "hamburg_lagerhalle"
+        ],
+        "phase": [
+          "nacht"
+        ]
+      },
+      "text": "Ein Container wird geöffnet. Kein Licht, kein Ruf, keine Papiere. Danach steht er wieder zu, als wäre nichts gewesen.",
+      "choices": [
+        {
+          "text": "Uhrzeit notieren.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 10,
+            "nwoInfluence": 5,
+            "flags": [
+              "werft_zeiten"
+            ],
+            "log": "03:14. Aufgeschrieben."
+          }
+        },
+        {
+          "text": "Näher rangehen.",
+          "tone": "eskalieren",
+          "effects": {
+            "crashout": 22,
+            "nwoInfluence": 8
+          }
+        },
+        {
+          "text": "Filmen und sofort hochladen.",
+          "tone": "mimonolog",
+          "effects": {
+            "mett": 300,
+            "crashout": 14,
+            "nwoInfluence": 6,
+            "authenticity": -4,
+            "spawnHeeter": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "ev_hamburg_kontor_licht",
+      "title": "Drittes Fenster von links",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "weight": 7,
+      "scale": {
+        "nwoInfluence": 1.5
+      },
+      "cooldown": 320,
+      "requires": {
+        "location": [
+          "hamburg_pension",
+          "hamburg_bahnhof",
+          "hamburg_kontor"
+        ],
+        "phase": [
+          "nacht",
+          "abend"
+        ]
+      },
+      "text": "Im Kontor brennt Licht. Drittes Fenster von links, dritter Stock. Jemand sortiert etwas, sehr langsam und sehr lange.",
+      "choices": [
+        {
+          "text": "Beobachten und mitzählen.",
+          "tone": "ruhig",
+          "effects": {
+            "authenticity": 8,
+            "nwoInfluence": 4
+          }
+        },
+        {
+          "text": "Hochgehen.",
+          "tone": "eskalieren",
+          "effects": {
+            "crashout": 18,
+            "nwoInfluence": 6
+          }
+        },
+        {
+          "text": "Schlafen gehen.",
+          "tone": "thema_wechseln",
+          "effects": {
+            "crashout": -12
+          }
+        }
+      ]
+    },
+    {
+      "id": "ev_hamburg_nebel",
+      "title": "Nebel",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "weight": 8,
+      "cooldown": 200,
+      "requires": {
+        "location": [
+          "hamburg_bahnhof",
+          "hamburg_pension",
+          "hamburg_kontor",
+          "hamburg_werft",
+          "hamburg_hafen",
+          "hamburg_lagerhalle"
+        ]
+      },
+      "text": "Der Nebel kommt vom Wasser her und schluckt die Geräusche. Zweimal geht jemand vorbei. Beide Male in dieselbe Richtung.",
+      "effects": {
+        "crashout": 8,
+        "nwoInfluence": 2,
+        "sfx": [
+          "steps"
+        ]
+      }
+    },
+    {
+      "id": "ev_hamburg_moewe",
+      "title": "Eine Möwe",
+      "layer": "MEME_LORE",
+      "weight": 6,
+      "cooldown": 180,
+      "requires": {
+        "location": [
+          "hamburg_hafen",
+          "hamburg_bahnhof",
+          "hamburg_werft"
+        ]
+      },
+      "text": "Eine Möwe nimmt Mimon das halbe Fischbrötchen aus der Hand. Aus zwei Metern Entfernung. Ohne jede Vorwarnung.",
+      "choices": [
+        {
+          "text": "Das kann kein Zufall sein.",
+          "tone": "mimonolog",
+          "effects": {
+            "crashout": 12,
+            "mett": 140,
+            "nwoInfluence": 2,
+            "monolog": {
+              "topic": "allgemein"
+            }
+          }
+        },
+        {
+          "text": "Lachen.",
+          "tone": "ruhig",
+          "effects": {
+            "crashout": -14,
+            "authenticity": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "ev_hamburg_ansage",
+      "title": "Eine Durchsage",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "weight": 5,
+      "scale": {
+        "nwoInfluence": 1.7
+      },
+      "cooldown": 400,
+      "requires": {
+        "location": [
+          "hamburg_bahnhof",
+          "hamburg_hafen"
+        ],
+        "stats": {
+          "nwoInfluence": {
+            "min": 45
+          }
+        }
+      },
+      "text": "Zwischen zwei Durchsagen, für vier Sekunden, eine dritte Stimme: eine Nummer, ein Buchstabe, dann wieder der Fahrplan.",
+      "effects": {
+        "nwoInfluence": 6,
+        "crashout": 10,
+        "sfx": [
+          "nwo_sting"
+        ],
+        "log": "U-7. Oder Y-7. Es ging zu schnell."
+      }
     }
   ]
 }

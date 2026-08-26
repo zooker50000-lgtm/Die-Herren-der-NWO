@@ -51,6 +51,14 @@ kbd {
   border: 1px solid var(--line); border-radius: 4px; background: var(--bg-3);
 }
 .muted { color: var(--muted); font-size: .85rem; }
+
+/* Ohne sichtbaren Fokus ist die Tastaturbedienung blind. */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.overlay__panel:focus-visible { outline-offset: -2px; }
 .plain { list-style: none; padding: 0; margin: 0; }
 
 /* --- Startbildschirm --------------------------------------------------- */
@@ -163,15 +171,20 @@ kbd {
 
 .choices { display: grid; gap: .45rem; margin-top: 1.2rem; }
 .choice {
-  display: grid; grid-template-columns: 9.5rem 1fr; align-items: baseline; gap: .8rem;
+  display: grid; grid-template-columns: 1.4rem 9.5rem 1fr; align-items: baseline; gap: .8rem;
   background: var(--bg-3); border: 1px solid var(--line); border-left: 3px solid var(--line);
   border-radius: var(--radius); padding: .6rem .9rem; text-align: left;
 }
 .choice:hover:not(:disabled) { border-color: var(--gold); }
 .choice__tone { font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.choice__preview { grid-column: 2; font-family: var(--mono); font-size: .68rem; color: var(--gold); opacity: .8; }
+.choice__key {
+  font-family: var(--mono); font-size: .7rem; color: var(--muted);
+  border: 1px solid var(--line); border-radius: 4px; text-align: center; line-height: 1.4;
+}
+.choice__preview { grid-column: 3; font-family: var(--mono); font-size: .68rem; color: var(--gold); opacity: .8; }
 .choice--locked { opacity: .4; cursor: not-allowed; }
 .choice--continue { grid-template-columns: 1fr; text-align: center; color: var(--muted); }
+.terminal .choice--continue, .monolog-picker .choice--continue { grid-template-columns: 1fr; }
 .choice--ruhig { border-left-color: var(--green); }
 .choice--mimonolog { border-left-color: var(--gold); }
 .choice--beschuldigen { border-left-color: #b0703a; }

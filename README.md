@@ -23,7 +23,7 @@ kennt weder DOM noch Konsole.
 ```bash
 npm start          # startet den lokalen Dev-Server -> http://localhost:5173
 npm run play       # spielt dieselbe Engine im Terminal
-npm test           # 73 Tests (node:test, keine Dependencies)
+npm test           # 75 Tests (node:test, keine Dependencies)
 npm run validate   # prueft die gesamte Content-Datenbank auf Konsistenz
 npm run lore       # Lore-Report: Verteilung ueber die Layer, Inhaltsmischung
 npm run simulate   # zufaelliger Durchlauf: findet Abstuerze und tote Wege
@@ -87,6 +87,13 @@ Vier Meter treiben alles an:
 | **CRASHOUT** | Wie nah ist die Eskalation? Aendert Musik, Kamera, UI, NPC-Verhalten. |
 | **METT** | Aufmerksamkeit als Ressource. Mehr Mett = mehr Reichweite = mehr Heeter. |
 | **NWO INFLUENCE** | Wie tief ist die Organisation in deiner Welt? Bei 100%: DIE NWO SIEHT ALLES. |
+
+## Bedienung
+
+Ziffern `1`–`9` waehlen die angezeigte Antwort — das ist der schnellste Weg
+durch Dialoge und Ereignisse. Dazu `C` Computer, `K` Kodex, `I` Inventar,
+`M` Karte, `F` Figuren, `A` Alchemie, `P` Telefon, `T` NWO-Terminal,
+`Esc` zurueck. Alles ist auch per Tab erreichbar, mit sichtbarem Fokus.
 
 ## Wie man Figuren erreicht
 

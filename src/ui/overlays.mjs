@@ -9,8 +9,14 @@ export function renderOverlay(root, game, ui) {
   }[ui.overlay];
 
   mount(root,
-    h('div', { class: `overlay__panel overlay__panel--${ui.overlay}` },
-      h('button', { class: 'overlay__close', onclick: () => ui.closeOverlay() }, '×'),
+    h('div', {
+      class: `overlay__panel overlay__panel--${ui.overlay}`,
+      role: 'dialog',
+      'aria-modal': 'true',
+      'aria-label': ui.overlay,
+      tabindex: '-1'
+    },
+      h('button', { class: 'overlay__close', 'aria-label': 'Schließen', onclick: () => ui.closeOverlay() }, '×'),
       builder ? builder(game, ui) : h('p', {}, '—')
     )
   );

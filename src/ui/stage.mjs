@@ -82,13 +82,15 @@ function renderDialogue(root, game, ui) {
         : h('p', { class: 'dialogue__line' }, view.text ?? ''),
 
       view.choices.length
-        ? h('div', { class: 'choices' }, view.choices.map((choice) =>
+        ? h('div', { class: 'choices', role: 'group', 'aria-label': 'Antwortmöglichkeiten' }, view.choices.map((choice) =>
             h('button', {
               class: `choice choice--${choice.tone} ${choice.available ? '' : 'choice--locked'}`,
               disabled: !choice.available,
               title: choice.available ? choice.preview.join(' · ') : choice.blockedBy.join(' · '),
+              'aria-keyshortcuts': String(choice.index + 1),
               onclick: () => ui.choose(choice.index)
             },
+              h('span', { class: 'choice__key', 'aria-hidden': 'true' }, String(choice.index + 1)),
               h('span', { class: 'choice__tone' }, choice.toneLabel),
               h('span', { class: 'choice__text' }, choice.text),
               choice.preview.length ? h('span', { class: 'choice__preview' }, choice.preview.join(' · ')) : null
@@ -136,8 +138,13 @@ function renderEvent(root, game, ui, event) {
     h('div', { class: 'event' },
       h('div', { class: 'event__head' }, h('h2', {}, event.title), layerTag(event.layer)),
       h('p', { class: 'event__text' }, event.text),
-      h('div', { class: 'choices' }, event.choices.map((choice) =>
-        h('button', { class: `choice choice--${choice.tone}`, onclick: () => ui.respondEvent(choice.index) },
+      h('div', { class: 'choices', role: 'group', 'aria-label': 'Reaktion' }, event.choices.map((choice) =>
+        h('button', {
+          class: `choice choice--${choice.tone}`,
+          'aria-keyshortcuts': String(choice.index + 1),
+          onclick: () => ui.respondEvent(choice.index)
+        },
+          h('span', { class: 'choice__key', 'aria-hidden': 'true' }, String(choice.index + 1)),
           h('span', { class: 'choice__tone' }, choice.tone.replace('_', ' ')),
           h('span', { class: 'choice__text' }, choice.text)
         )
