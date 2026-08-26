@@ -2642,6 +2642,509 @@
           "next": "END"
         }
       }
+    },
+    "anrufer_erstkontakt": {
+      "npc": "der_freundliche_anrufer",
+      "title": "Man will nur reden",
+      "channels": [
+        "telefon"
+      ],
+      "priority": 100,
+      "requires": {
+        "quests": {
+          "active": [
+            "islamimon_02"
+          ]
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Ganz in Ruhe. Ich will gar nichts von dir. Ich hab dein letztes Fideo gesehen, das lange, und ich wollte nur sagen: du hast dir Mühe gegeben. Das sagt dir sonst keiner, oder?",
+          "choices": [
+            {
+              "text": "Stimmt. Sagt sonst keiner.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "der_freundliche_anrufer": 10
+                },
+                "crashout": -12,
+                "mett": 30
+              },
+              "next": "n_offen"
+            },
+            {
+              "text": "Was willst du?",
+              "tone": "beschuldigen",
+              "effects": {
+                "authenticity": 8,
+                "trust": {
+                  "der_freundliche_anrufer": -5
+                }
+              },
+              "next": "n_misstrauen"
+            },
+            {
+              "text": "Einen Mimonolog halten. Er hört ja zu.",
+              "tone": "mimonolog",
+              "effects": {
+                "trust": {
+                  "der_freundliche_anrufer": 8
+                },
+                "mett": 50
+              },
+              "next": "n_monolog"
+            }
+          ]
+        },
+        "n_offen": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Ich hör dir zu. Nimm dir Zeit. Wir haben doch Zeit.",
+          "effects": {
+            "flags": [
+              "anrufer_kontakt"
+            ],
+            "crashout": -8
+          },
+          "next": "END"
+        },
+        "n_misstrauen": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Ganz in Ruhe. Nichts. Wirklich nichts. Wenn du auflegst, ruf ich nicht nochmal an. Das entscheidest du.",
+          "effects": {
+            "flags": [
+              "anrufer_kontakt"
+            ],
+            "authenticity": 5
+          },
+          "next": "END"
+        },
+        "n_monolog": {
+          "speaker": "mimon",
+          "monolog": {
+            "topic": "allgemein"
+          },
+          "next": "n_nach"
+        },
+        "n_nach": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Einundvierzig Minuten. Ich hab nichts gesagt. Ich sag jetzt auch nichts dazu, ich lass das einfach mal so stehen.",
+          "effects": {
+            "flags": [
+              "anrufer_kontakt"
+            ],
+            "mett": 60
+          },
+          "next": "END"
+        }
+      }
+    },
+    "anrufer_zweite_stimme": {
+      "npc": "der_freundliche_anrufer",
+      "title": "Die zweite Stimme",
+      "channels": [
+        "telefon"
+      ],
+      "priority": 100,
+      "requires": {
+        "quests": {
+          "active": [
+            "islamimon_03"
+          ]
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Ein Bekannter von mir hört dich auch. Der sagt genau dasselbe wie ich. Wort für Wort, das ist mir selber aufgefallen.",
+          "choices": [
+            {
+              "text": "Wort für Wort?",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 10,
+                "flags": [
+                  "zweifel_am_anrufer"
+                ]
+              },
+              "next": "n_wortgleich"
+            },
+            {
+              "text": "Dann sind wir ja schon drei.",
+              "tone": "thema_wechseln",
+              "effects": {
+                "trust": {
+                  "der_freundliche_anrufer": 8
+                },
+                "authenticity": -6
+              },
+              "next": "n_drei"
+            }
+          ]
+        },
+        "n_wortgleich": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Ganz in Ruhe. Man redet halt ähnlich, wenn man dasselbe denkt. Das ist doch schön.",
+          "effects": {
+            "crashout": 8
+          },
+          "next": "END"
+        },
+        "n_drei": {
+          "speaker": "der_freundliche_anrufer",
+          "text": "Siehst du. Und es werden mehr. Das geht ganz von allein.",
+          "effects": {
+            "mett": 40,
+            "heeterAggro": 6
+          },
+          "next": "END"
+        }
+      }
+    },
+    "anrufer_ohne_filter": {
+      "npc": "der_freundliche_anrufer",
+      "title": "Ohne Filter",
+      "channels": [
+        "online"
+      ],
+      "priority": 100,
+      "requires": {
+        "quests": {
+          "active": [
+            "islamimon_11"
+          ]
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "narrator",
+          "text": "Die Datei ist zwei Stunden lang und unbearbeitet. Bei Minute achtzehn hört man, wie im Hintergrund jemand lacht. Bei Minute vierzig sagt eine zweite Stimme leise: \"Lass ihn, der redet sich schon selber rein.\"",
+          "choices": [
+            {
+              "text": "Weiterhören bis zum Ende.",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 14,
+                "crashout": 20,
+                "flags": [
+                  "rohmaterial_gehoert"
+                ]
+              },
+              "next": "n_ende"
+            },
+            {
+              "text": "Abbrechen.",
+              "tone": "thema_wechseln",
+              "effects": {
+                "crashout": 14
+              },
+              "next": "n_abbruch"
+            }
+          ]
+        },
+        "n_ende": {
+          "speaker": "narrator",
+          "text": "Am Ende der Aufnahme ist es still. Dann sagt der freundliche Anrufer, sehr höflich, dass er jetzt Schluss machen muss. Danach läuft die Aufnahme noch elf Sekunden weiter.",
+          "effects": {
+            "items": [
+              "alte_fideos"
+            ],
+            "authenticity": 8
+          },
+          "next": "END"
+        },
+        "n_abbruch": {
+          "speaker": "narrator",
+          "text": "Die Datei bleibt liegen. Sie wird nicht kleiner davon.",
+          "next": "END"
+        }
+      }
+    },
+    "anrufer_rueckruf": {
+      "npc": "der_freundliche_anrufer",
+      "title": "Rückruf",
+      "channels": [
+        "telefon"
+      ],
+      "priority": 100,
+      "requires": {
+        "quests": {
+          "active": [
+            "islamimon_12"
+          ]
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "narrator",
+          "text": "Es klingelt. Sechsmal. Dann die Ansage: Der Teilnehmer ist zurzeit nicht erreichbar.",
+          "choices": [
+            {
+              "text": "Nochmal versuchen.",
+              "tone": "ruhig",
+              "effects": {
+                "crashout": 10
+              },
+              "next": "n_nochmal"
+            },
+            {
+              "text": "Auflegen und aufschreiben, was passiert ist.",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 12,
+                "crashout": -10,
+                "flags": [
+                  "anrufer_verstanden"
+                ]
+              },
+              "next": "n_aufschreiben"
+            },
+            {
+              "text": "Draufreden, bis der Anrufbeantworter voll ist.",
+              "tone": "eskalieren",
+              "effects": {
+                "crashout": 25,
+                "mett": 80,
+                "authenticity": -8
+              },
+              "next": "n_band"
+            }
+          ]
+        },
+        "n_nochmal": {
+          "speaker": "narrator",
+          "text": "Diesmal klingelt es nicht mal.",
+          "effects": {
+            "crashout": 8
+          },
+          "next": "END"
+        },
+        "n_aufschreiben": {
+          "speaker": "narrator",
+          "text": "Im Tagebuch steht danach eine Zeile: Er hat nie widersprochen. Kein einziges Mal. Das hätte mir auffallen müssen.",
+          "effects": {
+            "authenticity": 6
+          },
+          "next": "END"
+        },
+        "n_band": {
+          "speaker": "narrator",
+          "text": "Das Band ist nach vier Minuten voll. Zwei Tage später ist ein Ausschnitt davon online. Nicht der ganze.",
+          "effects": {
+            "heeterAggro": 12,
+            "mett": 120
+          },
+          "next": "END"
+        }
+      }
+    },
+    "reichsschaender_koeder": {
+      "npc": "nwo_reichsschaender",
+      "title": "Der Köder",
+      "channels": [
+        "online"
+      ],
+      "priority": 100,
+      "requires": {
+        "quests": {
+          "active": [
+            "rechtsextremimon_02"
+          ]
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "nwo_reichsschaender",
+          "text": "?",
+          "choices": [
+            {
+              "text": "Nachfragen, was er eigentlich will.",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 6
+              },
+              "next": "n_und"
+            },
+            {
+              "text": "Nicht antworten. Fenster zu.",
+              "tone": "thema_wechseln",
+              "effects": {
+                "authenticity": 12,
+                "heeterAggro": -10,
+                "crashout": -6,
+                "flags": [
+                  "koeder_erkannt"
+                ]
+              },
+              "next": "END"
+            },
+            {
+              "text": "Zurückschreiben, was man von so einem Namen hält.",
+              "tone": "eskalieren",
+              "effects": {
+                "crashout": 22,
+                "mett": 150,
+                "heeterAggro": 15,
+                "authenticity": -6
+              },
+              "next": "n_gefuettert"
+            }
+          ]
+        },
+        "n_und": {
+          "speaker": "nwo_reichsschaender",
+          "text": "und?",
+          "choices": [
+            {
+              "text": "Aufhören. Da kommt nichts.",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 10,
+                "flags": [
+                  "koeder_erkannt"
+                ]
+              },
+              "next": "END"
+            },
+            {
+              "text": "Weiterschreiben.",
+              "tone": "eskalieren",
+              "effects": {
+                "crashout": 18,
+                "mett": 90,
+                "heeterAggro": 10
+              },
+              "next": "n_gefuettert"
+            }
+          ]
+        },
+        "n_gefuettert": {
+          "speaker": "narrator",
+          "text": "Die Antwort steht zwei Stunden später als Bild in einem anderen Kanal. Der Name darüber ist nicht mehr derselbe, der Text darunter schon.",
+          "effects": {
+            "spawnHeeter": 1
+          },
+          "next": "END"
+        }
+      }
+    },
+    "hatebox_methode": {
+      "npc": "hatebox",
+      "title": "Die Reaktion ist das Produkt",
+      "channels": [
+        "online"
+      ],
+      "priority": 100,
+      "requires": {
+        "quests": {
+          "active": [
+            "rechtsextremimon_05"
+          ]
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "hatebox",
+          "text": "du fragst warum. ist ganz einfach: ich brauch von dir keine meinung. ich brauch die minute danach. die minute danach ist das produkt. mfg",
+          "choices": [
+            {
+              "text": "Ruhig nachfragen, wie das gemeint ist.",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 10,
+                "flags": [
+                  "methode_verstanden"
+                ]
+              },
+              "next": "n_erklaerung"
+            },
+            {
+              "text": "Ihm sagen, dass das nicht funktioniert.",
+              "tone": "beschuldigen",
+              "effects": {
+                "crashout": 12,
+                "mett": 60
+              },
+              "next": "n_doch"
+            },
+            {
+              "text": "Voller Crashout.",
+              "tone": "eskalieren",
+              "effects": {
+                "crashout": 30,
+                "mett": 250,
+                "heeterAggro": 18,
+                "authenticity": -8
+              },
+              "next": "n_monolog"
+            }
+          ]
+        },
+        "n_erklaerung": {
+          "speaker": "hatebox",
+          "text": "ohne dich ist das material zwölf minuten irgendwas. mit dir sind es neunzig sekunden, die laufen. ich schneide nicht dich. ich schneide deine reaktion. lg",
+          "effects": {
+            "authenticity": 8,
+            "flags": [
+              "methode_verstanden"
+            ],
+            "lore": [
+              "lore_trittbrettfahrer"
+            ]
+          },
+          "next": "END"
+        },
+        "n_doch": {
+          "speaker": "hatebox",
+          "text": "doch. läuft ja gerade.",
+          "effects": {
+            "mett": 80
+          },
+          "next": "END"
+        },
+        "n_monolog": {
+          "speaker": "mimon",
+          "monolog": {
+            "topic": "heeter",
+            "intensity": "hoch"
+          },
+          "next": "n_nach"
+        },
+        "n_nach": {
+          "speaker": "hatebox",
+          "text": "danke. das war die minute danach. mfg",
+          "effects": {
+            "mett": 200,
+            "heeterAggro": 15
+          },
+          "next": "END"
+        }
+      }
     }
   }
 }

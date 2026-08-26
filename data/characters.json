@@ -832,6 +832,43 @@
           "antworten"
         ]
       }
+    },
+    {
+      "id": "der_freundliche_anrufer",
+      "name": "Der freundliche Anrufer",
+      "role": "heeter",
+      "faction": "heeter",
+      "trust": 55,
+      "available": false,
+      "unlock": "akt_10",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "color": "#5f9f8f",
+      "bio": "Er hört zu. Vollständig, ohne zu unterbrechen, jedes Mal. Das ist kein Charakterzug, das ist die Methode.",
+      "tags": [
+        "heeter",
+        "manipulation",
+        "akt_10",
+        "telefon"
+      ],
+      "traits": [
+        "geduldig",
+        "freundlich",
+        "berechnend"
+      ],
+      "voice": {
+        "register": "warm-geduldig",
+        "sentenceLength": "mittel",
+        "tics": [
+          "Ganz in Ruhe.",
+          "Ich hör dir zu."
+        ],
+        "avoids": [
+          "unterbrechen",
+          "widerspruch",
+          "ideologie_ausformuliert"
+        ],
+        "note": "Widerspricht nie. Bestätigt und fragt weiter. Content-Regel: legt Mimon Positionen nahe, formuliert aber selbst keine."
+      }
     }
   ]
 }

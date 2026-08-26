@@ -224,14 +224,16 @@
           "title": "Die Einladung zum Gespräch",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Man will nur reden. Man betont das sehr oft."
+          "summary": "Man will nur reden. Man betont das sehr oft.",
+          "quest": "islamimon_02"
         },
         {
           "n": 3,
           "title": "Die zweite Stimme",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Ein zweiter Anrufer bestätigt alles, was der erste gesagt hat. Wortgleich."
+          "summary": "Ein zweiter Anrufer bestätigt alles, was der erste gesagt hat. Wortgleich.",
+          "quest": "islamimon_03"
         },
         {
           "n": 4,
@@ -246,7 +248,8 @@
           "title": "Was aufgenommen wird",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Jedes Gespräch läuft mit. Das war nie ein Geheimnis, nur nie ein Thema."
+          "summary": "Jedes Gespräch läuft mit. Das war nie ein Geheimnis, nur nie ein Thema.",
+          "quest": "islamimon_05"
         },
         {
           "n": 6,
@@ -261,21 +264,24 @@
           "title": "Kommentare",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Menschen, die Mimon nie gehört haben, wissen jetzt genau, wer er ist."
+          "summary": "Menschen, die Mimon nie gehört haben, wissen jetzt genau, wer er ist.",
+          "quest": "islamimon_07"
         },
         {
           "n": 8,
           "title": "Die Erklärung, die keiner hören will",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Ein Fideo, achtundvierzig Minuten. Aufrufe: dreistellig."
+          "summary": "Ein Fideo, achtundvierzig Minuten. Aufrufe: dreistellig.",
+          "quest": "islamimon_08"
         },
         {
           "n": 9,
           "title": "Toni ruft an",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Er hat sich alles angehört. Alles. Er fragt trotzdem nach."
+          "summary": "Er hat sich alles angehört. Alles. Er fragt trotzdem nach.",
+          "quest": "islamimon_09"
         },
         {
           "n": 10,
@@ -290,28 +296,32 @@
           "title": "Die freundliche Stimme, ohne Filter",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Eine unbearbeitete Aufnahme. Man hört, wie im Hintergrund gelacht wird."
+          "summary": "Eine unbearbeitete Aufnahme. Man hört, wie im Hintergrund gelacht wird.",
+          "quest": "islamimon_11"
         },
         {
           "n": 12,
           "title": "Rückruf",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Diesmal ruft Mimon an. Es geht niemand ran."
+          "summary": "Diesmal ruft Mimon an. Es geht niemand ran.",
+          "quest": "islamimon_12"
         },
         {
           "n": 13,
           "title": "Was bleibt",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Der Ausschnitt existiert weiter. Die vier Stunden nicht."
+          "summary": "Der Ausschnitt existiert weiter. Die vier Stunden nicht.",
+          "quest": "islamimon_13"
         },
         {
           "n": 14,
           "title": "Die Entschuldigung",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "islamimon",
-          "summary": "Sie kommt. Sie ist zwei Sätze lang und steht in einem Kommentar."
+          "summary": "Sie kommt. Sie ist zwei Sätze lang und steht in einem Kommentar.",
+          "quest": "islamimon_14"
         },
         {
           "n": 15,
@@ -354,14 +364,16 @@
           "title": "Was man Mimon in den Mund legt",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "rechtsextremimon",
-          "summary": "Ein Satz taucht in einem Fideo auf, den Mimon nachweislich nicht gesagt hat."
+          "summary": "Ein Satz taucht in einem Fideo auf, den Mimon nachweislich nicht gesagt hat.",
+          "quest": "rechtsextremimon_02"
         },
         {
           "n": 3,
           "title": "Die Aufnahme läuft schon",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "rechtsextremimon",
-          "summary": "Das Gespräch beginnt nicht am Anfang. Es beginnt bei Minute zwölf."
+          "summary": "Das Gespräch beginnt nicht am Anfang. Es beginnt bei Minute zwölf.",
+          "quest": "rechtsextremimon_03"
         },
         {
           "n": 4,
@@ -376,7 +388,8 @@
           "title": "Die Reaktion ist das Produkt",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "rechtsextremimon",
-          "summary": "Hatebox erklärt es beiläufig und ohne jede Scham."
+          "summary": "Hatebox erklärt es beiläufig und ohne jede Scham.",
+          "quest": "rechtsextremimon_05"
         },
         {
           "n": 6,
@@ -391,14 +404,16 @@
           "title": "Der Ausschnitt geht weiter",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "rechtsextremimon",
-          "summary": "Die Anzeige ändert nichts an der Verbreitung. Das ist die eigentliche Nachricht."
+          "summary": "Die Anzeige ändert nichts an der Verbreitung. Das ist die eigentliche Nachricht.",
+          "quest": "rechtsextremimon_07"
         },
         {
           "n": 8,
           "title": "Wer das hochlädt",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "rechtsextremimon",
-          "summary": "Vier Accounts, ein Uploadzeitpunkt, dieselbe Minute."
+          "summary": "Vier Accounts, ein Uploadzeitpunkt, dieselbe Minute.",
+          "quest": "rechtsextremimon_08"
         },
         {
           "n": 9,
@@ -413,7 +428,8 @@
           "title": "Gegenschnitt",
           "layer": "FICTIONAL_GAME_CONTENT",
           "derivedFrom": "rechtsextremimon",
-          "summary": "Zum ersten Mal schneidet Mimon selbst. Ruhig, chronologisch, mit Zeitstempeln."
+          "summary": "Zum ersten Mal schneidet Mimon selbst. Ruhig, chronologisch, mit Zeitstempeln.",
+          "quest": "rechtsextremimon_10"
         },
         {
           "n": 11,

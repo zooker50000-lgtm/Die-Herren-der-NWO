@@ -114,13 +114,14 @@ function loese(quest, objective) {
     case 'fideo.watched': { g.fideos.watch(w.id ?? 'fideo_veraendert'); return true; }
     case 'comments.analyzed': g.fideos.analyzeComments(); return true;
     case 'email.read': {
-      const mail = g.emails.inbox.find((m) => !w.channel || m.channel === w.channel) ?? g.emails.spawn('auto');
+      // Eine bereits gelesene Nachricht feuert kein Ereignis mehr.
+      const mail = ungeleseneNachricht(w);
       if (!mail) return false;
       g.emails.read(mail.id);
       return true;
     }
     case 'email.handled': {
-      const mail = g.emails.inbox[0] ?? g.emails.spawn('auto');
+      const mail = ungeleseneNachricht(w) ?? g.emails.inbox[0];
       if (!mail) return false;
       g.emails.read(mail.id);
       g.emails.handle(mail.id, w.action ?? 'antworten');
@@ -161,10 +162,9 @@ function loese(quest, objective) {
       return ok;
     }
     case 'monolog.finished': {
-      if (w.tier === 'calm' || w.tierMax === 'annoyed') {
+      if (w.tier || w.tierMax) {
         // Runterkommen: in der Wohnung faellt der Crashout am schnellsten.
-        geheZu('mimons_wohnung');
-        while (g.meters.voiceTier !== 'calm' && g.store.stat('crashout') > 0) g.clock.advance(120);
+        if (!kommRunter(w.tier ?? w.tierMax)) return false;
       }
       g.monolog.generate({ topic: w.topic ?? 'allgemein', final: w.final });
       return true;
@@ -219,6 +219,23 @@ function waehleFuerItem(dlg, offen, itemId) {
     if (folge && (folge.effects?.items ?? []).includes(itemId)) return index;
   }
   return 0;
+}
+
+/** Eine ungelesene Nachricht finden, notfalls eine neue zustellen lassen. */
+function ungeleseneNachricht(where = {}) {
+  const passt = (m) => (!where.channel || m.channel === where.channel) && (!where.from || m.from === where.from);
+  return g.emails.inbox.find((m) => !m.read && passt(m)) ?? g.emails.spawn(where.from ? `heet_mehl_pool:${where.from}` : 'auto');
+}
+
+/** Herunterkommen, bis die gewuenschte Sprachstufe erreicht ist. */
+function kommRunter(stufe) {
+  geheZu('mimons_wohnung');
+  const erlaubt = stufe === 'calm' ? ['calm'] : ['calm', 'annoyed'];
+  for (let versuch = 0; versuch < 60 && !erlaubt.includes(g.meters.voiceTier); versuch++) {
+    g.clock.advance(120);
+    if (g.events.view()) g.events.respond(0);
+  }
+  return erlaubt.includes(g.meters.voiceTier);
 }
 
 /** Mett verdienen, wenn der Preis nicht reicht. */

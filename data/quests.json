@@ -772,7 +772,12 @@
       ],
       "rewards": {
         "nwoInfluence": 6,
-        "mett": 80
+        "mett": 80,
+        "quests": {
+          "start": [
+            "baphomimon_pressesprecher"
+          ]
+        }
       }
     },
     {
@@ -819,7 +824,12 @@
         },
         "flags": [
           "vertrag_gelesen"
-        ]
+        ],
+        "quests": {
+          "start": [
+            "baphomimon_fenster"
+          ]
+        }
       }
     },
     {
@@ -1921,6 +1931,106 @@
         "crashout": -10,
         "quests": {
           "start": [
+            "islamimon_02"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_02",
+      "title": "ISLAMIMON 2: Die Einladung zum Gespräch",
+      "type": "heeter",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 2,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Man will nur reden. Man betont das sehr oft.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_01"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Den Anruf annehmen",
+          "event": "phone.answered",
+          "where": {
+            "caller": "der_freundliche_anrufer"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Das Gespräch zu Ende führen",
+          "event": "dialogue.closed",
+          "where": {
+            "dialogue": "anrufer_erstkontakt"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crashout": -12,
+        "mett": 70,
+        "trust": {
+          "der_freundliche_anrufer": 6
+        },
+        "log": "Zum ersten Mal seit Wochen legt niemand auf.",
+        "quests": {
+          "start": [
+            "islamimon_03"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_03",
+      "title": "ISLAMIMON 3: Die zweite Stimme",
+      "type": "heeter",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 3,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Ein zweiter Anrufer bestätigt alles, was der erste gesagt hat. Wortgleich.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_02"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Der zweiten Stimme zuhören",
+          "event": "dialogue.closed",
+          "where": {
+            "dialogue": "anrufer_zweite_stimme"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Die Kommentare mit dem Gehörten abgleichen",
+          "event": "comments.analyzed",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 6,
+        "heeterAggro": 6,
+        "log": "Zwei Menschen, ein Satzbau.",
+        "quests": {
+          "start": [
             "islamimon_04"
           ]
         }
@@ -1941,7 +2051,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "islamimon_01"
+            "islamimon_03"
           ]
         }
       },
@@ -1961,6 +2071,56 @@
           "mamer": 10
         },
         "authenticity": 5,
+        "quests": {
+          "start": [
+            "islamimon_05"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_05",
+      "title": "ISLAMIMON 5: Was aufgenommen wird",
+      "type": "nwo",
+      "act": 10,
+      "faction": "nwo_productions",
+      "series": "islamimon",
+      "episode": 5,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Jedes Gespräch läuft mit. Das war nie ein Geheimnis, nur nie ein Thema.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_04"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Mit NWO Kai über die Aufnahmen sprechen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "nwo_kai"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Rechner vier im Internetcafé prüfen",
+          "event": "world.interact",
+          "where": {
+            "interactable": "fremder_rechner"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 6,
+        "authenticity": 8,
+        "log": "Alles archiviert. Doppelt. Auch das, was nie gesendet wurde.",
         "quests": {
           "start": [
             "islamimon_06"
@@ -1983,7 +2143,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "islamimon_04"
+            "islamimon_05"
           ]
         }
       },
@@ -2012,6 +2172,156 @@
         "crashout": 18,
         "quests": {
           "start": [
+            "islamimon_07"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_07",
+      "title": "ISLAMIMON 7: Kommentare",
+      "type": "heeter",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 7,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Menschen, die Mimon nie gehört haben, wissen jetzt genau, wer er ist.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_06"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Den Ausschnitt ansehen",
+          "event": "fideo.watched",
+          "where": {
+            "id": "fideo_ausschnitt"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Die Kommentare zweimal durchgehen",
+          "event": "comments.analyzed",
+          "count": 2
+        }
+      ],
+      "rewards": {
+        "crashout": 16,
+        "heeterAggro": 10,
+        "mett": 90,
+        "log": "Hundertachtundzwanzigtausend Aufrufe. Neunzig Sekunden.",
+        "quests": {
+          "start": [
+            "islamimon_08"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_08",
+      "title": "ISLAMIMON 8: Die Erklärung, die keiner hören will",
+      "type": "main",
+      "act": 10,
+      "faction": "keine",
+      "series": "islamimon",
+      "episode": 8,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Ein Fideo, achtundvierzig Minuten. Aufrufe: dreistellig.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_07"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Ein ruhiges Erklärfideo mit Belegen veröffentlichen",
+          "event": "fideo.published",
+          "where": {
+            "topic": "richtigstellung",
+            "evidence": true,
+            "angerMax": 30
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Sich ansehen, was darunter steht",
+          "event": "comments.analyzed",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 14,
+        "mett": -30,
+        "log": "Achtundvierzig Minuten. Achthundertzwölf Aufrufe.",
+        "quests": {
+          "start": [
+            "islamimon_09"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_09",
+      "title": "ISLAMIMON 9: Toni ruft an",
+      "type": "main",
+      "act": 10,
+      "faction": "keine",
+      "series": "islamimon",
+      "episode": 9,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "toni",
+      "summary": "Er hat sich alles angehört. Alles. Er fragt trotzdem nach.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_08"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Ans Telefon gehen",
+          "event": "phone.answered",
+          "where": {
+            "caller": "toni"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Toni ausreden lassen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "toni"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "trust": {
+          "toni": 12
+        },
+        "crashout": -14,
+        "authenticity": 6,
+        "log": "Alter. Ich hab's komplett geguckt.",
+        "quests": {
+          "start": [
             "islamimon_10"
           ]
         }
@@ -2032,7 +2342,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "islamimon_06"
+            "islamimon_09"
           ]
         }
       },
@@ -2058,6 +2368,195 @@
         "mett": -60,
         "quests": {
           "start": [
+            "islamimon_11"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_11",
+      "title": "ISLAMIMON 11: Die freundliche Stimme, ohne Filter",
+      "type": "heeter",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 11,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Eine unbearbeitete Aufnahme. Man hört, wie im Hintergrund gelacht wird.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_10"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Das Rohmaterial anhören",
+          "event": "dialogue.closed",
+          "where": {
+            "dialogue": "anrufer_ohne_filter"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 12,
+        "crashout": 18,
+        "trust": {
+          "der_freundliche_anrufer": -25
+        },
+        "log": "Lass ihn, der redet sich schon selber rein.",
+        "quests": {
+          "start": [
+            "islamimon_12"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_12",
+      "title": "ISLAMIMON 12: Rückruf",
+      "type": "main",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 12,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Diesmal ruft Mimon an. Es geht niemand ran.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_11"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Zurückrufen",
+          "event": "dialogue.closed",
+          "where": {
+            "dialogue": "anrufer_rueckruf"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crashout": 10,
+        "authenticity": 6,
+        "log": "Der Teilnehmer ist zurzeit nicht erreichbar.",
+        "quests": {
+          "start": [
+            "islamimon_13"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_13",
+      "title": "ISLAMIMON 13: Was bleibt",
+      "type": "main",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 13,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Der Ausschnitt existiert weiter. Die vier Stunden nicht.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_12"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Die ungeschnittene Fassung ansehen",
+          "event": "fideo.watched",
+          "where": {
+            "id": "fideo_rohmaterial"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Das Material sichern",
+          "event": "item.gained",
+          "where": {
+            "item": "alte_fideos"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 10,
+        "items": [
+          "heet_mehl_ausdruck"
+        ],
+        "log": "Vier Stunden auf einem Datenträger, der in eine Hand passt.",
+        "quests": {
+          "start": [
+            "islamimon_14"
+          ]
+        }
+      }
+    },
+    {
+      "id": "islamimon_14",
+      "title": "ISLAMIMON 14: Die Entschuldigung",
+      "type": "heeter",
+      "act": 10,
+      "faction": "heeter",
+      "series": "islamimon",
+      "episode": 14,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "islamimon",
+      "giver": "self",
+      "summary": "Sie kommt. Sie ist zwei Sätze lang und steht in einem Kommentar.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "islamimon_13"
+          ]
+        }
+      },
+      "onStart": {
+        "spawnEmail": "hm_010",
+        "log": "Eine Nachricht, die anders anfängt als die anderen."
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Die Nachricht lesen",
+          "event": "email.read",
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Nicht eskalieren",
+          "event": "monolog.finished",
+          "where": {
+            "tierMax": "annoyed"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 10,
+        "crashout": -12,
+        "heeterAggro": -8,
+        "log": "Zwei Sätze. Mehr kommt nicht, und mehr wird auch nicht kommen.",
+        "quests": {
+          "start": [
             "islamimon_15"
           ]
         }
@@ -2078,7 +2577,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "islamimon_10"
+            "islamimon_14"
           ]
         }
       },
@@ -2136,6 +2635,106 @@
         "authenticity": 6,
         "quests": {
           "start": [
+            "rechtsextremimon_02"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rechtsextremimon_02",
+      "title": "RECHTSEXTREMIMON 2: Was man Mimon in den Mund legt",
+      "type": "heeter",
+      "act": 11,
+      "faction": "heeter",
+      "series": "rechtsextremimon",
+      "episode": 2,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "giver": "self",
+      "summary": "Ein Satz taucht in einem Fideo auf, den Mimon nachweislich nicht gesagt hat.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "rechtsextremimon_01"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Den Ausschnitt ansehen",
+          "event": "fideo.watched",
+          "where": {
+            "id": "fideo_ausschnitt"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Auf den Köder reagieren — oder nicht",
+          "event": "dialogue.closed",
+          "where": {
+            "dialogue": "reichsschaender_koeder"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crashout": 14,
+        "authenticity": 4,
+        "log": "Der Satz ist deiner. Die Reihenfolge nicht.",
+        "quests": {
+          "start": [
+            "rechtsextremimon_03"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rechtsextremimon_03",
+      "title": "RECHTSEXTREMIMON 3: Die Aufnahme läuft schon",
+      "type": "heeter",
+      "act": 11,
+      "faction": "heeter",
+      "series": "rechtsextremimon",
+      "episode": 3,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "giver": "self",
+      "summary": "Das Gespräch beginnt nicht am Anfang. Es beginnt bei Minute zwölf.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "rechtsextremimon_02"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Rechner vier im Internetcafé prüfen",
+          "event": "world.interact",
+          "where": {
+            "interactable": "fremder_rechner"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Die vollständige Aufnahme sichern",
+          "event": "item.gained",
+          "where": {
+            "item": "alte_fideos"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 8,
+        "nwoInfluence": 4,
+        "log": "Die ersten elf Minuten fehlen. Genau die elf.",
+        "quests": {
+          "start": [
             "rechtsextremimon_04"
           ]
         }
@@ -2156,7 +2755,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "rechtsextremimon_01"
+            "rechtsextremimon_03"
           ]
         }
       },
@@ -2179,6 +2778,49 @@
         "crashout": -20,
         "quests": {
           "start": [
+            "rechtsextremimon_05"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rechtsextremimon_05",
+      "title": "RECHTSEXTREMIMON 5: Die Reaktion ist das Produkt",
+      "type": "main",
+      "act": 11,
+      "faction": "heeter",
+      "series": "rechtsextremimon",
+      "episode": 5,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "giver": "self",
+      "summary": "Hatebox erklärt es beiläufig und ohne jede Scham.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "rechtsextremimon_04"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Hatebox zu Ende zuhören",
+          "event": "dialogue.closed",
+          "where": {
+            "dialogue": "hatebox_methode"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 12,
+        "lore": [
+          "lore_trittbrettfahrer"
+        ],
+        "log": "Ich schneide nicht dich. Ich schneide deine Reaktion.",
+        "quests": {
+          "start": [
             "rechtsextremimon_06"
           ]
         }
@@ -2199,7 +2841,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "rechtsextremimon_04"
+            "rechtsextremimon_05"
           ]
         }
       },
@@ -2227,6 +2869,106 @@
         "authenticity": 8,
         "quests": {
           "start": [
+            "rechtsextremimon_07"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rechtsextremimon_07",
+      "title": "RECHTSEXTREMIMON 7: Der Ausschnitt geht weiter",
+      "type": "main",
+      "act": 11,
+      "faction": "polizei",
+      "series": "rechtsextremimon",
+      "episode": 7,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "giver": "self",
+      "summary": "Die Anzeige ändert nichts an der Verbreitung. Das ist die eigentliche Nachricht.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "rechtsextremimon_06"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Bei Kommissarin Devrim nachfragen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "kommissarin_devrim"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Nachsehen, was inzwischen darunter steht",
+          "event": "comments.analyzed",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "crashout": 12,
+        "authenticity": 6,
+        "trust": {
+          "kommissarin_devrim": 6
+        },
+        "log": "Aufgenommen ist nicht dasselbe wie aufgehalten.",
+        "quests": {
+          "start": [
+            "rechtsextremimon_08"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rechtsextremimon_08",
+      "title": "RECHTSEXTREMIMON 8: Wer das hochlädt",
+      "type": "heeter",
+      "act": 11,
+      "faction": "heeter",
+      "series": "rechtsextremimon",
+      "episode": 8,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "giver": "self",
+      "summary": "Vier Accounts, ein Uploadzeitpunkt, dieselbe Minute.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "rechtsextremimon_07"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Rechner vier noch einmal ansehen",
+          "event": "world.interact",
+          "where": {
+            "interactable": "fremder_rechner"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Markus Grohe fragen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "markus_grohe"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 10,
+        "nwoInfluence": 5,
+        "log": "Vier Namen, ein Zeitstempel. Sekundengenau.",
+        "quests": {
+          "start": [
             "rechtsextremimon_09"
           ]
         }
@@ -2247,7 +2989,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "rechtsextremimon_06"
+            "rechtsextremimon_08"
           ]
         }
       },
@@ -2275,6 +3017,59 @@
         "authenticity": 10,
         "quests": {
           "start": [
+            "rechtsextremimon_10"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rechtsextremimon_10",
+      "title": "RECHTSEXTREMIMON 10: Gegenschnitt",
+      "type": "main",
+      "act": 11,
+      "faction": "keine",
+      "series": "rechtsextremimon",
+      "episode": 10,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "rechtsextremimon",
+      "giver": "self",
+      "summary": "Zum ersten Mal schneidet Mimon selbst. Ruhig, chronologisch, mit Zeitstempeln.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "rechtsextremimon_09"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Den Gegenschnitt veröffentlichen",
+          "event": "fideo.published",
+          "where": {
+            "topic": "richtigstellung",
+            "evidence": true,
+            "angerMax": 25
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Ihn ruhig zu Ende bringen",
+          "event": "monolog.finished",
+          "where": {
+            "tier": "calm"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 18,
+        "crashout": -20,
+        "mett": 120,
+        "log": "Keine Musik, keine Großbuchstaben, nur Uhrzeiten.",
+        "quests": {
+          "start": [
             "rechtsextremimon_11"
           ]
         }
@@ -2295,7 +3090,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "rechtsextremimon_09"
+            "rechtsextremimon_10"
           ]
         }
       },
