@@ -301,7 +301,7 @@
       "connections": [
         "strasse",
         "nwo_productions",
-        "hamburg_hafen"
+        "hamburg_bahnhof"
       ],
       "npcs": [
         "nwo_flunder"
@@ -317,7 +317,7 @@
           "id": "reisen_hamburg",
           "label": "Nach Hamburg fahren",
           "type": "travel",
-          "target": "hamburg_hafen",
+          "target": "hamburg_bahnhof",
           "requires": {
             "act": {
               "min": 9
@@ -574,7 +574,8 @@
       "description": "Container, Nebel, und ein Termin, den Mimon nicht selbst vereinbart hat.",
       "crashoutDecay": 0.3,
       "connections": [
-        "bahnhof",
+        "hamburg_bahnhof",
+        "hamburg_werft",
         "hamburg_lagerhalle"
       ],
       "npcs": [
@@ -597,7 +598,8 @@
       "description": "Eine Halle, in der eine einzige Lampe brennt, und zwar über einem Stuhl.",
       "crashoutDecay": 0.0,
       "connections": [
-        "hamburg_hafen"
+        "hamburg_hafen",
+        "hamburg_werft"
       ],
       "npcs": [
         "olligo",
@@ -609,6 +611,130 @@
           "label": "Hineingehen",
           "type": "dialogue",
           "dialogue": "hades_konfrontation"
+        }
+      ]
+    },
+    {
+      "id": "hamburg_bahnhof",
+      "name": "Hamburg, Ankunft",
+      "region": "hamburg",
+      "unlock": "akt_9",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "description": "Andere Durchsagen, dieselbe Uhrzeit. Auf dem Bahnsteig steht ein Mann mit einem Schild, auf dem kein Name steht.",
+      "crashoutDecay": 0.5,
+      "connections": [
+        "bahnhof",
+        "hamburg_pension",
+        "hamburg_kontor",
+        "hamburg_hafen"
+      ],
+      "interactables": [
+        {
+          "id": "schild_lesen",
+          "label": "Das Schild ansehen",
+          "type": "investigate",
+          "check": "authenticity"
+        },
+        {
+          "id": "zurueck_berlin",
+          "label": "Zurück nach Berlin",
+          "type": "travel",
+          "target": "bahnhof"
+        }
+      ]
+    },
+    {
+      "id": "hamburg_pension",
+      "name": "Pension Nordlicht",
+      "region": "hamburg",
+      "unlock": "akt_9",
+      "safehouse": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "description": "Zimmer 4, zweiter Stock, Fenster zum Hof. Der Schlüssel hängt an einem Holzklotz, damit man ihn nicht mitnimmt.",
+      "crashoutDecay": 1.8,
+      "connections": [
+        "hamburg_bahnhof"
+      ],
+      "interactables": [
+        {
+          "id": "fenster",
+          "label": "Fenster zum Hof",
+          "type": "window"
+        },
+        {
+          "id": "bett",
+          "label": "Schlafen",
+          "type": "sleep"
+        },
+        {
+          "id": "telefon",
+          "label": "Telefon an der Rezeption",
+          "type": "app",
+          "app": "telefon"
+        }
+      ]
+    },
+    {
+      "id": "hamburg_kontor",
+      "name": "Kontor 4",
+      "region": "hamburg",
+      "unlock": "akt_9",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "description": "Ein Büro im dritten Stock, Messingschild, geputzte Fenster. Von außen die harmloseste Adresse der Stadt.",
+      "crashoutDecay": 0.4,
+      "connections": [
+        "hamburg_bahnhof"
+      ],
+      "npcs": [
+        "frau_delling"
+      ],
+      "interactables": [
+        {
+          "id": "akten_einsehen",
+          "label": "Um Akteneinsicht bitten",
+          "type": "investigate",
+          "check": "authenticity"
+        },
+        {
+          "id": "kontor_terminal",
+          "label": "Terminal im Nebenraum",
+          "type": "terminal",
+          "requires": {
+            "stats": {
+              "nwoInfluence": {
+                "min": 55
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "hamburg_werft",
+      "name": "Trockendock 3",
+      "region": "hamburg",
+      "unlock": "akt_9",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "description": "Ein Schiff, das auseinandergenommen wird, obwohl es noch fährt. Nachts brennt genau eine Lampe.",
+      "crashoutDecay": 0.3,
+      "connections": [
+        "hamburg_hafen",
+        "hamburg_lagerhalle"
+      ],
+      "npcs": [
+        "nachtwaechter_pauls"
+      ],
+      "interactables": [
+        {
+          "id": "dock_ansehen",
+          "label": "Das Dock ansehen",
+          "type": "investigate",
+          "check": "mimonolog"
+        },
+        {
+          "id": "nachts_warten",
+          "label": "Auf die Nacht warten",
+          "type": "wait_contact"
         }
       ]
     }

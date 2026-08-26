@@ -23,7 +23,7 @@ kennt weder DOM noch Konsole.
 ```bash
 npm start          # startet den lokalen Dev-Server -> http://localhost:5173
 npm run play       # spielt dieselbe Engine im Terminal
-npm test           # 71 Tests (node:test, keine Dependencies)
+npm test           # 73 Tests (node:test, keine Dependencies)
 npm run validate   # prueft die gesamte Content-Datenbank auf Konsistenz
 npm run lore       # Lore-Report: Verteilung ueber die Layer, Inhaltsmischung
 npm run simulate   # zufaelliger Durchlauf: findet Abstuerze und tote Wege

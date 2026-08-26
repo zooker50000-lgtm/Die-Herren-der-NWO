@@ -35,19 +35,19 @@ Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 
 | Kennzahl | Stand |
 |---|---|
-| Quests | 71, davon 69-70 in einem Durchlauf abschliessbar |
-| Dialoge | 38 Graphen, alle ueber einen Kanal erreichbar |
+| Quests | 74, davon 73 in einem Durchlauf abschliessbar |
+| Dialoge | 49 Graphen, alle ueber einen Kanal erreichbar |
 | Episoden | 51 von 51 mit eigener Quest — alle vier Serien vollstaendig |
 | Mimonolog | 12 Beat-Typen, 232 Vorlagen ueber drei Sprachstufen |
 | Vertrauen | sechs Figuren mit eigenem Zweig fuer niedriges Vertrauen, zwei fuer hohes |
-| Orte | 16, alle von Mimons Wohnung aus erreichbar |
+| Orte | 20 in drei Regionen, alle von Mimons Wohnung aus erreichbar |
+| Figuren | 28, davon 24 mit eigenem Gespraech |
 | Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
 
 ## Naechste konkrete Schritte
 
-1. Hamburg ausbauen: bisher zwei Orte, gedacht als eigener Bezirk.
-2. Dialogzweige fuer niedrigen Trust bei allen Hauptfiguren ergaenzen —
-   aktuell reagieren die Figuren kaum darauf, wenn man sie verprellt hat.
-3. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
-4. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
+1. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
+2. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
    bisher nur farblich unterschieden).
+3. Eigene Ereignisse fuer Hamburg — bisher greift dort die Berliner
+   Ereignistabelle mit.

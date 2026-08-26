@@ -869,6 +869,79 @@
         ],
         "note": "Widerspricht nie. Bestätigt und fragt weiter. Content-Regel: legt Mimon Positionen nahe, formuliert aber selbst keine."
       }
+    },
+    {
+      "id": "frau_delling",
+      "name": "Frau Delling",
+      "role": "nwo_elite",
+      "faction": "nwo_elite",
+      "trust": 35,
+      "available": false,
+      "unlock": "akt_9",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "color": "#7f8f9f",
+      "home": "hamburg_kontor",
+      "bio": "Führt im Kontor die Bücher der nördlichen Vorgänge. Alles bei ihr ist ordentlich, und genau das ist das Beunruhigende.",
+      "tags": [
+        "nwo",
+        "elite",
+        "hamburg",
+        "verwaltung"
+      ],
+      "traits": [
+        "knapp",
+        "ordentlich",
+        "unbestechlich wirkend"
+      ],
+      "voice": {
+        "register": "norddeutsch-knapp",
+        "sentenceLength": "kurz",
+        "tics": [
+          "Moin.",
+          "Soweit."
+        ],
+        "avoids": [
+          "ueberschwang",
+          "spekulation"
+        ],
+        "note": "Sagt nie mehr als nötig. Wenn sie etwas nicht sagt, merkt man das."
+      }
+    },
+    {
+      "id": "nachtwaechter_pauls",
+      "name": "Pauls",
+      "role": "neutral",
+      "faction": "unabhängig",
+      "trust": 50,
+      "available": false,
+      "unlock": "akt_9",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "color": "#6f8f6f",
+      "home": "hamburg_werft",
+      "bio": "Nachtwache im Trockendock, seit neunzehn Jahren. Er sieht alles und erzählt davon nur, wenn man ihn nicht drängt.",
+      "tags": [
+        "neutral",
+        "hamburg",
+        "zeuge"
+      ],
+      "traits": [
+        "langsam",
+        "genau",
+        "unbeeindruckt"
+      ],
+      "voice": {
+        "register": "langsam-genau",
+        "sentenceLength": "mittel",
+        "tics": [
+          "Tja.",
+          "Nu."
+        ],
+        "avoids": [
+          "eile",
+          "vermutungen"
+        ],
+        "note": "Nennt Uhrzeiten, keine Meinungen."
+      }
     }
   ]
 }

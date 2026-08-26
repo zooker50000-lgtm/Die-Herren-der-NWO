@@ -351,4 +351,7 @@ console.log(`Quests: ${s.quests.completed.length}/${data.quests.quests.length} a
 console.log(`Orte: ${s.world.visited.length}/${data.locations.locations.length} · Dialoge: ${s.dialogue.played.length}/${Object.keys(data.dialogue.dialogues).length}`);
 console.log(`Kodex: ${g.codex.stats().unlocked}/${g.codex.stats().total} · Ende: ${s.ending ?? '—'}`);
 const offen = g.quests.journal().active.flatMap((q) => q.objectives.filter((o) => !o.done).map((o) => `${q.title}: ${o.text}`));
+const nieBesucht = data.locations.locations.filter((l) => !s.world.visited.includes(l.id)).map((l) => l.name);
+if (nieBesucht.length) console.log(`Nie besucht: ${nieBesucht.join(', ')}`);
+
 console.log(offen.length ? `\nNicht lösbar:\n  ${offen.join('\n  ')}` : '\nAlle aktiven Ziele lösbar.');

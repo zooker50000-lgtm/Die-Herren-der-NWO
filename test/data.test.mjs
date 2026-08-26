@@ -106,3 +106,33 @@ test('die Manipulations-Arcs geben keine Ideologie wieder', () => {
     assert.ok(figur.voice.avoids.includes('ideologie_ausformuliert'), `${id}: Sprachprofil ohne Inhaltsgrenze`);
   }
 });
+
+test('jede Region ist erreichbar und bewohnt', () => {
+  const orte = data.locations.locations;
+  for (const region of data.locations.regions) {
+    const inRegion = orte.filter((l) => l.region === region.id);
+    // Entweder mehrere Orte oder ein Ort mit Bereichen: der Untergrund ist
+    // bewusst ein einziger tiefer Ort (U-7) und kein Bezirk.
+    const substanz = inRegion.length >= 2 || inRegion.some((l) => (l.areas ?? []).length >= 3);
+    assert.ok(substanz, `${region.id}: zu duenn (${inRegion.length} Ort(e), keine Bereiche)`);
+
+    // Mindestens eine Verbindung nach draussen, sonst ist die Region abgeschnitten.
+    const nachAussen = inRegion.some((l) =>
+      (l.connections ?? []).some((z) => orte.find((o) => o.id === z)?.region !== region.id) ||
+      orte.some((o) => o.region !== region.id && (o.connections ?? []).includes(l.id))
+    );
+    assert.ok(nachAussen, `${region.id}: keine Verbindung zu einer anderen Region`);
+
+    // Und mindestens eine Figur, sonst ist es Kulisse.
+    const mitFiguren = inRegion.some((l) => (l.npcs ?? []).length);
+    assert.ok(mitFiguren, `${region.id}: keine einzige Figur`);
+  }
+});
+
+test('jeder Ort mit Figuren hat auch etwas zu tun', () => {
+  for (const loc of data.locations.locations) {
+    if (!(loc.npcs ?? []).length) continue;
+    assert.ok((loc.interactables ?? []).length || loc.areas?.length,
+      `${loc.id}: Figuren, aber keine Interaktion`);
+  }
+});

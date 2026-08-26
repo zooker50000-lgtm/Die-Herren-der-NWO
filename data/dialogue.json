@@ -3706,6 +3706,267 @@
           "next": "END"
         }
       }
+    },
+    "delling_hub": {
+      "npc": "frau_delling",
+      "title": "Frau Delling",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 0,
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "frau_delling",
+          "text": "Moin. Sie sind nicht angemeldet. Das ist kein Vorwurf, das ist eine Feststellung. Was wollen Sie?",
+          "choices": [
+            {
+              "text": "Nach den nördlichen Vorgängen fragen.",
+              "tone": "nwo_kontaktieren",
+              "effects": {
+                "nwoInfluence": 6
+              },
+              "next": "n_vorgaenge"
+            },
+            {
+              "text": "Nach Olligo fragen.",
+              "tone": "beschuldigen",
+              "effects": {
+                "crashout": 10,
+                "nwoInfluence": 5
+              },
+              "next": "n_olligo"
+            },
+            {
+              "text": "Sich anmelden. Ordentlich.",
+              "tone": "ruhig",
+              "effects": {
+                "trust": {
+                  "frau_delling": 12
+                },
+                "authenticity": 6
+              },
+              "next": "n_anmelden"
+            }
+          ]
+        },
+        "n_vorgaenge": {
+          "speaker": "frau_delling",
+          "text": "Die laufen. Soweit. Mehr steht mir dazu nicht zu, und Ihnen steht es auch nicht zu, aber das kann ich Ihnen nicht verbieten.",
+          "effects": {
+            "flags": [
+              "kontor_bekannt"
+            ]
+          },
+          "next": "END"
+        },
+        "n_olligo": {
+          "speaker": "frau_delling",
+          "text": "Den Namen führe ich nicht. Ich führe Vorgänge, keine Namen. Wenn ein Vorgang einen Namen braucht, steht er im Kopf des Blattes, und dieses Blatt hat keinen.",
+          "effects": {
+            "nwoInfluence": 8,
+            "crashout": 8,
+            "flags": [
+              "olligo_kein_vorgang"
+            ]
+          },
+          "next": "END"
+        },
+        "n_anmelden": {
+          "speaker": "frau_delling",
+          "text": "Moin. So geht das. Zweiter Stock, Formular, Rückgabe hier. Sie kriegen eine Nummer, keine Auskunft — aber die Nummer ist echt.",
+          "effects": {
+            "items": [
+              "nwo_ausweis"
+            ],
+            "nwoInfluence": 5,
+            "flags": [
+              "kontor_angemeldet"
+            ]
+          },
+          "next": "END"
+        }
+      }
+    },
+    "delling_akten": {
+      "npc": "frau_delling",
+      "title": "Akteneinsicht",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 80,
+      "requires": {
+        "flags": [
+          "kontor_angemeldet"
+        ],
+        "trust": {
+          "frau_delling": {
+            "min": 50
+          }
+        }
+      },
+      "repeatable": false,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "frau_delling",
+          "text": "Ihre Nummer ist aufgerufen. Ich lege Ihnen eine Mappe hin. Ich sage nicht, welche. Ich gehe jetzt zwölf Minuten Kaffee holen.",
+          "choices": [
+            {
+              "text": "Lesen.",
+              "tone": "ruhig",
+              "effects": {
+                "nwoInfluence": 10,
+                "authenticity": 8,
+                "items": [
+                  "nwo_pergament"
+                ],
+                "lore": [
+                  "lore_operation_hades"
+                ]
+              },
+              "next": "n_lesen"
+            },
+            {
+              "text": "Fotografieren.",
+              "tone": "mimonolog",
+              "effects": {
+                "nwoInfluence": 12,
+                "mett": 250,
+                "authenticity": -6,
+                "trust": {
+                  "frau_delling": -15
+                }
+              },
+              "next": "n_foto"
+            },
+            {
+              "text": "Die Mappe zulassen.",
+              "tone": "thema_wechseln",
+              "effects": {
+                "authenticity": 12,
+                "trust": {
+                  "frau_delling": 10
+                }
+              },
+              "next": "n_zu"
+            }
+          ]
+        },
+        "n_lesen": {
+          "speaker": "narrator",
+          "text": "Freigabe erteilt, Durchführung extern, Beteiligung formal nicht gegeben. Darunter eine Unterschrift, die aus zwei Buchstaben besteht, und ein Datum, das noch nicht war.",
+          "effects": {
+            "crashout": 15
+          },
+          "next": "END"
+        },
+        "n_foto": {
+          "speaker": "frau_delling",
+          "text": "Moin. Sie sind schneller zurück als ich. Das kommt vor.",
+          "effects": {
+            "log": "Sie sagt nichts weiter. Sie notiert etwas."
+          },
+          "next": "END"
+        },
+        "n_zu": {
+          "speaker": "frau_delling",
+          "text": "Soweit. Das haben in neunzehn Jahren zwei Leute gemacht. Der andere arbeitet noch hier.",
+          "effects": {
+            "trust": {
+              "frau_delling": 8
+            },
+            "flags": [
+              "mappe_zugelassen"
+            ]
+          },
+          "next": "END"
+        }
+      }
+    },
+    "pauls_hub": {
+      "npc": "nachtwaechter_pauls",
+      "title": "Pauls",
+      "channels": [
+        "vor_ort"
+      ],
+      "priority": 0,
+      "repeatable": true,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "start": "n1",
+      "nodes": {
+        "n1": {
+          "speaker": "nachtwaechter_pauls",
+          "text": "Tja. Sie sind der Dritte diese Woche, der hier steht und guckt. Die anderen beiden hatten Westen an.",
+          "choices": [
+            {
+              "text": "Was wird da abgebaut?",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 5
+              },
+              "next": "n_abbau"
+            },
+            {
+              "text": "Um welche Uhrzeit?",
+              "tone": "ruhig",
+              "effects": {
+                "authenticity": 8,
+                "trust": {
+                  "nachtwaechter_pauls": 8
+                }
+              },
+              "next": "n_uhrzeit"
+            },
+            {
+              "text": "Filmen.",
+              "tone": "mimonolog",
+              "effects": {
+                "mett": 150,
+                "crashout": 8,
+                "trust": {
+                  "nachtwaechter_pauls": -10
+                }
+              },
+              "next": "n_filmen"
+            }
+          ]
+        },
+        "n_abbau": {
+          "speaker": "nachtwaechter_pauls",
+          "text": "Nu. Ein Schiff, das noch fährt. Das kommt vor, aber nicht oft, und nicht so schnell.",
+          "effects": {
+            "nwoInfluence": 4
+          },
+          "next": "END"
+        },
+        "n_uhrzeit": {
+          "speaker": "nachtwaechter_pauls",
+          "text": "Zwischen zwei und vier. Immer zwischen zwei und vier. Ich schreib das auf, seit neunzehn Jahren schreib ich das auf. Fragt bloß keiner.",
+          "effects": {
+            "nwoInfluence": 6,
+            "authenticity": 8,
+            "flags": [
+              "werft_zeiten"
+            ],
+            "items": [
+              "heet_mehl_ausdruck"
+            ]
+          },
+          "next": "END"
+        },
+        "n_filmen": {
+          "speaker": "nachtwaechter_pauls",
+          "text": "Tja. Dann steh ich jetzt auf Ihrem Band. Ich hab da nicht drum gebeten.",
+          "effects": {
+            "heeterAggro": 5
+          },
+          "next": "END"
+        }
+      }
     }
   }
 }

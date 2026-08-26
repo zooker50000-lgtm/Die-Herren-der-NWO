@@ -138,6 +138,18 @@ Skill 1-100 mit Zutaten, Rezepten, Buechern, Laborstufen und Essenzen.
 Das Spiel liefert **keine realen chemischen Anleitungen** — alle Rezepte sind
 symbolisch-mystisch (Planetenzeichen, Kelche, Essenzen) und ohne realen Bezug.
 
+## Die drei Regionen
+
+| Region | Charakter |
+|---|---|
+| **Berlin** | Der Alltag: Wohnung, Strasse, Kiosk, Polizeistation. Hier faellt der Crashout am schnellsten und hier steht das Fenster. |
+| **Hamburg** | Kaelter und ordentlicher. Ankunft, Pension Nordlicht, Kontor 4, Trockendock 3, Hafenrand, Lagerhalle 9. Alles wirkt legitim, und genau das ist das Beunruhigende. |
+| **Der Untergrund** | Kein Bezirk, sondern ein Ort: U-7, zwoelf Meter tief, mit zehn Bereichen hinter getrennten Freigaben. |
+
+Die Fahrt nach Hamburg kostet ueber anderthalb Stunden Spielzeit — und Zeit
+treibt Ereignisse. Der Norden ist deshalb kein Katzensprung, sondern eine
+Entscheidung.
+
 ## Akte
 
 | Akt | Inhalt |

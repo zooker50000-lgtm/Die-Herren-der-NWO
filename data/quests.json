@@ -3394,6 +3394,166 @@
         "crashout": 10,
         "mett": 150
       }
+    },
+    {
+      "id": "hamburg_ankunft",
+      "title": "ANKUNFT IM NORDEN",
+      "type": "main",
+      "act": 9,
+      "faction": "keine",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "self",
+      "summary": "Andere Stadt, dieselbe Uhrzeit. Und auf dem Bahnsteig steht jemand mit einem Schild ohne Namen.",
+      "requires": {
+        "act": {
+          "min": 9
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "In Hamburg ankommen",
+          "event": "world.travel",
+          "where": {
+            "to": "hamburg_bahnhof"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Ein Zimmer in der Pension Nordlicht nehmen",
+          "event": "world.travel",
+          "where": {
+            "to": "hamburg_pension"
+          },
+          "count": 1
+        },
+        {
+          "id": "o3",
+          "text": "Aus dem Fenster zum Hof sehen",
+          "event": "window.observed",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 6,
+        "nwoInfluence": 5,
+        "crashout": -8,
+        "log": "Zimmer 4, zweiter Stock. Der Schlüssel hängt an einem Holzklotz.",
+        "quests": {
+          "start": [
+            "kontor_vier"
+          ]
+        }
+      }
+    },
+    {
+      "id": "kontor_vier",
+      "title": "KONTOR 4",
+      "type": "nwo",
+      "act": 9,
+      "faction": "nwo_elite",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "self",
+      "summary": "Messingschild, geputzte Fenster, dritter Stock. Von außen die harmloseste Adresse der Stadt.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "hamburg_ankunft"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Das Kontor betreten",
+          "event": "world.travel",
+          "where": {
+            "to": "hamburg_kontor"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Mit Frau Delling sprechen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "frau_delling"
+          },
+          "count": 1
+        },
+        {
+          "id": "o3",
+          "text": "Um Akteneinsicht bitten",
+          "event": "world.interact",
+          "where": {
+            "interactable": "akten_einsehen"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 10,
+        "authenticity": 6,
+        "log": "Sie führt Vorgänge, keine Namen.",
+        "quests": {
+          "start": [
+            "trockendock_drei"
+          ]
+        }
+      }
+    },
+    {
+      "id": "trockendock_drei",
+      "title": "TROCKENDOCK 3",
+      "type": "nwo",
+      "act": 9,
+      "faction": "unabhängig",
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "giver": "self",
+      "summary": "Ein Schiff, das auseinandergenommen wird, obwohl es noch fährt. Und jemand, der seit neunzehn Jahren die Uhrzeiten aufschreibt.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "kontor_vier"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Zum Trockendock gehen",
+          "event": "world.travel",
+          "where": {
+            "to": "hamburg_werft"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Pauls nach den Uhrzeiten fragen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "nachtwaechter_pauls"
+          },
+          "count": 1
+        },
+        {
+          "id": "o3",
+          "text": "Nachts zusehen",
+          "event": "world.interact",
+          "where": {
+            "interactable": "nachts_warten"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 8,
+        "authenticity": 10,
+        "mett": 150,
+        "log": "Zwischen zwei und vier. Immer zwischen zwei und vier."
+      }
     }
   ]
 }
