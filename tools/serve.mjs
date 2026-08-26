@@ -2,9 +2,14 @@
 /** Winziger statischer Dev-Server ohne Abhängigkeiten. */
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
-import { extname, join, normalize, resolve } from 'node:path';
+import { extname, join, normalize, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = resolve(new URL('..', import.meta.url).pathname);
+// fileURLToPath statt .pathname: unter Windows liefert .pathname "/C:/Users/..."
+// mit fuehrendem Schraegstrich vor dem Laufwerksbuchstaben, und resolve() macht
+// daraus einen Pfad, unter dem nichts liegt. Ausserdem dekodiert es Leerzeichen
+// im Pfad (%20) richtig.
+const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const PORT = Number(process.env.PORT ?? 5173);
 
 const TYPES = {
@@ -29,7 +34,9 @@ const server = createServer(async (req, res) => {
     const safe = normalize(path).replace(/^(\.\.[/\\])+/, '');
     const base = /^[/\\](src|data|assets|docs)[/\\]/.test(safe) ? ROOT : join(ROOT, 'web');
     const target = join(base, safe);
-    if (!target.startsWith(ROOT)) { res.writeHead(403).end('Verboten'); return; }
+    // Mit Trennzeichen vergleichen, sonst wuerde ein Nachbarordner mit
+    // gleichem Praefix (…/spiel-alt neben …/spiel) ebenfalls durchgehen.
+    if (target !== ROOT && !target.startsWith(ROOT + sep)) { res.writeHead(403).end('Verboten'); return; }
 
     const info = await stat(target).catch(() => null);
     const file = info?.isDirectory() ? join(target, 'index.html') : target;

@@ -41,6 +41,10 @@ zurueck. Der Rest erklaert sich im Spiel.
 > starten. Es laedt seine Daten nach, und Browser verbieten das bei direkt
 > geoeffneten Dateien. Deshalb der kleine Server.
 
+**Wenn im Browser nur "Nicht gefunden" steht:** Du hast eine Fassung von vor
+dem 26. August 2026. Der Server fand unter Windows seine eigenen Dateien nicht.
+Einfach das ZIP neu herunterladen — der Fehler ist behoben.
+
 ---
 
 ## Was das hier ist
