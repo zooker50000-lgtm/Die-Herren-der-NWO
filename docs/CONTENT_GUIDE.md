@@ -21,9 +21,26 @@ Mimon spricht nicht in NPC-Saetzen. Rhythmusregeln:
 * Er kehrt zum Thema zurueck und markiert es: "Wo war ich? GENAU."
 * Er **belegt** mit eigenem Material: Fideos, Tagebuch, Aufnahmen.
 * Er hat immer eine **groessere Struktur** im Blick, in die das Detail passt.
+* Er **gibt kurz nach** und nimmt es sofort zurueck: "Ja, gut, das kann man so
+  sehen. Aber." Das ist der Beat `KONZESSION` — er macht den Monolog
+  glaubwuerdiger als reines Dagegenhalten.
 
 Was Mimon **nicht** tut: kurze Antworten geben, Ironie ueber sich selbst,
 moderne Netzsprache, Zustimmung ohne Einschraenkung.
+
+## Neue Beat-Vorlagen
+
+Die Vorlagen stehen in `data/vocabulary.json` unter `beats`, getrennt nach
+Stufe (`calm`, `annoyed`, `loud`). Regeln:
+
+* Jede Stufe braucht **mindestens drei** Vorlagen pro Beat, sonst faellt die
+  Wiederholung im Spiel auf. Ein Test prueft das.
+* Ein neuer Beat-Typ muss in `flow.<stufe>.transitions` als Ziel auftauchen,
+  sonst wird er nie gespielt — auch das prueft ein Test.
+* Die Stufe entscheidet ueber den Ton, nicht ueber den Inhalt: derselbe Beat
+  sagt in `calm` und `loud` dasselbe, nur anders laut.
+* Platzhalter am Satzanfang werden automatisch grossgeschrieben; nach einem
+  Doppelpunkt bleibt es klein. Die Vorlage muss sich darum nicht kuemmern.
 
 ## Vokabular
 

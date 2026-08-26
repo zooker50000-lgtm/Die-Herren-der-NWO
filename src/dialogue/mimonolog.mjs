@@ -19,6 +19,7 @@ const BEAT_CONTEXTS = {
   THEORY: ['verschwoerung'],
   DIGRESSION: ['erinnerung'],
   SELF_CORRECTION: [],
+  KONZESSION: ['*bestaetigung', 'kritik'],
   RETURN: ['*bestaetigung'],
   EVIDENCE: ['beleg', 'archiv'],
   ACCUSATION: ['konflikt', 'kopie'],
@@ -193,13 +194,15 @@ export class MimonologGenerator {
     const contexts = [...(topic.tags ?? []), ...(BEAT_CONTEXTS[beatType] ?? [])];
     const loud = tier === 'loud';
     const say = (text) => (loud ? String(text).toUpperCase() : text);
-    return template
+    const gefuellt = template
       .replace(/\{topicShort\}/g, say(topic.short))
       .replace(/\{topicQ\}/g, topic.question)
       .replace(/\{topic\}/g, say(topic.subject))
       .replace(/\{enemy\}/g, say(enemy ?? 'die Heeter'))
       .replace(/\{v:([a-z_]+)(\|pl)?\}/g, (_, id, plural) => say(this.lexicon.term(id, contexts, plural ? 'pl' : 'sg')))
       .replace(/\{cp\}/g, () => this.lexicon.catchphrase(contexts, crashout));
+
+    return satzanfaengeGross(gefuellt);
   }
 
   /** Wer wird beschuldigt? Bevorzugt aktive Heeter, sonst bekannte Gegner. */
@@ -222,6 +225,18 @@ export class MimonologGenerator {
 }
 
 function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+
+/**
+ * Eingesetzte Wörter stehen manchmal am Satzanfang ("Zurück zum Thema.
+ * {topicShort}."). Die Vorlage weiß das nicht, also wird es hier korrigiert.
+ * Nach einem Doppelpunkt bleibt es klein — dort folgt eine Fortsetzung,
+ * kein neuer Satz.
+ */
+function satzanfaengeGross(text) {
+  return text
+    .replace(/^([a-zäöüß])/, (_, c) => c.toUpperCase())
+    .replace(/([.!?]\s+)([a-zäöüß])/g, (_, davor, c) => davor + c.toUpperCase());
+}
 
 /** Alle Lexikon-Ids, die eine Vorlage benutzt. */
 function termsOf(template) {

@@ -38,6 +38,7 @@ Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 | Quests | 71, davon 69-70 in einem Durchlauf abschliessbar |
 | Dialoge | 38 Graphen, alle ueber einen Kanal erreichbar |
 | Episoden | 51 von 51 mit eigener Quest — alle vier Serien vollstaendig |
+| Mimonolog | 12 Beat-Typen, 232 Vorlagen ueber drei Sprachstufen |
 | Orte | 16, alle von Mimons Wohnung aus erreichbar |
 | Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
 
@@ -46,8 +47,6 @@ Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 1. Hamburg ausbauen: bisher zwei Orte, gedacht als eigener Bezirk.
 2. Dialogzweige fuer niedrigen Trust bei allen Hauptfiguren ergaenzen —
    aktuell reagieren die Figuren kaum darauf, wenn man sie verprellt hat.
-3. Mehr Beat-Vorlagen fuer den Mimonolog, besonders in der Stufe "annoyed";
-   die lauten und die ruhigen Stufen tragen bisher am meisten.
-4. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
+3. Gesampelte Audioassets ergaenzen; das Soundboard-Interface bleibt gleich.
 5. Tastatur-Navigation und Barrierefreiheit in der Web-UI (die Meter sind
    bisher nur farblich unterschieden).

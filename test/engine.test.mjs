@@ -621,3 +621,37 @@ test('jede versteckte Quest hat einen auslösbaren Einstieg', () => {
     assert.ok(erstes.event && ausloeser.has(erstes.event), `${quest.id}: kein bekannter Auslöser (${erstes.event})`);
   }
 });
+
+test('eingesetzte Wörter am Satzanfang werden großgeschrieben', () => {
+  const g = newGame(21);
+  g.store.setStat('crashout', 45);
+  for (let i = 0; i < 30; i++) {
+    for (const beat of g.monolog.generate({ topic: 'heeter' }).beats) {
+      assert.ok(!/[.!?]\s+[a-zäöüß]/.test(beat.text), beat.text);
+    }
+  }
+});
+
+test('die mittlere Stufe hat genug Vorlagen für Abwechslung', () => {
+  // Die Stufe "annoyed" trug am wenigsten - zu wenige Vorlagen fallen im
+  // Spiel als Wiederholung auf.
+  for (const [beat, tiers] of Object.entries(data.vocabulary.beats)) {
+    for (const [tier, vorlagen] of Object.entries(tiers)) {
+      assert.ok(vorlagen.length >= 3, `${beat}/${tier}: nur ${vorlagen.length} Vorlagen`);
+    }
+  }
+});
+
+test('jeder Beat-Typ ist erreichbar — sonst ist der Text totes Material', () => {
+  // OPENER ist der Startpunkt, SELF_CORRECTION steuert der Generator ueber
+  // correctionChance. Alles andere muss in der Uebergangstabelle stehen.
+  const ausserhalbDerTabelle = new Set(['OPENER', 'SELF_CORRECTION']);
+  for (const [tier, flow] of Object.entries(data.vocabulary.flow)) {
+    if (tier.startsWith('$')) continue;
+    const ziele = new Set(Object.values(flow.transitions).flatMap((t) => Object.keys(t)));
+    for (const beat of Object.keys(data.vocabulary.beats)) {
+      if (ausserhalbDerTabelle.has(beat)) continue;
+      assert.ok(ziele.has(beat), `${tier}: ${beat} ist unerreichbar`);
+    }
+  }
+});
