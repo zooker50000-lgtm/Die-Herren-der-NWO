@@ -130,7 +130,7 @@
       "annoyed": [
         "Das sind {v:subversive_elemente}, ganz einfach. Anders kann man das nicht nennen.",
         "Da läuft eine Struktur im Hintergrund, und {topicShort} ist nur die Spitze davon.",
-        "Und dann wundern sich Leute, dass ich mir {v:fideo} aufhebe. ALLE. Seit Jahren.",
+        "Und dann wundern sich Leute, dass ich mir alle {v:fideo|pl} aufhebe. ALLE. Seit Jahren.",
         "Das ist geplant. Das ist nicht spontan, das ist GEPLANT."
       ],
       "loud": [
@@ -150,11 +150,11 @@
       ],
       "annoyed": [
         "Und dann kommt so einer und redet von {v:mett}. Von METT! In DEM Zusammenhang!",
-        "Und das Gleiche war damals bei den {v:fideo} — die waren weg. Einfach WEG.",
+        "Und das Gleiche war damals bei den {v:fideo|pl} — die waren weg. Einfach WEG.",
         "Und {v:mamer} sagt mir dann noch, ich soll mich beruhigen. Ich SOLL mich beruhigen."
       ],
       "loud": [
-        "UND DAS GLEICHE — DAS GLEICHE! — HABEN DIE MIT MEINEN {v:fideo} GEMACHT!",
+        "UND DAS GLEICHE — DAS GLEICHE! — HABEN DIE MIT MEINEN {v:fideo|pl} GEMACHT!",
         "UND DANN SCHREIBEN DIE MIR NOCH EIN {v:heet_mehl}! MIR!",
         "UND ÜBERHAUPT — WEISST DU, WAS DAS FÜR EIN {v:plepp} IST?!"
       ]
@@ -211,7 +211,7 @@
       ],
       "loud": [
         "ICH HAB DAS ALLES! ALLES DOKUMENTIERT! MIT DATUM!",
-        "ICH HAB DIE SCREENSHOTS! ICH HAB DIE {v:fideo}!",
+        "ICH HAB DIE SCREENSHOTS! ICH HAB DIE {v:fideo|pl}!",
         "DAS IST BELEGT! DAS IST ALLES BELEGT!"
       ]
     },
