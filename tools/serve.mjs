@@ -41,7 +41,18 @@ const server = createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
+  const adresse = `http://localhost:${PORT}`;
   console.log(`\n  MIMON BARAKA UNIVERSE`);
-  console.log(`  läuft auf http://localhost:${PORT}\n`);
+  console.log(`  läuft auf ${adresse}`);
+  console.log(`  Zum Beenden: Strg+C\n`);
+
+  // Mit --open den Browser gleich mit oeffnen (macht start.bat so).
+  if (process.argv.includes('--open')) {
+    const { exec } = await import('node:child_process');
+    const befehl = process.platform === 'win32' ? `start "" "${adresse}"`
+      : process.platform === 'darwin' ? `open "${adresse}"`
+      : `xdg-open "${adresse}"`;
+    exec(befehl, () => { /* kein Browser gefunden - die Adresse steht oben */ });
+  }
 });

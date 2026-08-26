@@ -7,17 +7,39 @@ Mett, Fideos, Alchemie, Mimonologe — und die NWO.
 
 ---
 
-## Sofort spielen
+## Auf dem PC einrichten
 
-Keine Installation, keine Dependencies. Nur Node >= 20:
+Es gibt **nichts zu installieren ausser Node.js** — das Projekt hat keine
+Dependencies, also entfaellt `npm install` komplett.
+
+**Windows:**
+
+1. [Node.js](https://nodejs.org) herunterladen und installieren (LTS-Version,
+   einfach durchklicken).
+2. Dieses Projekt herunterladen: auf der GitHub-Seite oben rechts auf
+   **Code → Download ZIP**, danach den Ordner irgendwohin entpacken.
+3. Im entpackten Ordner **`start.bat` doppelklicken**. Der Browser oeffnet sich
+   von selbst, ein schwarzes Fenster bleibt im Hintergrund offen — das ist der
+   Server, der muss laufen bleiben.
+4. Auf **Neues Spiel** klicken.
+
+Zum Beenden das schwarze Fenster schliessen oder dort `Strg+C` druecken.
+
+**macOS und Linux:** dasselbe, nur `./start.sh` statt `start.bat`.
+
+**Wer lieber tippt:**
 
 ```bash
-npm start      # -> http://localhost:5173 im Browser oeffnen
-npm run play   # oder direkt im Terminal
+npm start      # -> http://localhost:5173
+npm run play   # oder direkt im Terminal, ohne Browser
 ```
 
-Im Browser auf **Neues Spiel** klicken. Ziffern `1`–`9` waehlen Antworten,
-`C` oeffnet den Computer, `Esc` geht zurueck. Der Rest erklaert sich im Spiel.
+Ziffern `1`–`9` waehlen Antworten, `C` oeffnet den Computer, `Esc` geht
+zurueck. Der Rest erklaert sich im Spiel.
+
+> Das Spiel laesst sich **nicht** durch Doppelklick auf `web/index.html`
+> starten. Es laedt seine Daten nach, und Browser verbieten das bei direkt
+> geoeffneten Dateien. Deshalb der kleine Server.
 
 ---
 
