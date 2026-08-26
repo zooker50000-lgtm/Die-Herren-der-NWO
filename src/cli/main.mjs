@@ -247,6 +247,15 @@ function kommentare() {
 
 async function terminal() {
   if (!game.nwo.terminalAvailable()) { console.log(c('grau', 'Kein Zugang.')); return; }
+
+  if (game.nwo.quizPending()) {
+    const quiz = game.nwo.openQuiz();
+    console.log(`\n  ${c('blau', quiz.intro)}`);
+    console.log(`  ${c('bold', quiz.question)}`);
+    const antwort = await chooseFrom(quiz.answers.map((a) => ({ ...a, label: a.text })), { prompt: 'Antwort', allowBack: false });
+    if (antwort) console.log(c('grau', `  ${game.nwo.answerQuiz(antwort.id).response}`));
+  }
+
   const { greeting } = game.nwo.openTerminal();
   console.log(`\n  ${c('blau', greeting)}`);
   while (true) {

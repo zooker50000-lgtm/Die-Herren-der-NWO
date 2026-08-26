@@ -298,6 +298,7 @@ kbd {
 .terminal__section { display: block; width: 100%; text-align: left; background: none; border: none; border-left: 2px solid var(--line); padding: .35rem .7rem; color: var(--muted); font-size: .75rem; letter-spacing: .1em; }
 .terminal__section.is-active { color: var(--blue); border-left-color: var(--blue); background: rgba(91,127,196,.07); }
 .terminal__section.is-locked { opacity: .35; }
+.terminal__frage { font-family: var(--font); font-size: 1.1rem; color: var(--text); margin-bottom: 1rem; }
 .akte { border: 1px solid var(--line); border-radius: 8px; padding: .8rem 1rem; margin-bottom: .6rem; background: var(--bg-3); }
 .akte header { display: flex; justify-content: space-between; gap: .6rem; color: var(--blue); font-size: .8rem; letter-spacing: .1em; margin-bottom: .4rem; }
 .akte p { font-family: var(--font); font-size: .9rem; margin: 0; }

@@ -533,3 +533,91 @@ test('jede Alchemie-Zutat hat eine Quelle im Spiel', () => {
     }
   }
 });
+
+test('jedes Alchemiebuch ist im Spiel zu bekommen', () => {
+  const quellen = new Set(Object.values(data.locations.shops).flatMap((s) => s.stock));
+  const sammle = (effects) => { for (const id of effects?.items ?? []) quellen.add(id); };
+  for (const q of data.quests.quests) { sammle(q.rewards); sammle(q.onStart); }
+  for (const dlg of Object.values(data.dialogue.dialogues)) {
+    for (const node of Object.values(dlg.nodes)) {
+      sammle(node.effects);
+      for (const choice of node.choices ?? []) sammle(choice.effects);
+    }
+  }
+  const start = ['magisches_tagebuch', 'juhtub_kamera', 'lederjacke', 'jeans', 'alchemiebuch_i', 'basketball'];
+  for (const buch of data.alchemy.books) {
+    assert.ok(quellen.has(buch.id) || start.includes(buch.id), `${buch.id} ist nirgends zu bekommen`);
+  }
+});
+
+test('ein Rezept ist freigeschaltet, bevor eine Quest seine Stufe verlangt', () => {
+  // Frueher verlangte ALCHEMIMON 18 die Stufe Rot, deren Rezept erst die
+  // Belohnung von Episode 19 freischaltete.
+  const buchFuer = new Map();
+  for (const buch of data.alchemy.books) for (const r of buch.unlocksRecipes) buchFuer.set(r, buch.id);
+  const reihenfolge = data.quests.quests.filter((q) => q.series === 'alchemimon')
+    .sort((a, b) => a.episode - b.episode);
+
+  const besitz = new Set(['alchemiebuch_i']);
+  for (const quest of reihenfolge) {
+    for (const objective of quest.objectives) {
+      if (objective.event !== 'alchemy.stage') continue;
+      const rezept = data.alchemy.recipes.find((r) => r.stage === objective.where?.stage);
+      const buch = buchFuer.get(rezept?.id);
+      assert.ok(!buch || besitz.has(buch), `${quest.id} verlangt ${rezept?.id}, aber ${buch} kommt erst später`);
+    }
+    for (const item of quest.rewards?.items ?? []) besitz.add(item);
+    // Was man kaufen kann, gilt als verfügbar.
+    for (const shop of Object.values(data.locations.shops)) for (const id of shop.stock) besitz.add(id);
+  }
+});
+
+test('eine Klammer-Quest zählt abgeschlossene Teilquests', () => {
+  // Die Quest-Engine blendete alle quest.*-Ereignisse aus - dadurch konnte
+  // BAPHOMIMON seine drei Episoden nie als erledigt verbuchen.
+  const g = newGame();
+  g.store.s.player.act = 12;
+  g.quests.start('baphomimon_arc');
+  const vorher = g.quests.journal().active.find((q) => q.id === 'baphomimon_arc');
+  assert.ok(vorher, 'Klammer-Quest muss starten');
+  assert.ok(!vorher.objectives[0].done);
+
+  g.quests.start('baphomimon_friedensverhandlung');
+  g.quests.complete('baphomimon_friedensverhandlung');
+  const nachher = g.quests.journal().active.find((q) => q.id === 'baphomimon_arc');
+  assert.ok(nachher.objectives[0].done, 'abgeschlossene Teilquest muss zählen');
+});
+
+test('das Dromedar-Rätsel ist spielbar und führt zum geheimen Ende', () => {
+  const g = newGame();
+  g.store.addStat('nwoInfluence', 100);
+  assert.ok(g.nwo.quizPending());
+  const quiz = g.nwo.openQuiz();
+  assert.ok(quiz.answers.some((a) => a.id === 'dromedar'));
+
+  g.nwo.answerQuiz('dromedar');
+  assert.ok(g.store.flag('easter_egg_dromedar'));
+  assert.ok(g.store.s.achievements.includes('ach_dromedar'));
+  assert.equal(g.nwo.quizPending(), false, 'die Frage kommt nur einmal');
+
+  g.store.setFlag('finale_gehalten');
+  assert.equal(g.progression.resolveEnding().id, 'ending_secret_dromedar');
+});
+
+test('das Dromedar-Rätsel schließt die versteckte Quest ab', () => {
+  const g = newGame();
+  g.store.addStat('nwoInfluence', 100);
+  g.nwo.openQuiz();
+  g.nwo.answerQuiz('dromedar');
+  assert.ok(g.store.s.quests.completed.includes('das_dromedar_raetsel'), 'versteckte Quest muss anlaufen und schließen');
+});
+
+test('jede versteckte Quest hat einen auslösbaren Einstieg', () => {
+  // Eine versteckte Quest startet ueber ihr erstes Ziel. Gibt es dafuer keine
+  // Quelle im Spiel, ist sie unerreichbar.
+  const ausloeser = new Set(['quiz.opened', 'easteregg.kelchninja', 'crashout.maximum', 'item.gained']);
+  for (const quest of data.quests.quests.filter((q) => q.hidden)) {
+    const erstes = quest.objectives[0];
+    assert.ok(erstes.event && ausloeser.has(erstes.event), `${quest.id}: kein bekannter Auslöser (${erstes.event})`);
+  }
+});

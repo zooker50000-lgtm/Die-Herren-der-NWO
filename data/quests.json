@@ -284,7 +284,8 @@
           ]
         },
         "items": [
-          "asche_des_archivs"
+          "asche_des_archivs",
+          "nano_kassette"
         ]
       }
     },
@@ -1133,12 +1134,105 @@
         ],
         "quests": {
           "start": [
-            "alchemimon_09"
+            "alchemimon_07"
           ]
         },
         "items": [
           "quecksilbriges_zeichen"
         ]
+      }
+    },
+    {
+      "id": "alchemimon_07",
+      "title": "ALCHEMIMON 7: Ein Heeter meldet sich freiwillig",
+      "type": "heeter",
+      "act": 7,
+      "faction": "heeter",
+      "series": "alchemimon",
+      "episode": 7,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "self",
+      "summary": "Er will helfen. Er will unbedingt helfen. Genau das ist das Problem.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_06"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Auf ein Heet-Mehl antworten statt es zu ignorieren",
+          "event": "email.handled",
+          "where": {
+            "action": "antworten"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Die Kommentare unter dem Fideo durchgehen",
+          "event": "comments.analyzed",
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "mett": 90,
+        "heeterAggro": 8,
+        "authenticity": -3,
+        "alchemyXp": 60,
+        "log": "Er schreibt zurück. Innerhalb von vier Minuten. Wie immer.",
+        "quests": {
+          "start": [
+            "alchemimon_08"
+          ]
+        }
+      }
+    },
+    {
+      "id": "alchemimon_08",
+      "title": "ALCHEMIMON 8: Weiß",
+      "type": "alchemie",
+      "act": 7,
+      "faction": "unabhängig",
+      "series": "alchemimon",
+      "episode": 8,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "myrrmoasta",
+      "summary": "Waschung. Was übrig bleibt, ist sauber und sehr wenig.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_07"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Die Stufe Weiß abschließen",
+          "event": "alchemy.stage",
+          "where": {
+            "stage": "weiss"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "alchemyXp": 900,
+        "authenticity": 6,
+        "items": [
+          "asche_des_archivs"
+        ],
+        "log": "Übrig bleibt ein Rest, der in keine Beschriftung passt.",
+        "quests": {
+          "start": [
+            "alchemimon_09"
+          ]
+        }
       }
     },
     {
@@ -1156,7 +1250,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "alchemimon_06"
+            "alchemimon_08"
           ]
         }
       },
@@ -1290,6 +1384,160 @@
         ],
         "quests": {
           "start": [
+            "alchemimon_12"
+          ]
+        },
+        "flags": [
+          "u7_betreten"
+        ]
+      }
+    },
+    {
+      "id": "alchemimon_12",
+      "title": "ALCHEMIMON 12: Bestand",
+      "type": "nwo",
+      "act": 8,
+      "faction": "nwo_elite",
+      "series": "alchemimon",
+      "episode": 12,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "martin_goldnatz",
+      "summary": "Goldnatz zählt. Er zählt auch Menschen, und niemand unterbricht ihn.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_11"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Mit Martin Goldnatz sprechen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "martin_goldnatz"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Das NWO-Archiv betreten",
+          "event": "labor.area",
+          "where": {
+            "area": "nwo_archiv"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 8,
+        "crashout": 12,
+        "alchemyXp": 400,
+        "log": "Zwischen den Bänden liegt ein Blatt, das alt aussieht und neu gedruckt ist.",
+        "quests": {
+          "start": [
+            "alchemimon_13"
+          ]
+        },
+        "items": [
+          "nwo_pergament"
+        ]
+      }
+    },
+    {
+      "id": "alchemimon_13",
+      "title": "ALCHEMIMON 13: Gelb",
+      "type": "alchemie",
+      "act": 8,
+      "faction": "unabhängig",
+      "series": "alchemimon",
+      "episode": 13,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "myrrmoasta",
+      "summary": "Die Stufe, in der etwas anfängt zu leuchten, das vorher nicht da war.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_12"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Die Stufe Gelb abschließen",
+          "event": "alchemy.stage",
+          "where": {
+            "stage": "gelb"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "alchemyXp": 2200,
+        "authenticity": 8,
+        "mett": 200,
+        "log": "Es leuchtet. Nur kurz, und nur, wenn man nicht direkt hinsieht.",
+        "quests": {
+          "start": [
+            "alchemimon_14"
+          ]
+        }
+      }
+    },
+    {
+      "id": "alchemimon_14",
+      "title": "ALCHEMIMON 14: Der Trittbrettfahrer",
+      "type": "heeter",
+      "act": 8,
+      "faction": "heeter",
+      "series": "alchemimon",
+      "episode": 14,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "self",
+      "summary": "Jemand lädt Mimons Sätze hoch, bevor Mimon sie gesagt hat.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_13"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Das fremde Fideo ansehen",
+          "event": "fideo.watched",
+          "where": {
+            "id": "fideo_ausschnitt"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Mit Belegen antworten statt mit Wut",
+          "event": "fideo.published",
+          "where": {
+            "evidence": true,
+            "angerMax": 45
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "authenticity": 12,
+        "mett": -40,
+        "lore": [
+          "lore_trittbrettfahrer"
+        ],
+        "alchemyXp": 200,
+        "log": "Der Kanal ist zwei Tage alt und hat deine Formulierungen schon besser drauf als du.",
+        "quests": {
+          "start": [
             "alchemimon_15"
           ]
         }
@@ -1310,7 +1558,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "alchemimon_11"
+            "alchemimon_14"
           ]
         }
       },
@@ -1339,6 +1587,60 @@
         "crashout": 15,
         "quests": {
           "start": [
+            "alchemimon_16"
+          ]
+        }
+      }
+    },
+    {
+      "id": "alchemimon_16",
+      "title": "ALCHEMIMON 16: Was im Archiv steht",
+      "type": "nwo",
+      "act": 8,
+      "faction": "nwo",
+      "series": "alchemimon",
+      "episode": 16,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "self",
+      "summary": "Der Vorgang pflegt sich fort. Wörtlich so formuliert.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_15"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Die Akte über dich im NWO-Terminal öffnen",
+          "event": "nwo.terminal",
+          "where": {
+            "file": "akte_baraka"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Einen Mimonolog darüber halten",
+          "event": "monolog.finished",
+          "where": {
+            "topic": "nwo"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 10,
+        "crashout": 15,
+        "alchemyXp": 600,
+        "lore": [
+          "nwo_die_nwo_sieht_alles"
+        ],
+        "log": "Empfehlung: nicht eingreifen, archivieren.",
+        "quests": {
+          "start": [
             "alchemimon_17"
           ]
         }
@@ -1359,7 +1661,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "alchemimon_15"
+            "alchemimon_16"
           ]
         }
       },
@@ -1382,6 +1684,51 @@
         "authenticity": 6,
         "quests": {
           "start": [
+            "alchemimon_18"
+          ]
+        }
+      }
+    },
+    {
+      "id": "alchemimon_18",
+      "title": "ALCHEMIMON 18: Rot",
+      "type": "alchemie",
+      "act": 8,
+      "faction": "unabhängig",
+      "series": "alchemimon",
+      "episode": 18,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "myrrmoasta",
+      "summary": "Die letzte Stufe. Danach ist der Stoff fertig und der Mensch nicht.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_17"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Die Stufe Rot abschließen",
+          "event": "alchemy.stage",
+          "where": {
+            "stage": "rot"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "alchemyXp": 1500,
+        "authenticity": 10,
+        "crashout": -15,
+        "lore": [
+          "lore_alchemie_stufen"
+        ],
+        "log": "Danach sitzt Mimon lange still. Das kommt sonst nicht vor.",
+        "quests": {
+          "start": [
             "alchemimon_19"
           ]
         }
@@ -1402,7 +1749,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "alchemimon_17"
+            "alchemimon_18"
           ]
         }
       },
@@ -1423,10 +1770,63 @@
         }
       ],
       "rewards": {
-        "items": [
-          "nwo_pergament"
-        ],
         "nwoInfluence": 10,
+        "quests": {
+          "start": [
+            "alchemimon_20"
+          ]
+        },
+        "alchemyXp": 800,
+        "lore": [
+          "lore_u7"
+        ]
+      }
+    },
+    {
+      "id": "alchemimon_20",
+      "title": "ALCHEMIMON 20: Wer hier arbeitet",
+      "type": "main",
+      "act": 8,
+      "faction": "nwo",
+      "series": "alchemimon",
+      "episode": 20,
+      "layer": "FICTIONAL_GAME_CONTENT",
+      "derivedFrom": "alchemimon",
+      "giver": "self",
+      "summary": "Mimon zählt auf, was er für die Organisation getan hat. Es ist eine lange Liste.",
+      "requires": {
+        "quests": {
+          "completed": [
+            "alchemimon_19"
+          ]
+        }
+      },
+      "objectives": [
+        {
+          "id": "o1",
+          "text": "Das Überwachungszentrum betreten",
+          "event": "labor.area",
+          "where": {
+            "area": "ueberwachungszentrum"
+          },
+          "count": 1
+        },
+        {
+          "id": "o2",
+          "text": "Reiter Wixler zur Rede stellen",
+          "event": "dialogue.closed",
+          "where": {
+            "npc": "reiter_wixler"
+          },
+          "count": 1
+        }
+      ],
+      "rewards": {
+        "nwoInfluence": 12,
+        "nwoReputation": 15,
+        "crashout": 18,
+        "alchemyXp": 300,
+        "log": "Auf der Liste steht mehr, als er erwartet hat.",
         "quests": {
           "start": [
             "alchemimon_21"
@@ -1449,7 +1849,7 @@
       "requires": {
         "quests": {
           "completed": [
-            "alchemimon_19"
+            "alchemimon_20"
           ]
         }
       },

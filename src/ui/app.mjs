@@ -142,12 +142,18 @@ export class UI {
 
   async toggleOverlay(id) {
     this.overlay = this.overlay === id ? null : id;
-    if (this.overlay === 'terminal' && this.game.nwo.terminalAvailable()) this.game.nwo.openTerminal();
+    if (this.overlay === 'terminal' && this.game.nwo.terminalAvailable() && !this.game.nwo.quizPending()) this.game.nwo.openTerminal();
     if (this.overlay === 'archiv') this.saveSlots = await this.game.save.list();
     this.render();
   }
 
   closeOverlay() { this.overlay = null; this.render(); }
+  answerQuiz(answerId) {
+    const antwort = this.game.nwo.answerQuiz(answerId);
+    if (antwort) this.toast(antwort.response, answerId === 'dromedar' ? 'gold' : 'info');
+    this.render();
+  }
+
   openTerminal(section) { this.terminalSection = section; this.game.nwo.files(section).forEach(() => {}); this.render(); }
   openComputer(app) { this.computerApp = app; this.openMail = null; this.render(); }
 

@@ -52,6 +52,31 @@ export class NwoSystem {
       .map((f) => ({ ...f, unlocked: this.influence >= f.requiresInfluence }));
   }
 
+  // --- Sicherheitsfrage ------------------------------------------------
+
+  /** Steht die einmalige Sicherheitsfrage noch aus? */
+  quizPending() {
+    return Boolean(this.data.terminal.verification) && !this.ctx.store.flag('nwo_quiz_beantwortet');
+  }
+
+  openQuiz() {
+    const quiz = this.data.terminal.verification;
+    if (!quiz || !this.quizPending()) return null;
+    this.ctx.bus.emit('quiz.opened', { quiz: quiz.id });
+    return quiz;
+  }
+
+  answerQuiz(answerId) {
+    const quiz = this.data.terminal.verification;
+    const antwort = quiz?.answers.find((a) => a.id === answerId);
+    if (!antwort) return null;
+    this.ctx.store.setFlag('nwo_quiz_beantwortet');
+    this.ctx.applyEffects(antwort.effects, { quiz: quiz.id, answer: answerId });
+    this.ctx.bus.emit('quiz.answered', { quiz: quiz.id, answer: answerId });
+    this.ctx.store.addLog(antwort.response, 'nwo');
+    return antwort;
+  }
+
   openTerminal() {
     this.ctx.bus.emit('nwo.terminal', { action: 'open' });
     this.ctx.bus.emit('audio.sfx', { id: 'nwo_sting' });

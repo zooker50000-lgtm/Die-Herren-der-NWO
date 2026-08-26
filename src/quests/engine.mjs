@@ -122,7 +122,10 @@ export class QuestEngine {
   }
 
   observe(type, payload) {
-    if (type.startsWith('quest.')) return;
+    // Nur die eigenen Fortschrittsmeldungen ausblenden - "quest.completed"
+    // muss durchkommen, sonst kann eine Klammer-Quest ("Arc abschliessen")
+    // ihre Teilquests nie zaehlen.
+    if (type.startsWith('quest.') && type !== 'quest.completed') return;
     this.discoverHidden(type, payload);
     let changed = false;
     for (const questId of Object.keys(this.state.active)) {

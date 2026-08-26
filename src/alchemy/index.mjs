@@ -25,7 +25,8 @@ export class AlchemySystem {
     });
   }
 
-  xpForLevel(level) { return level * 40 + 60; }
+  /** Kurve aus data/alchemy.json - flach genug, dass die Geschichte sie traegt. */
+  xpForLevel(level) { return level * 18 + 40; }
 
   checkLevel() {
     // Der Abzug der XP feuert selbst wieder alchemy.xp - ein Wiedereintritt

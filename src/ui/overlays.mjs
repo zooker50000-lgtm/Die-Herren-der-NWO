@@ -26,6 +26,17 @@ function terminal(game, ui) {
       h('p', { class: 'muted' }, `Zugang ab NWO INFLUENCE 40. Aktuell: ${Math.round(game.store.stat('nwoInfluence'))}.`)
     );
   }
+  if (game.nwo.quizPending()) {
+    const quiz = game.nwo.openQuiz();
+    return h('div', { class: 'terminal' },
+      h('h2', { class: 'terminal__greeting' }, quiz.intro),
+      h('p', { class: 'terminal__frage' }, quiz.question),
+      h('div', { class: 'choices' }, quiz.answers.map((a) =>
+        h('button', { class: 'choice choice--continue', onclick: () => ui.answerQuiz(a.id) }, a.text)
+      ))
+    );
+  }
+
   const section = ui.terminalSection ?? 'akten';
   const files = game.nwo.files(section);
 

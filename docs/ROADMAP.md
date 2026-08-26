@@ -17,17 +17,18 @@ NWO Productions, Quest-Engine mit Objectives und Requirements.
 ALCHEMIMON als Story-Arc, Alchemie-Skill mit Rezepten und Laborstufen,
 NWO-Labor als Endgame-Ort, Magisches Tagebuch als Sammelsystem, NWO-Terminal.
 
-## Phase 4 - Die spaeten Arcs  (Status: Gerueste + Kernmissionen)
+## Phase 4 - Die spaeten Arcs  (Status: BAPHOMIMON vollstaendig, Rest teilweise)
 
-ISLAMIMON, RECHTSEXTREMIMON, BAPHOMIMON, Operation Hades, Pressesprecher,
-Fenster. Struktur, Episodenliste und Kernquests stehen; die vollstaendige
-Episoden-Ausarbeitung ist der naechste inhaltliche Schritt.
+BAPHOMIMON ist mit allen drei Episoden spielbar, ebenso Operation Hades,
+Pressesprecher und Fenster. ISLAMIMON und RECHTSEXTREMIMON haben Struktur,
+Episodenliste und Kernmissionen; die uebrigen Episoden sind der naechste
+inhaltliche Schritt.
 
-## Phase 5 - Feinschliff  (Status: teilweise)
+## Phase 5 - Feinschliff  (Status: weitgehend umgesetzt)
 
-Easter Eggs (umgesetzt), geheime Enden (umgesetzt), dynamische Ereignisse
-(umgesetzt), Sounddesign (synthetisiertes Soundboard umgesetzt, gesampelte
-Assets offen), Performance und UI/UX-Politur (laufend).
+Easter Eggs (Dromedar-Raetsel, Kelchninja, NANO, Ehdzhusten), geheime Enden,
+dynamische Ereignisse und das synthetisierte Soundboard sind umgesetzt.
+Offen: gesampelte Audioassets und die letzte UI/UX-Politur.
 
 ## Gemessener Stand
 
@@ -35,16 +36,17 @@ Assets offen), Performance und UI/UX-Politur (laufend).
 
 | Kennzahl | Stand |
 |---|---|
-| Quests | 47, davon 43-44 in einem Durchlauf abschliessbar |
+| Quests | 55, davon 54 in einem Durchlauf abschliessbar |
 | Dialoge | 32 Graphen, alle ueber einen Kanal erreichbar |
-| Episoden | 51 gelistet, 27 mit eigener Quest |
+| Episoden | 51 gelistet, 35 mit eigener Quest (ALCHEMIMON und BAPHOMIMON vollstaendig) |
 | Orte | 16, alle von Mimons Wohnung aus erreichbar |
 | Durchspielbarkeit | Akt 15 und ein Ende, geprueft ueber drei Seeds |
 
 ## Naechste konkrete Schritte
 
-1. Restliche 24 Episoden als Quests ausformulieren — ALCHEMIMON und BAPHOMIMON
-   sind weitgehend bespielbar, ISLAMIMON und RECHTSEXTREMIMON haben Luecken.
+1. Restliche 16 Episoden als Quests ausformulieren: ALCHEMIMON (21/21) und
+   BAPHOMIMON (3/3) sind vollstaendig, ISLAMIMON (5/15) und
+   RECHTSEXTREMIMON (6/12) haben Luecken.
 2. Hamburg ausbauen: bisher zwei Orte, gedacht als eigener Bezirk.
 3. Dialogzweige fuer niedrigen Trust bei allen Hauptfiguren ergaenzen —
    aktuell reagieren die Figuren kaum darauf, wenn man sie verprellt hat.

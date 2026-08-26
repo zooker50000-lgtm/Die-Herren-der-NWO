@@ -153,7 +153,7 @@ function loese(quest, objective) {
     case 'tagebuch.page': return Boolean(g.inventory.grantRandomPage());
     case 'item.gained': return besorge(w.item);
     case 'alchemy.brewed': return brauen();
-    case 'alchemy.stage': return brauen(3, w.stage);
+    case 'alchemy.stage': return brauen(30, w.stage);
     case 'nwo.terminal': {
       const akten = data.nwo.terminal.files.filter((f) => (!w.file || f.id === w.file) && (!w.section || f.section === w.section));
       let ok = false;
@@ -178,6 +178,12 @@ function loese(quest, objective) {
       if (!ort || !geheZu(ort.id)) return false;
       return g.world.interact(w.interactable).ok;
     }
+    case 'quiz.opened':
+      return Boolean(g.nwo.quizPending() && g.nwo.openQuiz());
+    case 'quiz.answered':
+      if (!g.nwo.quizPending()) return false;
+      g.nwo.openQuiz();
+      return Boolean(g.nwo.answerQuiz(w.answer ?? 'dromedar'));
     case 'easteregg.kelchninja':
       // Sichtungen kommen aus dem Ereignis - hier gezielt ausgeloest.
       g.events.fire('ev_kelchninja_sichtung');
@@ -228,13 +234,29 @@ function verdiene(betrag) {
 function brauen(durchgaenge = 6, stufe = null) {
   if (!geheZu('alchemielabor')) { if (laut) log.push('  brauen: Labor nicht erreichbar'); return false; }
   let erfolg = false;
+
+  // Rezepte der dritten Stufe gehen nur unten in U-7. Zutaten gibt es aber
+  // nur bei Myrrmoasta - also erst einkaufen, dann absteigen.
+  const zielRezept = g.alchemy.knownRecipes().find((r) => stufe && r.stage === stufe);
+  if (zielRezept?.tier === 3) {
+    for (const zutat of zielRezept.ingredients) {
+      if (g.store.has(zutat)) continue;
+      const preis = g.registry.item(zutat)?.price;
+      if (preis) { verdiene(preis); geheZu('alchemielabor'); g.world.buy('myrrmoasta', zutat); }
+    }
+    if (!geheZu('nwo_labor')) { if (laut) log.push('  brauen: U-7 nicht erreichbar'); return false; }
+    const b = g.alchemy.brew(zielRezept.id);
+    if (!b.ok && laut) log.push('  brauen (U-7): ' + b.reason);
+    return b.ok;
+  }
+
   for (let i = 0; i < durchgaenge; i++) {
     // Bestes Rezept, das Level und Labor tatsaechlich hergeben.
-    const moeglich = g.alchemy.knownRecipes()
+    const brauchbar = g.alchemy.knownRecipes()
       .filter((r) => r.minLevel <= g.store.stat('alchemy') && r.tier <= g.alchemy.labLevel())
-      .filter((r) => !stufe || r.stage === stufe)
       .sort((a, b) => b.xp - a.xp);
-    const rezept = moeglich[0];
+    // Ist die Zielstufe noch nicht erreichbar, erst einmal hochbrauen.
+    const rezept = brauchbar.find((r) => !stufe || r.stage === stufe) ?? brauchbar[0];
     if (!rezept) { if (laut) log.push('  brauen: kein Rezept'); return erfolg; }
     let vollstaendig = true;
     for (const zutat of rezept.ingredients) {
@@ -295,12 +317,13 @@ for (let runde = 0; runde < 400 && stillstand < 25; runde++) {
   stillstand = etwasGetan ? 0 : stillstand + 1;
   if (!etwasGetan) g.clock.advance(180);
 
-  if (g.store.s.player.act >= 15 && g.store.s.quests.active.der_letzte_mimonolog) {
-    geheZu('mimons_wohnung');
-    g.world.interact('computer');
-    g.finalMonolog();
-    break;
-  }
+}
+
+// Das Finale zum Schluss - erst wenn alles andere versucht wurde.
+if (g.store.s.player.act >= 15) {
+  geheZu('mimons_wohnung');
+  g.world.interact('computer');
+  g.finalMonolog();
 }
 
 const s = g.store.s;
